@@ -57,7 +57,7 @@ int main()
     ucByte = -1; // = 255 '\377', т к нет отрицательных значений в unisigned
 
     int iInt = 0xffffffff; // = -96 (до инициализации), потом -1
-    // по правилам представления чисел в дополнительном коде (инвертируем, добавляем 1, ставим -)
+    // по правилам представления чисел в дополнительном коде 
 
     unsigned int uiInt = 0xffffffff; // = 4294967295
 
@@ -71,6 +71,7 @@ int main()
      */
 
     double d = 0.1234567890123456789123456789; // = 6.9533558073567488e-310 (до инициализации), потом = 0.12345678901234568
+    // warning: implicit conversion loses floating-point precision: 'double' to 'float'
     float  f = 0.1234567890123456789123456789;  // =  = 4.59163468e-41 (до инициализации), потм = 0.123456791
 
     d = 1.; // = 1
@@ -113,9 +114,15 @@ int main()
     short sShort;
 
     // проавосторонняя ассоциативность
-    dDouble = (fFloat = (iInt = (sShort = (cByte = 3.3 / 3)))); // (1)  // double / int
+    // warning: implicit conversion turns floating-point number into integer: 'double' to 'char' 
+    dDouble = (fFloat = (iInt = (sShort = (cByte = 3.3 / 3)))); // (1)  // = 1
+    // 
 
+    // warning: implicit conversion loses integer precision: 1) 'short' to 'char' 2) 'int' to 'short' 
+    // 3) warning: implicit conversion turns floating-point number into integer: 'float' to 'int'
+    // 4) warning: implicit conversion loses floating-point precision: 'double' to 'float'
     cByte = (sShort = (iInt = (fFloat = (dDouble = 3.3 / 3)))); // (2) // 
+    // '\x01' = 1 = 1 = 1.10000002 = 1.0999999999999999
 
     /**
      * Ниже Вам дан пример "небрежного" использования неявного приведения
