@@ -32,6 +32,7 @@
 int nTwin = 1;
 namespace TwinSpace { int nTwin = 2; }
 
+const bool skip = 0;
 int main()
 {
 
@@ -392,15 +393,15 @@ int main()
 
 
 
-    // {
-    //     int inputInt;
-    //     char inputChar;
-    //     std::cout << 8 << "\n" << "Введите целое число: ";
-    //     std::cin >> inputInt;
-    //     std::cout << "\n" << "Введите символ: "; 
-    //     std::cin >> inputChar;
-    //     std::cout << inputChar << " " << inputInt;
-    // }
+    if(skip){
+        int inputInt;
+        char inputChar;
+        std::cout << 8 << "\n" << "Введите целое число: ";
+        std::cin >> inputInt;
+        std::cout << "\n" << "Введите символ: "; 
+        std::cin >> inputChar;
+        std::cout << inputChar << " " << inputInt;
+    }
 
     /**
      * Задание 9. Логические условные операторы и операторы отношения.
@@ -420,7 +421,7 @@ int main()
      * больше кода соответствующей буквы верхнего регистра.
      */
 
-    {
+    if(skip){
         char ch;
         /** Тут сформируйте значение переменной ch с помощью потока ввода. */
         std::cin >> ch;
@@ -445,10 +446,20 @@ int main()
      * следующую логику: если x меньше или равен 0, y=0, если x больше 0 но
      * меньше 1, то y=x, если x больше или равен 1, то y=1.
      *
-     * Подумайте: какого типа должны или могут быть x и y?
+     * Подумайте: какого типа должны или могут быть x и y?  
+     * float или double
      */
 
-    {
+    if(skip){
+        double x, y;
+        x = -0.5;
+        if (x <= 0){
+            y = 0;
+        } else if (x > 0 && x < 1){
+            y = x;
+        } else if (x >= 1){
+            y = 1;
+        }
     }
 
     /**
@@ -467,8 +478,29 @@ int main()
      * Если любой другой симол, то вывести сообщение об ошибке.
      */
 
-    {
-        char ch;
+    if (1){
+        char cInput;
+        double x = 10.5, y;
+        std::cin >> cInput;
+        switch (cInput)
+        {
+        case 'y':
+            y = x;
+            break;
+        case 'Y':
+            y = x;
+            break;
+        case 'n':
+            y = x * 2;
+            break;
+        case 'N':
+            y = x * 2;
+            break;
+        
+        default:
+            std::cout << "Неверный формат ввода";
+            break;
+        }
     }
 
     /**
