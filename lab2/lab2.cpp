@@ -31,8 +31,9 @@ int main()
      * этот результат.
      */
 
-    {
-        int y=9, bit, flag=0;
+    if (0){
+        int y, bit, flag=0;
+        std::cin >> y;
         for (int i=8 * sizeof(int)-1; i>=0; i--){
             bit = 1 << i;
             std::cout << (bool) (y & bit);
@@ -68,7 +69,25 @@ int main()
      */
 
     {
-        int y;
+        int y=1000, bit, count = 0, k=0;
+        for (int i=8 * sizeof(int)-1; i>=0; i--){
+            bit = 1 << i;
+            std::cout << (bool) (y & bit);
+            count += (bool) (y & bit);
+        }
+        for (int i=0; i <= 8*sizeof(int) - 1; i++){
+            if (y & (1 << i)){
+                y = y & (~(1 << i));
+                y = y | (1 << k);
+                k++;
+            }
+        }
+        std::cout << "\n";
+        for (int i=8 * sizeof(int)-1; i>=0; i--){
+            bit = 1 << i;
+            std::cout << (bool) (y & bit);
+            count += (bool) (y & bit);
+        }
     }
 
     /**
@@ -85,6 +104,8 @@ int main()
 
     {
         int y;
+
+
     }
 
     /**
