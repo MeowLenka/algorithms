@@ -6,6 +6,7 @@
 #include <iostream>
 // #include <cmath>
 
+
 int main()
 {
     /**
@@ -31,7 +32,22 @@ int main()
      */
 
     {
-        int y;
+        int y=9, bit, flag=0;
+        for (int i=8 * sizeof(int)-1; i>=0; i--){
+            bit = 1 << i;
+            std::cout << (bool) (y & bit);
+        }
+
+        for (int i=8 * sizeof(int)-1; i>=0; i--){
+            bit = 1 << i;
+            if ((y & bit) && (not flag)){
+                flag = 1;
+                std::cout << "\n";
+            }
+            if (flag){
+                std::cout << (bool) (y & bit);
+            }
+        }
     }
 
     /**
