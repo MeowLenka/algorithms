@@ -68,12 +68,12 @@ int main()
      * используя код из задания 1.1.
      */
 
-    {
-        int y=1000, bit, count = 0, k=0;
+    if (0){
+        int y, bit, k=0;
+        std::cin >> y;
         for (int i=8 * sizeof(int)-1; i>=0; i--){
             bit = 1 << i;
             std::cout << (bool) (y & bit);
-            count += (bool) (y & bit);
         }
         for (int i=0; i <= 8*sizeof(int) - 1; i++){
             if (y & (1 << i)){
@@ -86,7 +86,6 @@ int main()
         for (int i=8 * sizeof(int)-1; i>=0; i--){
             bit = 1 << i;
             std::cout << (bool) (y & bit);
-            count += (bool) (y & bit);
         }
     }
 
@@ -102,9 +101,12 @@ int main()
      * 3. вычислит целую часть логорифма `y` по основанию 2.
      */
 
-    {
-        int y;
-
+    if (0){
+        int y=10, n=12, del2, del4, exp;
+        y = y << n;
+        del2 = !(y & 1); 
+        del4 = !(y & 3); 
+        
 
     }
 
@@ -120,27 +122,29 @@ int main()
      */
 
     {
-        short sNum = 0x8008;
+        short sNum = 0x8008; 
         short sRes;
 
-        /** sRes == 0x7ff7 */
-        // sRes = ...;
+        /** sRes == 0x7ff7 32759 */
+        sRes = ~sNum;
     
-        /** sRes == 0x8ff8 */
-        // sRes = ...;
-
+        /** sRes == 0x8ff8; */
+        sRes = sNum | (0b1000111111111000);
 
         /** sRes == 0x0008 */
-        // sRes = ...;
+        sRes = sNum & 0x0008;
+        
+        // sRes == 0x7f08
+        sRes = sNum ^ (0b11111111111111111111111100000000);
 
-        /** sRes == 0x7f08 */
-        // sRes = ...;
+        // sRes == 0xf001 
+        sRes = sNum >> 3;
 
-        /** sRes == 0xf001 */
-        // sRes = ...;
+        // sRes == 0x0010
+        sRes = sNum << 1;
 
-        /** sRes == 0x0010 */
-        // sRes = ...;
+
+        sRes = sNum;
     }
 
     
