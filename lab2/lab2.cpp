@@ -4,8 +4,27 @@
  */
 
 #include <iostream>
-// #include <cmath>
+#include <cmath>
 
+
+#define LENGHT(r) ((2) * (r) * (M_PI))
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define EXCHANGE(x, y) \
+    do { \
+        int z = x; \
+        x = y; \
+        y = z; \
+    } while(0)
+
+
+void printbin (int y)   {
+    int bit, flag=0;
+    std::cin >> y;
+    for (int i=8 * sizeof(int)-1; i>=0; i--){
+        bit = 1 << i;
+        std::cout << (bool) (y & bit);
+    }
+}
 
 int main()
 {
@@ -31,8 +50,10 @@ int main()
      * этот результат.
      */
 
+
     if (0){
         int y, bit, flag=0;
+        std::cout << "1.1 Введите целое число ";
         std::cin >> y;
         for (int i=8 * sizeof(int)-1; i>=0; i--){
             bit = 1 << i;
@@ -69,12 +90,11 @@ int main()
      */
 
     if (0){
-        int y, bit, k=0;
+        int y, k=0;
+        std::cout << "1.2 Введите целое число ";
         std::cin >> y;
-        for (int i=8 * sizeof(int)-1; i>=0; i--){
-            bit = 1 << i;
-            std::cout << (bool) (y & bit);
-        }
+        printbin(y);
+
         for (int i=0; i <= 8*sizeof(int) - 1; i++){
             if (y & (1 << i)){
                 y = y & (~(1 << i));
@@ -83,10 +103,7 @@ int main()
             }
         }
         std::cout << "\n";
-        for (int i=8 * sizeof(int)-1; i>=0; i--){
-            bit = 1 << i;
-            std::cout << (bool) (y & bit);
-        }
+        printbin(y);
     }
 
     /**
@@ -102,7 +119,9 @@ int main()
      */
 
     if (0){
-        int y=10, n=12, del2, del4, exp;
+        int y, n=12, del2, del4, exp;
+        std::cout << "1.3 Введите целое число ";
+        std::cin >> y;
         y = y << n;
         del2 = !(y & 1); 
         del4 = !(y & 3); 
@@ -163,8 +182,9 @@ int main()
      */
 
     {
-        // float radius = ...;
-        // float circumference = ...;
+        float radius = 10;
+        float circumference = 2 * radius * M_PI;
+        
     }
     
     /**
@@ -178,11 +198,13 @@ int main()
      * окружности. 
      */
 
-    {
+    if (0){
         /** Протестируйте написанный макрос для следующих ситуаций */
 
-        //float l1 = LENGHT(1 + 2); // должно быть 18.8495...
-        //float l2 = 1 / LENGHT(2); // должно быть 0.07957...
+        float l1 = LENGHT(1 + 2); // должно быть 18.8495...
+        std::cout << l1 << "\n";
+        float l2 = 1 / LENGHT(2); // должно быть 0.07957...
+        std::cout << l2;
     }
 
     /**
@@ -201,11 +223,12 @@ int main()
          * Отметьте случаи, когда избежать побочных эффектов невозможно.
          */
 
-        // int i = 10, j = 12, k;
-        // k = MAX(i, j);
-        // k = MAX(j, i) * 2;
-        // k = MAX(j, i+3);
-        // k = MAX(i--, j++);
+        int i = 10, j = 12, k;
+        k = MAX(i, j);
+        k = MAX(j, i) * 2;
+        k = MAX(j, i+3);
+        k = MAX(i--, j++); // k = 14 WARNING
+        k = 1;
     }
 
     /**
@@ -221,11 +244,13 @@ int main()
      */
 
     {
-        // int x1=1, y1=-1;
-        // EXCHANGE(x1,y1);
+        int x1=1, y1=-1;
+        EXCHANGE(x1,y1);
 
-        // int x2=100, y2=-100;
-        // EXCHANGE(x2,y2);
+        int x2=100;
+        int y2=-100;
+        EXCHANGE(x2,y2);
+        //std::cout << x2 << y2;
     }
 
     /**
@@ -238,8 +263,12 @@ int main()
      */
 
     {
+
+// #define NNN
+// #define MMM
+
         int iNN;
-#if defined NNN && defined MMM
+#if defined NNN && defined MMM // ппроверка обозначен ли макрос 
         iNN = 0;
 #elif defined MMM
         iNN = 1;
@@ -249,9 +278,9 @@ int main()
 #else
         iNN = -1;
 #endif
-    }
 
-    /**
+    }
+        /**
      * Задание 2.4. Задание директив при сборке.
      *
      * При сборке программы компилятором можно установить необходимые
@@ -265,7 +294,10 @@ int main()
      * Уберите из кода определения макросов NNN и MMM из прошлого задания и
      * приведите команды компиляции, которые заставят переменную iNN принять
      * нужное значение. 
-     *
+     * 
+     * g++ -g -D NNN=1 lab2.cpp && ./a.out -> iNN = 2
+     * g++ -g -D MMM=1 lab2.cpp && ./a.out -> iNN = 1
+     * g++ -g -D MMM=5 && NNN=1 lab2.cpp && ./a.out -> iNN = 0
      * Проверьте их работоспособность.
      */
 
@@ -290,7 +322,16 @@ int main()
      *
      * `gcc <ваши опции> -o release.out lab2.cpp`
      */
+#ifdef NDEBUG
+    // релизная сборка
+#else 
+    std::cout << "Отладочная собрка.\nДата: "<< __DATE__ << 
+    "\nИмя файла: " << __FILE_NAME__ << 
+    "\nИмя функции: " << __func__ << 
+    "\nНомер строки: " << __LINE__ << "\n";
 
+#endif
+ 
     /**
      * Задание 3.Заголовочные файлы. Директива #include.
      */
@@ -387,7 +428,7 @@ int main()
          * сравнения.
          */
     }
-/*
+
     /**
      * Задание 6. Явное преобразование указателя. 
      *
