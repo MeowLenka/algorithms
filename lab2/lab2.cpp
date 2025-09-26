@@ -322,16 +322,21 @@ int main()
      *
      * `gcc <ваши опции> -o release.out lab2.cpp`
      */
+
 #ifdef NDEBUG
     // релизная сборка
+    #include "2.h"
+    
 #else 
     std::cout << "Отладочная собрка.\nДата: "<< __DATE__ << 
     "\nИмя файла: " << __FILE_NAME__ << 
     "\nИмя функции: " << __func__ << 
     "\nНомер строки: " << __LINE__ << "\n";
+    #include "1.h"
+
 
 #endif
- 
+ std::cout << (MyEnum) My1;
     /**
      * Задание 3.Заголовочные файлы. Директива #include.
      */
