@@ -6,7 +6,12 @@
 #include <iostream>
 #include <cmath>
 
-
+/*
+    reference = func(int &res) - передаетться сама переменная, не ее копия и не адрес памяти
+    pointer = funct(int *res) - указатель на адрес в памяти на int
+    func(int res) = копия переменной именно новый адрес памяти и новое значене(тоесть 
+    ее изменение толко внутри самой ф-ции)
+*/
 #define LENGHT(r) ((2) * (r) * (M_PI))
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define EXCHANGE(x, y) \
@@ -49,7 +54,6 @@ int main()
      * Что выведет ваша программа, если ввести отрицательное число? Объясните
      * этот результат.
      */
-
 
     if (0){
         int y, bit, flag=0;
@@ -336,7 +340,7 @@ int main()
 
 
 #endif
- std::cout << (MyEnum) My1;
+
     /**
      * Задание 3.Заголовочные файлы. Директива #include.
      */
@@ -379,7 +383,12 @@ int main()
      */
 
     {
-
+        double one = 20.08;
+        int second = 8;
+        double* pone = &one;
+        int* psecond = &second; 
+        std::cout << pone << " " << &one << " " << *pone << " " << &pone << "\n";
+        std::cout << psecond << " " << &second << " " << *psecond << " " << &psecond << "\n";
     }
 
     /**
@@ -394,7 +403,9 @@ int main()
      */
 
     {
-
+        char symbol = 'k';
+        char* psymbol = &symbol;
+        *psymbol = '9'; // возможно 
     }
 
     /**
@@ -409,28 +420,29 @@ int main()
     {
         int nAr[3] = {1,3};
         int* pn = &nAr[0];
-        (*pn)++;    
-        pn++;   
+        (*pn)++;  // *pn = 2;  nAr[0] = 2
+        pn++;   // указатель += 1 -> указывает на следующий элемент массива *pn = 3
 
         char cAr[] = {'A', 'B', 'C', 'D'};
         char *pc = &cAr[0];
-        (*pc) = (*pc) + 5;  
-        pc = pc + 3;    
+        (*pc) = (*pc) + 5;  // *pc = 70 'F'; cAr[0] = 70 'F'
+        pc = pc + 3; // *pc = 68 'D'
     
         double dAr[3]={1.0,2.0};
-        double *pd1 = &dAr[0];
-        double *pd2 = pd1;
-        (*pd2) += 2;
-        pd2 += 2;
+        double *pd1 = &dAr[0]; // *pd1 = 1
+        double *pd2 = pd1; // *pd2 = 1
+        (*pd2) += 2; // *pd2 = 3; dAr[0] = 3
+        pd2 += 2; // *pd2 = 0
 
         /** Объясните результат выполнения операции вычитания двух указателей */
-        pd1 = &dAr[0];
-        pd2 = &dAr[1];
-        int nNumber = pd2 - pd1;
+        pd1 = &dAr[0]; // *pd1 = 3
+        pd2 = &dAr[1]; // *pd2 = 2
+        int nNumber = pd2 - pd1; // == 1
+
 
         /** 
          * Сравните указатели pd2 и pd1 и с помощью cout выведите результаты
-         * сравнения.
+         * сравнения. pd2 > pd1 -> 1
          */
     }
 
@@ -441,7 +453,7 @@ int main()
      * по-разному, например, целое можно представить как совокупность четырех
      * байтов и работать с каждым байтом по отдельности. Для этого нужно иметь
      * возможность "указывать" как на целое, так и на байт. 
-     * 
+     * ]
      * Следовательно, возникает необходимость явного преобразования указателя. 
      * 
      * Подсказка: для правильной интерпретации этого задания воспользуйтесь
@@ -451,7 +463,7 @@ int main()
      */
 
     {
-        unsigned int nObject = 0x55667788;
+        unsigned int nObject = 0x55667788; // `
         unsigned int* pnObject = &nObject;
         unsigned char* pucObject;
         char cc;
@@ -470,10 +482,11 @@ int main()
         pucObject = reinterpret_cast<unsigned char*>(pnObject);
 
         /** Проследите за значениями переменной `cc`. Объясните результаты. */
-        cc = pucObject[0];
-        cc = pucObject[1];
-        cc = pucObject[2];
-        cc = pucObject[3];
+        cc = pucObject[0]; // = 0x88
+        cc = pucObject[1]; // = 0x77
+        cc = pucObject[2]; // = 0x66
+        cc = pucObject[3]; // = 0x55
+        // чсисло в 4 батйа -> 4 числа по 1 ба1ту
 
         /**
          * Выполните следующие строки, наблюдая за значениями следующих
@@ -481,11 +494,11 @@ int main()
          *
          * Зафиксируйте и интерпретируйте результаты.
          */
-        cc = *(pucObject++);
-        cc = (*pucObject)++;
+        cc = *(pucObject++); // = 0x88
+        cc = (*pucObject)++; // = 0x77
 
-        cc = ++*(pucObject);
-        cc = *(++pucObject);
+        cc = ++*(pucObject); // = 0x79
+        cc = *(++pucObject); // = 0x66
     }
 
     /**
@@ -506,16 +519,16 @@ int main()
         int nObject3 = 5;
         char cObject3 = 'A';
         int *pInt = &nObject3;  
-        pVoid = &nObject3;
-        pVoid = &cObject3;
+        pVoid = &nObject3; 
+        pVoid = &cObject3;  
         pVoid = pInt;
 
         /** 
          * Прежде, чем раскомментировать следующую строчку, вспомните: что
          * нужно сделать, чтобы выражение стало корректным?
          */
-        // pInt=pVoid;
-
+        pInt = static_cast<int*>(pVoid);
+        // pInt = pVoid;
     }
     
     /**
@@ -526,7 +539,7 @@ int main()
      */
     {
         const int n = 1;
-        //... = &n;
+        const void *pn = &n;
     }
 
     /**
