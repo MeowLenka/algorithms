@@ -6,12 +6,7 @@
 #include <iostream>
 #include <cmath>
 
-/*
-    reference = func(int &res) - передаетться сама переменная, не ее копия и не адрес памяти
-    pointer = funct(int *res) - указатель на адрес в памяти на int
-    func(int res) = копия переменной именно новый адрес памяти и новое значене(тоесть 
-    ее изменение толко внутри самой ф-ции)
-*/
+
 #define LENGHT(r) ((2) * (r) * (M_PI))
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define EXCHANGE(x, y) \
@@ -23,12 +18,12 @@
 
 
 void printbin (int y)   {
-    int bit, flag=0;
-    std::cin >> y;
+    int bit;
     for (int i=8 * sizeof(int)-1; i>=0; i--){
         bit = 1 << i;
         std::cout << (bool) (y & bit);
     }
+    std::cout << "\n";
 }
 
 int main()
@@ -74,6 +69,7 @@ int main()
                 std::cout << (bool) (y & bit);
             }
         }
+        std::cout << "\n";
     }
 
     /**
@@ -106,7 +102,6 @@ int main()
                 k++;
             }
         }
-        std::cout << "\n";
         printbin(y);
     }
 
@@ -121,15 +116,18 @@ int main()
      * 2. проверит, делится ли `y` на 2, проверит, делится ли `y` на 4;
      * 3. вычислит целую часть логорифма `y` по основанию 2.
      */
-
     if (0){
-        int y, n=12, del2, del4, exp;
+        int y, n=12, del2, del4, degree=0, f;
         std::cout << "1.3 Введите целое число ";
         std::cin >> y;
-        y = y << n;
+        f = y << n;
         del2 = !(y & 1); 
         del4 = !(y & 3); 
-        
+        while (y>1){
+            y >>= 1;
+            degree++;
+        }
+        std::cout << degree << "\n";
 
     }
 
@@ -148,7 +146,7 @@ int main()
         short sNum = 0x8008; 
         short sRes;
 
-        /** sRes == 0x7ff7 32759 */
+        /** sRes == 0x7ff7 */
         sRes = ~sNum;
     
         /** sRes == 0x8ff8; */
@@ -165,7 +163,6 @@ int main()
 
         // sRes == 0x0010
         sRes = sNum << 1;
-
 
         sRes = sNum;
     }
@@ -217,7 +214,7 @@ int main()
      * Определите макрос MAX(A, B) для вычисления б'ольшего значения из двух.
      */
 
-    {
+    if (0){
         /**
          * Используйте макрос следующим образом. Следите за изменением значений
          * переменных k, i, j. Объясните результат.
@@ -228,10 +225,11 @@ int main()
          */
 
         int i = 10, j = 12, k;
-        k = MAX(i, j);
-        k = MAX(j, i) * 2;
-        k = MAX(j, i+3);
-        k = MAX(i--, j++); // k = 14 WARNING
+        k = MAX(i, j); //  k = 12
+        k = MAX(j, i) * 2; // k = 24
+        k = MAX(j, i+3); // k = 13 
+
+        k = MAX(i--, j++); // i = 9 j = 14 k = 14 <- вот тут не избежать
         k = 1;
     }
 
@@ -247,7 +245,7 @@ int main()
      * значения разного типа???
      */
 
-    {
+    if (0){
         int x1=1, y1=-1;
         EXCHANGE(x1,y1);
 
@@ -382,13 +380,11 @@ int main()
      * присвоены переменным-указателям и на что эти указатели "указывают".
      */
 
-    {
+    if (1){
         double one = 20.08;
         int second = 8;
         double* pone = &one;
         int* psecond = &second; 
-        std::cout << pone << " " << &one << " " << *pone << " " << &pone << "\n";
-        std::cout << psecond << " " << &second << " " << *psecond << " " << &psecond << "\n";
     }
 
     /**
@@ -402,7 +398,7 @@ int main()
      * задаваемому указателем?
      */
 
-    {
+    if (0){
         char symbol = 'k';
         char* psymbol = &symbol;
         *psymbol = '9'; // возможно 
@@ -417,7 +413,7 @@ int main()
      *
      * Интерпретируте наблюдаемые результаты.
      */
-    {
+    if (0){
         int nAr[3] = {1,3};
         int* pn = &nAr[0];
         (*pn)++;  // *pn = 2;  nAr[0] = 2
@@ -462,8 +458,8 @@ int main()
      * команду print (p) с указанием шестнадцетиричного формата: `p/x`.
      */
 
-    {
-        unsigned int nObject = 0x55667788; // `
+    if (0){
+        unsigned int nObject = 0x55667788; // 
         unsigned int* pnObject = &nObject;
         unsigned char* pucObject;
         char cc;
@@ -482,10 +478,11 @@ int main()
         pucObject = reinterpret_cast<unsigned char*>(pnObject);
 
         /** Проследите за значениями переменной `cc`. Объясните результаты. */
-        cc = pucObject[0]; // = 0x88
-        cc = pucObject[1]; // = 0x77
-        cc = pucObject[2]; // = 0x66
-        cc = pucObject[3]; // = 0x55
+        cc = pucObject[0]; // = 0x88 // *pucObject
+        cc = pucObject[1]; // = 0x77 // *(pucObject + 1)
+        cc = pucObject[2]; // = 0x66 // *(pucObject + 2)
+        cc = pucObject[3]; // = 0x55 // *(pucObejct + 3)
+
         // чсисло в 4 батйа -> 4 числа по 1 ба1ту
 
         /**
@@ -494,10 +491,10 @@ int main()
          *
          * Зафиксируйте и интерпретируйте результаты.
          */
-        cc = *(pucObject++); // = 0x88
-        cc = (*pucObject)++; // = 0x77
+        cc = *(pucObject++); // = 0x88 //
+        cc = (*pucObject)++; // = 0x77 //
 
-        cc = ++*(pucObject); // = 0x79
+        cc = ++*(pucObject); // = 0x79 // 
         cc = *(++pucObject); // = 0x66
     }
 
@@ -514,7 +511,7 @@ int main()
      * Обратите внимание: средствами отладчика вы не можете посмотреть
      * значения, на которые "указывает" void-указатель.
      */
-    {
+    if (0){
         void *pVoid;
         int nObject3 = 5;
         char cObject3 = 'A';
@@ -537,7 +534,7 @@ int main()
      *
      * В закоментированной строке необходимо объявить void-указатель.
      */
-    {
+    if (0){
         const int n = 1;
         const void *pn = &n;
     }
@@ -549,11 +546,14 @@ int main()
      * Вас ожидать при явном приведении типа void-указателя, который в момент
      * времени (1) указывает на double, к типу указателя на int (2).
      */
-
-    {
+    
+    if (0){
         double dObject3 = 33.33;
         // ... pVoid = &dObject3;  //(1)
-
+        void *pVoid = &dObject3; 
+        // double - 8байт, int - 4байт -> потеря информации
+        // разное представление значений
+        int nTmp = *(static_cast<int*>(pVoid)); // = 1889785610
         // int nTmp = *(static_cast<int*>(pVoid) ); //(2) 
     }
 
@@ -576,8 +576,10 @@ int main()
     /**
      * Задание 8.1.1. Указатель является константой. 
      */
-
+    
     {
+        int nInt = 10;
+        int * const pnItn = &nInt;
 
     }
     
@@ -586,6 +588,8 @@ int main()
      */
 
     {
+        const int nConst = 17;
+        const int *pnConst = &nConst;
 
     }
 
@@ -594,6 +598,8 @@ int main()
      */
 
     {
+        const int nConst = 18;
+        const int * const pnConst = &nConst;
 
     }
 
@@ -605,7 +611,8 @@ int main()
      */
 
     {
-        // const int nN = 1;
+        const int nN = 1;
+        const int * pnN = &nN;
     }
 
     /**
@@ -619,23 +626,27 @@ int main()
          * Объявите указатель pn и проинициализируйте его так, чтобы он
          * "указывал" на n. 
          */
+        int *pn = &n;
 
         /** 
          * Объявите указатель ppn и проинициализируйте его так, чтобы он
          * "указывал" на pn. 
          */
+        int **ppn = &pn;
 
         /** 
          * Объявите указатель pppn и проинициализируйте его так, чтобы он
          * "указывал" на ppn. 
          */
+        int ***pppn = &ppn;
 
         /** 
          * С помощью указателей pn, ppn и pppn получите значение объекта n и
          * присвойте его m.
          */
 
-        // int m = ...;
+        int m = ***pppn;
+
     }
     return 0;
 }
