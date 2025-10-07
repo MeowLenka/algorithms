@@ -3,6 +3,7 @@
  * Указатели.
  */
 
+using namespace std;
 #include <iostream>
 #include <cmath>
 
@@ -341,6 +342,7 @@ int main()
 
     /**
      * Задание 3.Заголовочные файлы. Директива #include.
+     * TODO: рассказать, что делает препроцессор при использовании директивы include
      */
 
     /**
