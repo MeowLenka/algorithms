@@ -4,6 +4,12 @@
  */
 #include <iostream>
 
+
+int myrandom(int a, int b){
+    srand(time(0));
+    return rand() % (b-a) + a;
+}
+
 int main()
 {
     /**
@@ -45,7 +51,7 @@ int main()
      * помощью кода так, чтобы в итоге получился такой же массив, как в задании
      * 1.1.
      */
-    int emptynumbers[3][3][3];
+    int emptynumbers[3][3][3] = {};
     for (int i=0; i<3; i++){
         for (int j=0; j<3; j++){
             for (int k=0; k<3; k++){
@@ -67,7 +73,6 @@ int main()
             }
         }
     }
-    std::cout << sum;
     /**
      * Задание 1.4.
      *
@@ -87,10 +92,11 @@ int main()
      * образом?
      */
     int zeronumbers[3][3][3] = {
-        {{1}},
-        {{2}},
-        {{3}}
+        {1},
+        {2},
+        {3}
     };
+
     /**
      * Задание 1.5. Инициализация массивов строковыми литералами.
      * 
@@ -98,7 +104,9 @@ int main()
      * двухмерный массив и массив указателей. Поясните разницу в использовании
      * элементов таких массивов.
      */
-
+    char mas1[][5] = {"hi", "vlad"};
+    // у двухмерного массива фиксированный размер для каждой строки, разное использование памяти
+    char* mas2[] = {"hi", "my", "best", "friend", "vlad"};
     /**
      * Задание 2. Динамическое выделение памяти.
      */
@@ -132,13 +140,36 @@ int main()
      * Функция time() задает эту точку отсчета, считывая текущее время.
      */
 
+    int n = myrandom(1, 10), m = myrandom(1, 10);
+
+    int **dinamic = new int* [n];
+    for (int i=0; i < n; i++)
+        dinamic[i] = new int [m];
+    
+    srand(time(0));
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            dinamic[i][j] = rand() % 100;
+
     /**
      * Задание 2.2.
      *
      * В сформированном массиве отсортируйте каждую строку по убыванию
      * значений. Используйте сортировку "выбором".
      */
-
+    int minimal = 0, ad = 0;
+    for (int st = 0; st < n; st++){
+        for (int i = 0; i < m; i++){
+            minimal = i;
+            for (int j = i + 1; j < m; j++){
+                if (dinamic[st][j] < dinamic[st][minimal])
+                    minimal =j;
+            }
+            ad = dinamic[st][minimal];
+            dinamic[st][minimal] = dinamic[st][i];
+            dinamic[st][i] = ad;
+        }
+    }
     /**
      * Задание 2.3.
      *
@@ -147,7 +178,17 @@ int main()
      * Сформируйте значение i-ого элемента одномерного массива  равным среднему
      * значению элементов i-ой строки двухмерного массива.
      */
+    int avg = 0;
+    int *masavg = new int [n];
 
+    for (int i = 0; i < n; i++){
+        avg = 0;
+        for (int j = 0; j < m; j++){
+            avg += dinamic[i][j];
+        masavg[i] = avg / m;
+        }
+    }
+    
     /**
      * Задание 2.4. 
      *
@@ -161,7 +202,11 @@ int main()
      * Если после выполнении программы выдаются сообщения об утечках, это
      * означает, что где-то не удалена выделенная память.
      */
+    for (int i = 0; i < n; i++)
+        delete [] dinamic[i];
 
+    delete [] masavg;
+   
     /**
      * Задание 3.
      */
@@ -179,7 +224,22 @@ int main()
      * Постарайтесь, чтобы и сравнений, и перестановок было не больше, чем
      * k*N^2, где k - некоторое число.
      */
+    n = 8;
+    int cur;
+    int* numbers = new int [n];
+    int* test = new int [n]{10, 9, 7, 15, 3, 20, 6, 10};
 
+    for (int i = 0; i < n; i++){
+        // std::cin >> cur;
+        cur = test[i];
+
+        int j = i;
+        while (j > 0 && numbers[j-1] > cur){
+            numbers[j] = numbers[j-1];
+            j--;
+        }
+        numbers[j] = cur;
+    }
     /**
      * Задание 3.2. Простой поиск.
      *
