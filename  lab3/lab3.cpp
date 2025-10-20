@@ -226,20 +226,23 @@ int main()
      */
     n = 8;
     int cur;
-    int* numbers = new int [n];
-    int* test = new int [n]{10, 9, 7, 15, 3, 20, 6, 10};
+    int* numbers1 = new int [n];
+    int* test1 = new int [n]{10, 7, 7, 15, 3, 20, 6, 9};
 
     for (int i = 0; i < n; i++){
         // std::cin >> cur;
-        cur = test[i];
+        cur = test1[i];
 
         int j = i;
-        while (j > 0 && numbers[j-1] > cur){
-            numbers[j] = numbers[j-1];
+
+        while (j > 0 && numbers1[j-1] > cur){
+            numbers1[j] = numbers1[j-1];
             j--;
         }
-        numbers[j] = cur;
+        numbers1[j] = cur;
     }
+    delete [] numbers1;
+    delete [] test1;
     /**
      * Задание 3.2. Простой поиск.
      *
@@ -247,11 +250,36 @@ int main()
      * вводится в массив только при условии, что там еще такого нет (то есть
      * дубли игнорируются).
      */
+    int* numbers2 = new int [n];
+    int* test2 = new int [n]{10, 7, 10, 8, 3, 8, -16, 133};
+    int top = 0;
 
+    for (int i = 0; i < n; i++){
+        // std::cin >> cur;
+        cur = test2[i];
+
+        int j = top;
+        int fl = 0;
+        for (int p=0; p<top; p++){
+            if (cur == numbers2[p])
+                fl = 1;
+        }
+        if (!fl){
+            while (j > 0 && numbers2[j-1] > cur){
+                numbers2[j] = numbers2[j-1];
+                j--;
+            }
+            numbers2[j] = cur;
+            top++;
+        }   
+    }
+    for (int i = 0; i < n; i++){
+        std::cout << numbers2[i]<< " ";
+    }
      
     /**
      * Задание 4. Сортировка строк.
-     *
+     * 
      * С помощью данной заготовки напишите программу, которая:
      *
      * 1. вводит строки с клавиатуры с помощью cin>>... в объявленный Вами
