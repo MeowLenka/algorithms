@@ -3,6 +3,7 @@
  * Простейшие алгоритмы сортировки и поиска. Сложные указатели.
  */
 #include <iostream>
+#include <cstring>
 
 
 int myrandom(int a, int b){
@@ -273,10 +274,8 @@ int main()
             top++;
         }   
     }
-    for (int i = 0; i < n; i++){
-        std::cout << numbers2[i]<< " ";
-    }
-     
+    delete [] numbers2;
+    delete [] test2;
     /**
      * Задание 4. Сортировка строк.
      * 
@@ -302,17 +301,19 @@ int main()
         // STOP_STRING  -  "*"  //признак "прекратить ввод"
         // M  -  80 //максимальный размер одной строки
         // N  -  10 //максимальное количество строк в массиве
+        const int N = 10, M = 80;
+        const char STOP_STRING = '*';
 
         /** 
          * Объявите двухмерный массив с именем cBuffer типа char и размерностью
          * N*M.
          */
-
+        char cBuffer[N][M] = {};
         /**
          * Объявите массив (с именем cPointers) указателей на строки
          * размерностью N.
          */
-
+        char* cPointers[N] = {};
 
         /** 
          * Цикл ввода строк:
@@ -320,7 +321,34 @@ int main()
          * 2. пока не введена строка STOP_STRING или не заполнен весь массив; 
          */
 
-        {
+        
+            int count_string = 0, count_symbol = 0;
+            char symbol;
+            std::cout << "ВВедите до " << N << " строк до " << M << " символов в каждой \n";
+            symbol = std::getchar();
+            while (count_string < N && count_symbol < M){
+                if (symbol != '\n'){
+                    if (symbol == STOP_STRING){
+                        count_string++;
+                        break;
+                    }
+                    cBuffer[count_string][count_symbol++] = symbol;
+                }
+                else{
+                    count_string++;
+                    count_symbol = 0;
+                }
+                symbol = std::getchar();;
+            }
+            for (int nIndex = 0; nIndex < N; nIndex++)
+                cPointers[nIndex] = cBuffer[nIndex];
+
+            
+
+            for (int i = 0; i < count_string; i++){
+                std::cout << cPointers[i];
+                std::cout << std::endl;
+            }
             /** ввод строки в массив cBuffer: */
                                     
             /** если введена строка - признак окончания, то выйти из цикла */
@@ -329,11 +357,28 @@ int main()
 
             /** указатель на строку с номером nIndex в массиве cBuffer */
 
-        }
-
+        
+        std::cout << "ВВод окончен\n";
 
         /** Выдать диагностику о том, что прием строк завершен.*/
+        bool swap = true;
+        
+        while (swap){
+            swap = false;
+            for (int i = 0; i < count_string-1; i++){
+                if (strcmp(cPointers[i], cPointers[i+1]) > 0){
+                    char* temp = cPointers[i+1];
+                    cPointers[i+1] = cPointers[i];
+                    cPointers[i] = temp;
+                    swap = true;
+                }
+            }
+        }
 
+        for (int i = 0; i < count_string; i++){
+            std::cout << cPointers[i];
+            std::cout << "\n";
+        }
         /**
          * Теперь сортируем строки.
          *
