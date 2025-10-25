@@ -5,10 +5,10 @@
 #include <iostream>
 #include <cstring>
 
-
-int myrandom(int a, int b){
+int myrandom(int a, int b)
+{
     srand(time(0));
-    return rand() % (b-a) + a;
+    return rand() % (b - a) + a;
 }
 
 int main()
@@ -24,27 +24,26 @@ int main()
      * элементов, указанные на иллюстрации ниже, с помощью инициализации при
      * объявлении.
      *
-     *                   |--------|     
-     *                 / |3  3  3 |     
+     *                   |--------|
+     *                 / |3  3  3 |
      *               |---------|3 |
      *             / | 2  2  2 |3 |
      *            |---------|2 |__|
      *            | 1  1  1 |2 | /
-     *            | 1  1  1 |__| 
+     *            | 1  1  1 |__|
      *            | 1  1  1 | /
      *            |_________|
      */
     int alsonumbers[3][3][3] = {
-            {{1, 1, 1},
-            {1, 1, 1},
-            {1, 1, 1}},
-            {{2, 2, 2}, 
-            {2, 2, 2},
-            {2, 2, 2}},
-            {{3, 3, 3}, 
-            {3, 3, 3},
-            {3, 3, 3}}
-        };
+        {{1, 1, 1},
+         {1, 1, 1},
+         {1, 1, 1}},
+        {{2, 2, 2},
+         {2, 2, 2},
+         {2, 2, 2}},
+        {{3, 3, 3},
+         {3, 3, 3},
+         {3, 3, 3}}};
     /**
      * Задание 1.2.
      *
@@ -53,10 +52,13 @@ int main()
      * 1.1.
      */
     int emptynumbers[3][3][3] = {};
-    for (int i=0; i<3; i++){
-        for (int j=0; j<3; j++){
-            for (int k=0; k<3; k++){
-                emptynumbers[i][j][k] = i+1;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            for (int k = 0; k < 3; k++)
+            {
+                emptynumbers[i][j][k] = i + 1;
             }
         }
     }
@@ -66,10 +68,13 @@ int main()
      * Напишите код, с помощью которого можно найти сумму элементов массива,
      * полученного в задании 1.
      */
-    int sum=0;
-    for (int i=0; i<3; i++){
-        for (int j=0; j<3; j++){
-            for (int k=0; k<3; k++){
+    int sum = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            for (int k = 0; k < 3; k++)
+            {
                 sum += alsonumbers[i][j][k];
             }
         }
@@ -79,13 +84,13 @@ int main()
      *
      * Проинициализируйте массив при объявлении следующим образом:
      *
-     *                   |--------|     
-     *                 / |3  0  0 |     
+     *                   |--------|
+     *                 / |3  0  0 |
      *               |---------|0 |
      *             / | 2  0  0 |0 |
      *            |---------|0 |__|
      *            | 1  0  0 |0 | /
-     *            | 0  0  0 |__| 
+     *            | 0  0  0 |__|
      *            | 0  0  0 | /
      *            |_________|
      *
@@ -95,19 +100,18 @@ int main()
     int zeronumbers[3][3][3] = {
         {1},
         {2},
-        {3}
-    };
+        {3}};
 
     /**
      * Задание 1.5. Инициализация массивов строковыми литералами.
-     * 
+     *
      * Объявите и проинициализируйте строковыми литералами два массива:
      * двухмерный массив и массив указателей. Поясните разницу в использовании
      * элементов таких массивов.
      */
     char mas1[][5] = {"hi", "vlad"};
     // у двухмерного массива фиксированный размер для каждой строки, разное использование памяти
-    char* mas2[] = {"hi", "my", "best", "friend", "vlad"};
+    char *mas2[] = {"hi", "my", "best", "friend", "vlad"};
     /**
      * Задание 2. Динамическое выделение памяти.
      */
@@ -119,7 +123,7 @@ int main()
      * процессе выполнения программы - N*M, эти размерности можно сформировать
      * случайно в некотором диапазоне или ввести с консоли.
      *
-     * Задайте значения элементов помощью генератора случайных чисел. 
+     * Задайте значения элементов помощью генератора случайных чисел.
      *
      * Найдите сумму элементов.
      *
@@ -143,10 +147,10 @@ int main()
 
     int n = myrandom(1, 10), m = myrandom(1, 10);
 
-    int **dinamic = new int* [n];
-    for (int i=0; i < n; i++)
-        dinamic[i] = new int [m];
-    
+    int **dinamic = new int *[n];
+    for (int i = 0; i < n; i++)
+        dinamic[i] = new int[m];
+
     srand(time(0));
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
@@ -159,12 +163,15 @@ int main()
      * значений. Используйте сортировку "выбором".
      */
     int minimal = 0, ad = 0;
-    for (int st = 0; st < n; st++){
-        for (int i = 0; i < m; i++){
+    for (int st = 0; st < n; st++)
+    {
+        for (int i = 0; i < m; i++)
+        {
             minimal = i;
-            for (int j = i + 1; j < m; j++){
+            for (int j = i + 1; j < m; j++)
+            {
                 if (dinamic[st][j] < dinamic[st][minimal])
-                    minimal =j;
+                    minimal = j;
             }
             ad = dinamic[st][minimal];
             dinamic[st][minimal] = dinamic[st][i];
@@ -174,24 +181,26 @@ int main()
     /**
      * Задание 2.3.
      *
-     * Объявите одномерный массив размерностью N. 
+     * Объявите одномерный массив размерностью N.
      *
      * Сформируйте значение i-ого элемента одномерного массива  равным среднему
      * значению элементов i-ой строки двухмерного массива.
      */
     int avg = 0;
-    int *masavg = new int [n];
+    int *masavg = new int[n];
 
-    for (int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++)
+    {
         avg = 0;
-        for (int j = 0; j < m; j++){
+        for (int j = 0; j < m; j++)
+        {
             avg += dinamic[i][j];
-        masavg[i] = avg / m;
+            masavg[i] = avg / m;
         }
     }
-    
+
     /**
-     * Задание 2.4. 
+     * Задание 2.4.
      *
      * Убедитесь, что вся выделенная память очищена.
      *
@@ -204,10 +213,10 @@ int main()
      * означает, что где-то не удалена выделенная память.
      */
     for (int i = 0; i < n; i++)
-        delete [] dinamic[i];
+        delete[] dinamic[i];
 
-    delete [] masavg;
-   
+    delete[] masavg;
+
     /**
      * Задание 3.
      */
@@ -227,23 +236,25 @@ int main()
      */
     n = 8;
     int cur;
-    int* numbers1 = new int [n];
-    int* test1 = new int [n]{10, 7, 7, 15, 3, 20, 6, 9};
+    int *numbers1 = new int[n];
+    int *test1 = new int[n]{10, 7, 7, 15, 3, 20, 6, 9};
 
-    for (int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++)
+    {
         // std::cin >> cur;
         cur = test1[i];
 
         int j = i;
 
-        while (j > 0 && numbers1[j-1] > cur){
-            numbers1[j] = numbers1[j-1];
+        while (j > 0 && numbers1[j - 1] > cur)
+        {
+            numbers1[j] = numbers1[j - 1];
             j--;
         }
         numbers1[j] = cur;
     }
-    delete [] numbers1;
-    delete [] test1;
+    delete[] numbers1;
+    delete[] test1;
     /**
      * Задание 3.2. Простой поиск.
      *
@@ -251,34 +262,38 @@ int main()
      * вводится в массив только при условии, что там еще такого нет (то есть
      * дубли игнорируются).
      */
-    int* numbers2 = new int [n];
-    int* test2 = new int [n]{10, 7, 10, 8, 3, 8, -16, 133};
+    int *numbers2 = new int[n];
+    int *test2 = new int[n]{10, 7, 10, 8, 3, 8, -16, 133};
     int top = 0;
 
-    for (int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++)
+    {
         // std::cin >> cur;
         cur = test2[i];
 
         int j = top;
         int fl = 0;
-        for (int p=0; p<top; p++){
+        for (int p = 0; p < top; p++)
+        {
             if (cur == numbers2[p])
                 fl = 1;
         }
-        if (!fl){
-            while (j > 0 && numbers2[j-1] > cur){
-                numbers2[j] = numbers2[j-1];
+        if (!fl)
+        {
+            while (j > 0 && numbers2[j - 1] > cur)
+            {
+                numbers2[j] = numbers2[j - 1];
                 j--;
             }
             numbers2[j] = cur;
             top++;
-        }   
+        }
     }
-    delete [] numbers2;
-    delete [] test2;
+    delete[] numbers2;
+    delete[] test2;
     /**
      * Задание 4. Сортировка строк.
-     * 
+     *
      * С помощью данной заготовки напишите программу, которая:
      *
      * 1. вводит строки с клавиатуры с помощью cin>>... в объявленный Вами
@@ -295,6 +310,7 @@ int main()
      * стандартной библиотеки strcmp(...), заголовочный файл <cstring>.
      */
 
+    if (0)
     {
         /** Определите необходимые значения как константы */
 
@@ -304,7 +320,7 @@ int main()
         const int N = 10, M = 80;
         const char STOP_STRING = '*';
 
-        /** 
+        /**
          * Объявите двухмерный массив с именем cBuffer типа char и размерностью
          * N*M.
          */
@@ -313,69 +329,75 @@ int main()
          * Объявите массив (с именем cPointers) указателей на строки
          * размерностью N.
          */
-        char* cPointers[N] = {};
+        char *cPointers[N] = {};
 
-        /** 
+        /**
          * Цикл ввода строк:
-         * 1. выведите приглашение для ввода; 
-         * 2. пока не введена строка STOP_STRING или не заполнен весь массив; 
+         * 1. выведите приглашение для ввода;
+         * 2. пока не введена строка STOP_STRING или не заполнен весь массив;
          */
 
-        
-            int count_string = 0, count_symbol = 0;
-            char symbol;
-            std::cout << "ВВедите до " << N << " строк до " << M << " символов в каждой \n";
-            symbol = std::getchar();
-            while (count_string < N && count_symbol < M){
-                if (symbol != '\n'){
-                    if (symbol == STOP_STRING){
-                        count_string++;
-                        break;
-                    }
-                    cBuffer[count_string][count_symbol++] = symbol;
-                }
-                else{
+        int count_string = 0, count_symbol = 0;
+        char symbol;
+        std::cout << "ВВедите до " << N << " строк до " << M << " символов в каждой \n";
+        symbol = std::getchar();
+        while (count_string < N && count_symbol < M)
+        {
+            if (symbol != '\n')
+            {
+                if (symbol == STOP_STRING)
+                {
                     count_string++;
-                    count_symbol = 0;
+                    break;
                 }
-                symbol = std::getchar();;
+                cBuffer[count_string][count_symbol++] = symbol;
             }
-            for (int nIndex = 0; nIndex < N; nIndex++)
-                cPointers[nIndex] = cBuffer[nIndex];
-
-            
-
-            for (int i = 0; i < count_string; i++){
-                std::cout << cPointers[i];
-                std::cout << std::endl;
+            else
+            {
+                count_string++;
+                count_symbol = 0;
             }
-            /** ввод строки в массив cBuffer: */
-                                    
-            /** если введена строка - признак окончания, то выйти из цикла */
+            symbol = std::getchar();
+            ;
+        }
+        for (int nIndex = 0; nIndex < N; nIndex++)
+            cPointers[nIndex] = cBuffer[nIndex];
 
-            /** Присвойте элементу массива cPointers с индексом nIndex */
+        for (int i = 0; i < count_string; i++)
+        {
+            std::cout << cPointers[i];
+            std::cout << std::endl;
+        }
+        /** ввод строки в массив cBuffer: */
 
-            /** указатель на строку с номером nIndex в массиве cBuffer */
+        /** если введена строка - признак окончания, то выйти из цикла */
 
-        
+        /** Присвойте элементу массива cPointers с индексом nIndex */
+
+        /** указатель на строку с номером nIndex в массиве cBuffer */
+
         std::cout << "ВВод окончен\n";
 
         /** Выдать диагностику о том, что прием строк завершен.*/
         bool swap = true;
-        
-        while (swap){
+
+        while (swap)
+        {
             swap = false;
-            for (int i = 0; i < count_string-1; i++){
-                if (strcmp(cPointers[i], cPointers[i+1]) > 0){
-                    char* temp = cPointers[i+1];
-                    cPointers[i+1] = cPointers[i];
+            for (int i = 0; i < count_string - 1; i++)
+            {
+                if (strcmp(cPointers[i], cPointers[i + 1]) > 0)
+                {
+                    char *temp = cPointers[i + 1];
+                    cPointers[i + 1] = cPointers[i];
                     cPointers[i] = temp;
                     swap = true;
                 }
             }
         }
 
-        for (int i = 0; i < count_string; i++){
+        for (int i = 0; i < count_string; i++)
+        {
             std::cout << cPointers[i];
             std::cout << "\n";
         }
@@ -383,45 +405,102 @@ int main()
          * Теперь сортируем строки.
          *
          * Необходимо использовать сортировку строк по методу "всплывающего
-         * пузырька" в порядке возрастания. 
+         * пузырька" в порядке возрастания.
          *
          * На каждой итерации - промежуточная печать отсортированных строк.
          */
-
     }
 
-/*
-    /**
-     * Задание 5. Динамические строки.
-     *
-     * Реализуйте задание №4, используя не встроенные, а динамические массивы
-     * (массив?). Так как строки могут быть разной длины, эффективным решением
-     * было бы отводить под каждую строку ровно столько байтов, сколько
-     * требуется для ее хранения.
-     *
-     * Реализуйте это задание так, чтобы пользователь мог ввести строку любой
-     * длины (которая помещается в память компьютера - читайте: неограниченной
-     * длины).
-     *
-     * При этом необходимые параметры (количество строк) сформируйте с помощью
-     * потока ввода.
-     */
+    /*
+        /**
+         * Задание 5. Динамические строки.
+         *
+         * Реализуйте задание №4, используя не встроенные, а динамические массивы
+         * (массив?). Так как строки могут быть разной длины, эффективным решением
+         * было бы отводить под каждую строку ровно столько байтов, сколько
+         * требуется для ее хранения.
+         *
+         * Реализуйте это задание так, чтобы пользователь мог ввести строку любой
+         * длины (которая помещается в память компьютера - читайте: неограниченной
+         * длины).
+         *
+         * При этом необходимые параметры (количество строк) сформируйте с помощью
+         * потока ввода.
+         */
 
     {
+        const char STOP_STRING = '*';
+        int count_string = 0, count_symbol = 0, size = 10;
+
         int nStringNumber;
+        std::cout << "Введите количесвто строк\n";
+        std::cin >> nStringNumber;
+
+        char **cBuffer = new char *[nStringNumber];
+        char *buf = new char[size];
 
         /** Цикл ввода строк: */
 
-        /** 
+        char symbol = std::cin.get();
+        while (count_string < nStringNumber)
+        {
+            if (symbol == STOP_STRING)
+            {
+                count_string++;
+                break;
+            }
+            else if (symbol == '\n')
+            {
+                char *newBuf = new char[count_symbol + 1];
+                for (int i = 0; i < count_symbol; i++)
+                    newBuf[i] = buf[i];
+                newBuf[count_symbol] = '\0';
+                // delete[] buf;
+                // buf = newBuf;
+                std::cout << buf << '\n';
+                char *oldBuf = buf;
+                buf = newBuf;
+                delete[] oldBuf;
+
+                cBuffer[count_string] = buf;
+                std::cout << cBuffer[count_string] << '\n';
+                count_string++;
+                count_symbol = 0;
+            }
+            else
+            {
+                if (count_symbol >= size)
+                {
+                    size *= 2;
+                    char *newBuf = new char[size];
+                    for (int i = 0; i < count_symbol; i++)
+                        newBuf[i] = buf[i];
+                    // delete[] buf;
+                    // buf = newBuf;
+                    char *oldBuf = buf;
+                    buf = newBuf;
+                    delete[] oldBuf;
+                }
+
+                buf[count_symbol++] = symbol;
+            }
+            symbol = std::cin.get();
+        }
+
+        for (int i = 0; i < count_string; i++)
+        {
+            std::cout << cBuffer[i];
+            std::cout << "\n";
+        }
+        /**
          * Цикл сортировки строк по методу "всплывающего пузырька" в порядке
          * возрастания кода первого символа.
          */
 
         /** Освобождение занятой памяти */
-
     }
 
-    /** 
+    /**
      * Задание 6. Работа со строками.
      *
      * Реализуйте следующую программу. Пользователь вводит строку (любого
@@ -429,7 +508,7 @@ int main()
      * изображение, где его ввод помещен в "speech bubble":
      *
      *  _____________________________________
-     * / Here user input is shown. This line \ 
+     * / Here user input is shown. This line \
      * \ must be at most 40 characters long. /
      *  ------------------------------------
      *     \
@@ -451,9 +530,8 @@ int main()
      *  языке С, это позволит задавать подобные рисунки так, чтобы они
      *  адекватно выглядели в коде.
      */
-  
 
-    /** 
+    /**
      * Задание 7. Сложные указатели.
      *
      * Объявление и использование указателей на многомерные массивы.
@@ -461,27 +539,27 @@ int main()
      * показано на рисунке и напишите фрагмент кода, который меняет местами
      * значения элементов четных и нечетных слоев:
      *
-     *  было:                |--------|     
-     *                     / |4  4  4 |     
-     *                   |--------| 4 | 
-     *                 / |3  3  3 | 4 | 
+     *  было:                |--------|
+     *                     / |4  4  4 |
+     *                   |--------| 4 |
+     *                 / |3  3  3 | 4 |
      *               |---------|3 |   |
      *             / | 2  2  2 |3 | /
      *            |---------|2 |__|
      *            | 1  1  1 |2 | /
-     *            | 1  1  1 |__| 
+     *            | 1  1  1 |__|
      *            | 1  1  1 | /
      *            |_________|
      *
-     *  стало:               |--------|     
-     *                     / |3  3  3 |     
-     *                   |--------| 3 | 
-     *                 / |4  4  4 | 3 | 
+     *  стало:               |--------|
+     *                     / |3  3  3 |
+     *                   |--------| 3 |
+     *                 / |4  4  4 | 3 |
      *               |---------|4 |   |
      *             / | 1  1  1 |4 | /
      *            |---------|1 |__|
      *            | 2  2  2 |1 | /
-     *            | 2  2  2 |__| 
+     *            | 2  2  2 |__|
      *            | 2  2  2 | /
      *            |_________|
      */
@@ -491,20 +569,18 @@ int main()
         // for(int i=0; i<...; ...)
         {
 
-            /** 
+            /**
              * Замечание: НЕ НУЖНО МОДИФИЦИРОВАТЬ ВЫРАЖЕНИЯ СПРАВА ОТ ЗНАКА
-             * РАВЕНСТВА!!! 
+             * РАВЕНСТВА!!!
              */
 
             // ... =  dArray[i];
             // ... =  dArray[i+1];
 
             /** переставляем местами элементы i-того и i+1-ого слоев */
-
-
         }
     }
-    
+
     /**
      * Задание 7.
      */
@@ -525,12 +601,11 @@ int main()
      * При этом оцените количество операций, которое требуется для обработки
      * одной строки относительно длины этой строки.
      *
-     * Постарайтесь решить эту задачу так, чтобы требовалось не более k*N 
+     * Постарайтесь решить эту задачу так, чтобы требовалось не более k*N
      * операций, где N - длина строки, k - некое фиксированное число.
      */
-    
-    {
 
+    {
     }
 
     /**
@@ -542,7 +617,6 @@ int main()
      */
 
     {
-
     }
 
     return 0;
