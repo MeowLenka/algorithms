@@ -58,3 +58,6 @@ A[i] = *(A+i);
 &A[i] = A+i;
 &*p = p;
 p - q ( где p и q - указатели, получаем количесвто ячеек памяти между ними)
+
+
+Here user input is shown. This line must be at most 40 characters long.

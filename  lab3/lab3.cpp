@@ -345,9 +345,13 @@ int main()
         {
             if (symbol != '\n')
             {
-                if (symbol == STOP_STRING)
+                if (symbol == STOP_STRING && count_symbol > 0)
                 {
                     count_string++;
+                    break;
+                }
+                else if (symbol == STOP_STRING && count_symbol == 0)
+                {
                     break;
                 }
                 cBuffer[count_string][count_symbol++] = symbol;
@@ -444,28 +448,28 @@ int main()
         char symbol = std::cin.get();
         while (count_string < nStringNumber)
         {
-            if (symbol == STOP_STRING)
+            if (symbol == '\n' || symbol == STOP_STRING)
             {
-                count_string++;
-                break;
-            }
-            else if (symbol == '\n')
-            {
+                if (symbol == STOP_STRING && count_symbol == 0)
+                {
+                    break;
+                }
                 char *newBuf = new char[count_symbol + 1];
                 for (int i = 0; i < count_symbol; i++)
                     newBuf[i] = buf[i];
                 newBuf[count_symbol] = '\0';
-                // delete[] buf;
-                // buf = newBuf;
-                std::cout << buf << '\n';
-                char *oldBuf = buf;
+
+                delete[] buf;
                 buf = newBuf;
-                delete[] oldBuf;
 
                 cBuffer[count_string] = buf;
-                std::cout << cBuffer[count_string] << '\n';
+                size = 10;
+                buf = new char[size];
+
                 count_string++;
                 count_symbol = 0;
+                if (symbol == STOP_STRING)
+                    break;
             }
             else
             {
@@ -475,11 +479,8 @@ int main()
                     char *newBuf = new char[size];
                     for (int i = 0; i < count_symbol; i++)
                         newBuf[i] = buf[i];
-                    // delete[] buf;
-                    // buf = newBuf;
-                    char *oldBuf = buf;
+                    delete[] buf;
                     buf = newBuf;
-                    delete[] oldBuf;
                 }
 
                 buf[count_symbol++] = symbol;
@@ -498,6 +499,9 @@ int main()
          */
 
         /** Освобождение занятой памяти */
+        for (int i = 0; i < count_string; i++)
+            delete[] cBuffer[i];
+        delete[] buf;
     }
 
     /**
@@ -511,6 +515,7 @@ int main()
      * / Here user input is shown. This line \
      * \ must be at most 40 characters long. /
      *  ------------------------------------
+     * 
      *     \
      *      \
      *        /\_/\  (
@@ -565,9 +570,22 @@ int main()
      */
 
     {
-
-        // for(int i=0; i<...; ...)
+        double dArray[4][3][3] = {};
+        for (int x = 0; x < 4; x++)
         {
+            for (int y = 0; y < 3; y++)
+            {
+                for (int z = 0; z < 3; z++)
+                {
+                    dArray[x][y][z] = x + 1;
+                }
+            }
+        }
+
+        for (int i = 0; i < 4 - 1; i++)
+        {
+            double (*transfer_cur)[3][3] = &dArray[i];
+            double (*transfer_next)[3][3] = &dArray[i+1];
 
             /**
              * Замечание: НЕ НУЖНО МОДИФИЦИРОВАТЬ ВЫРАЖЕНИЯ СПРАВА ОТ ЗНАКА
