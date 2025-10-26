@@ -415,7 +415,6 @@ int main()
          */
     }
 
-    /*
         /**
          * Задание 5. Динамические строки.
          *
@@ -488,6 +487,23 @@ int main()
             symbol = std::cin.get();
         }
 
+
+        bool swap = true;
+        while (swap)
+        {
+            swap = false;
+            for (int i = 0; i < count_string - 1; i++)
+            {
+                if (strcmp(cBuffer[i], cBuffer[i + 1]) > 0)
+                {
+                    char *temp = cBuffer[i + 1];
+                    cBuffer[i + 1] = cBuffer[i];
+                    cBuffer[i] = temp;
+                    swap = true;
+                }
+            }
+        }
+        std::cout << "После сортировки: \n";
         for (int i = 0; i < count_string; i++)
         {
             std::cout << cBuffer[i];
