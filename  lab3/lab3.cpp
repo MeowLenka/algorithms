@@ -215,6 +215,8 @@ int main()
     for (int i = 0; i < n; i++)
         delete[] dinamic[i];
 
+    delete []dinamic;
+
     delete[] masavg;
 
     /**
@@ -266,7 +268,7 @@ int main()
     int *test2 = new int[n]{10, 7, 10, 8, 3, 8, -16, 133};
     int top = 0;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) 
     {
         // std::cin >> cur;
         cur = test2[i];
@@ -415,22 +417,23 @@ int main()
          */
     }
 
-        /**
-         * Задание 5. Динамические строки.
-         *
-         * Реализуйте задание №4, используя не встроенные, а динамические массивы
-         * (массив?). Так как строки могут быть разной длины, эффективным решением
-         * было бы отводить под каждую строку ровно столько байтов, сколько
-         * требуется для ее хранения.
-         *
-         * Реализуйте это задание так, чтобы пользователь мог ввести строку любой
-         * длины (которая помещается в память компьютера - читайте: неограниченной
-         * длины).
-         *
-         * При этом необходимые параметры (количество строк) сформируйте с помощью
-         * потока ввода.
-         */
+    /**
+     * Задание 5. Динамические строки.
+     *
+     * Реализуйте задание №4, используя не встроенные, а динамические массивы
+     * (массив?). Так как строки могут быть разной длины, эффективным решением
+     * было бы отводить под каждую строку ровно столько байтов, сколько
+     * требуется для ее хранения.
+     *
+     * Реализуйте это задание так, чтобы пользователь мог ввести строку любой
+     * длины (которая помещается в память компьютера - читайте: неограниченной
+     * длины).
+     *
+     * При этом необходимые параметры (количество строк) сформируйте с помощью
+     * потока ввода.
+     */
 
+    if (0)
     {
         const char STOP_STRING = '*';
         int count_string = 0, count_symbol = 0, size = 10;
@@ -487,7 +490,6 @@ int main()
             symbol = std::cin.get();
         }
 
-
         bool swap = true;
         while (swap)
         {
@@ -531,7 +533,7 @@ int main()
      * / Here user input is shown. This line \
      * \ must be at most 40 characters long. /
      *  ------------------------------------
-     * 
+     *
      *     \
      *      \
      *        /\_/\  (
@@ -585,6 +587,7 @@ int main()
      *            |_________|
      */
 
+    if (0)
     {
         double dArray[4][3][3] = {};
         for (int x = 0; x < 4; x++)
@@ -600,18 +603,24 @@ int main()
 
         for (int i = 0; i < 4 - 1; i++)
         {
-            double (*transfer_cur)[3][3] = &dArray[i];
-            double (*transfer_next)[3][3] = &dArray[i+1];
-
             /**
              * Замечание: НЕ НУЖНО МОДИФИЦИРОВАТЬ ВЫРАЖЕНИЯ СПРАВА ОТ ЗНАКА
              * РАВЕНСТВА!!!
              */
-
-            // ... =  dArray[i];
-            // ... =  dArray[i+1];
+            double (*transfer_cur)[3] = dArray[i]; // указатель на i-тый слой
+            double (*transfer_next)[3] = dArray[i + 1];
 
             /** переставляем местами элементы i-того и i+1-ого слоев */
+
+            for (int y = 0; y < 3; y++)
+            {
+                for (int z = 0; z < 3; z++)
+                {
+                    double temp = transfer_cur[y][z];
+                    transfer_cur[y][z] = transfer_next[y][z];
+                    transfer_next[y][z] = temp;
+                }
+            }
         }
     }
 
@@ -639,7 +648,42 @@ int main()
      * операций, где N - длина строки, k - некое фиксированное число.
      */
 
+    if (0)
     {
+        const int N = 10, M = 3;
+        char signs[M][N] = {};
+        srand(time(0));
+        std::cout << "Было: \n";
+        for (int i = 0; i < M; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                signs[i][j] = rand() % 2 ? '*' : '_';
+                std::cout << signs[i][j] << ' ';
+            }
+            std::cout << '\n';
+        }
+        std::cout << "Стало: \n";
+        for (int i = 0; i < M; i++)
+        {
+            int stars = 0;
+            for (int j = 0; j < N; j++)
+            {
+                if (signs[i][j] == '*')
+                    stars++;
+            }
+
+            for (int j = 0; j < N; j++)
+            {
+                if (j < stars)
+                    signs[i][j] = '*';
+                else
+                    signs[i][j] = '_';
+                std::cout << signs[i][j] << ' ';
+            }
+            std::cout << '\n';
+        }
+        int k = 0;
     }
 
     /**
@@ -651,6 +695,47 @@ int main()
      */
 
     {
+        const int N = 10, M = 4;
+        char signs[M][N] = {};
+        srand(time(0));
+        std::cout << "Было: \n";
+        for (int i = 0; i < M; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                signs[i][j] = rand() % 2 ? '*' : '_';
+                std::cout << signs[i][j] << ' ';
+            }
+            std::cout << '\n';
+        }
+        std::cout << "Стало: \n";
+
+        int stars[N] = {};
+        for (int i = 0; i < M; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                if (signs[i][j] == '*')
+                    stars[j]++;
+            }
+        }
+
+        for (int i = 0; i < M; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                if (i + stars[j] < M)
+                {
+                    signs[i][j] = '_';
+                }
+                else
+                {
+                    signs[i][j] = '*';
+                }
+                std::cout << signs[i][j] << ' ';
+            }
+            std::cout << '\n';
+        }
     }
 
     return 0;

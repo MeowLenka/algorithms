@@ -1,12 +1,11 @@
 #include <iostream>
 #include <cstring>
 
-
-void printc(char c, int n){
-    for (int i=0; i<n; i++)
+void printc(char c, int n)
+{
+    for (int i = 0; i < n; i++)
         std::cout << c;
 }
-
 
 int main()
 {
@@ -21,8 +20,9 @@ int main()
     char symbol = getchar();
     while (symbol != STOP_STRING)
     {
-        if (flag){
-            printc('-', STOP+4);
+        if (flag)
+        {
+            printc('-', STOP + 4);
             std::cout << "\n";
             flag = false;
         }
@@ -67,13 +67,13 @@ int main()
         std::cout << line[i];
     printc(' ', STOP - count_prev);
     std::cout << " |\n";
-    printc('-', STOP+4);
+    printc('-', STOP + 4);
     std::cout << "\n";
 
-
     char cat[] = "       \\ \n         /\\_/\\  (\n        ( ^.^ ) _)\n          \\\"/  (\n        ( | | )\n       (__d b__)";
-    
-    for(int i = 0; cat[i] != '\0'; i++) {
+
+    for (int i = 0; cat[i] != '\0'; i++)
+    {
         putchar(cat[i]);
     }
 

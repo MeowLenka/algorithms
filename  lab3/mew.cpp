@@ -1,32 +1,16 @@
 // ввод неогрониченного числа символов
 #include <iostream>
 
-
 int main()
 {
-    int size = 10, count_symbol = 0;
-    char *buffer = new char[size];
-    
-    char symbol = getchar();
-
-    while (symbol != '\n')
-    { 
-        if (count_symbol >= size)
-        {
-            size *= 2;
-            char *newBuffer = new char[size];
-            for (int i = 0; i < count_symbol; i++){
-                newBuffer[i] = buffer[i];
-            }
-            delete [] buffer;
-            buffer = newBuffer; 
-        }
-        buffer[count_symbol++] = symbol;
-        symbol = getchar();
-    }
-
-    for (int i=0; i < count_symbol; i++){
-        std::cout << buffer[i];
-    }
-    delete [] buffer;
+    int myArr[3] = {1, 2, 3};
+    // int myArr2[3] = {1, 2, 3, 4};            // ???
+    int myArr3[3] = {1, 2};                  // ???
+    int myArr4[3] = {0};                     // ???
+    char chArr[5] = { 'A'  , 'B'  , 'C' }; // ???
+    char chArr1[5] = {"ABC"};                // ???
+    char chArr2[5] = "ABC";                  // ???
+    char chArr3[3] = "ABC";                  // ???
+    char chArr4[10] = "ABC";
+    char Cdr[] = "QWERTY";                // ???
 }
