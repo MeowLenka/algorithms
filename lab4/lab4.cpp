@@ -4,9 +4,11 @@
  */
 #include <iostream>
 // #include <cstdio>
-// #include <cstdarg>
+#include <cstdarg>
 
 #include "other.h"
+
+#define VAR_ARGS 
 
 int main()
 {
@@ -75,7 +77,15 @@ int main()
          * функций на единицу.
          */
         int val = 1;
+        int *point = &val;
+        int &ref = val;
+        val = inc_by_value(val);
+
+        inc_by_pointer(point);
+
+        inc_by_reference(ref);
     }
+    // clang++ other.cpp lab4.cpp -o program && ./program
 
     /**
      * Задание 2.2. Передача параметров c помощью указателя и по ссылке.
@@ -91,13 +101,15 @@ int main()
      * Проверьте правильность с помощью приведенного ниже фрагмента.
      */
 
+    if (0)
     {
         int nX = 1;
         int nY = -1;
+
         /** поменяли местами значения nX и nY с помощью указателей на nX и nY */
-        // swap(...  ,  ...);
+        swap(&nX, &nY);
         /** а теперь обратно с помощью ссылок на nX и nY */
-        // swap(...  ,  ...);
+        swap(nX, nY);
     }
 
     /**
@@ -117,13 +129,42 @@ int main()
      * Постарайтесь использовать во второй функции первую, чтобы не повторять
      * логику.
      */
+    if (1)
     {
         /** Задайте массивы для проверки и проверьте результат работы функции */
+        const int K = 10;
+        srand(time(0));
+        int arr1[K] = {};
+        for (int i = 0; i < K; i++)
+        {
+            arr1[i] = rand() % 100;
+            std::cout << arr1[i] << ' ';
+        }
+        std::cout << "\n------------\n";
 
+        int n = 2, m = 5;
+        int **arr2 = new int *[n];
+        for (int i = 0; i < n; i++)
+        {
+            arr2[i] = new int[m];
+        }
+
+        srand(time(0) + 10);
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                arr2[i][j] = rand() % 100;
+                std::cout << arr2[i][j] << ' ';
+            }
+            std::cout << '\n';
+        }
         /**
          * Покажите, как можно использовать эту функцию для встроенных
          * двумерных массивов.
          */
+        std::cout << minArrOne(arr1, K) << "\n";
+        std::cout << minArrTwo(arr2, n, m) << "\n";
     }
 
     /**
@@ -140,12 +181,15 @@ int main()
      * Вспомните, что признаком конца строки является нулевой байт.
      */
 
+    if (0)
     {
         /** Создайте две строки для сравнения */
-
+        char *str1 = "bambardinokrokodilo";
+        char *str2 = "brbrpatapimpatapim";
         /** Вызовите функцию сравнения */
 
         /** Выведите результат сравнения с помощью cout */
+        std::cout << my_str_cmp(str1, str2) << '\n';
     }
 
     /**
@@ -205,6 +249,7 @@ int main()
      * фрагмента.
      */
 
+    if (0)
     {
         /**
          * В процессе вычислений Вам придется учитывать "високосный -
@@ -219,8 +264,11 @@ int main()
             {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}}; // високосный год
 
         /** Вызов функции DayOfYear */
-
+        int ordDay = day_of_year(11, 11, 2008, nDayTab);
+        std::cout << ordDay << '\n';
         /** Проверка результата обратной функцией DayOfMonth */
+        int month = day_of_month(&ordDay, 2008, nDayTab);
+        std::cout << ordDay << ' ' << month << '\n';
     }
 
     /**
@@ -237,27 +285,35 @@ int main()
      * Ваша функция должна работать в следующем фрагменте кода.
      */
 
-    {
-        int n;    // сформируйте значение n
-        int *arr; // создайте тут массив размера n
+    if (0)
+    {                          // TODO: почему int*&
+        int n = 10;            // сформируйте значение n
+        int *arr = new int[n]; // создайте тут массив размера n
 
         /** заполнение случайными значениями */
+        srand(time(0));
         for (int i = 0; i < n; ++i)
         {
-            // arr[i] = ...;
+            arr[i] = rand() % 100;
         }
+        std::cout << "Массив до изменений:\n";
+        print_array(arr, n);
+
+        int *size = &n;
 
         for (int i = 0; i < 100; ++i)
         {
-            int new_value;
+            int new_value = rand();
             // new_value = ...; // случайное значение
             new_value = new_value % 10;
             /** вызов функции добавления в массив */
             // add_unique(arr, ..., new_value);
+            add_unique(arr, size, new_value);
         }
 
         /** печать массива на экран */
-        // print_array(arr, ...)
+        std::cout << "Массив после добавления элементов:\n";
+        print_array(arr, *size);
 
         /**
          * Тут должно быть не более 10 + n элементов, так как во втором цикле
@@ -271,6 +327,10 @@ int main()
      * Напишите рекурсивную функцию вычисления суммы первых N натуральных
      * чисел.
      */
+    if (0){
+        int n = 10;
+        std::cout << recur_summ(n);
+    }
 
     /**
      * Задание 7. Кодирование-декодирование информации. Обработка ошибок.
@@ -336,9 +396,9 @@ int main()
      */
     {
         int nN1 = 5, nN2 = 11, nN3 = 4, nN4 = 7, nN5 = -1;
-        // var_args(nN1, 0);
-        // var_args(nN1, nN2, 0);
-        // var_args(nN1, nN2, nN3, nN4, nN5, 0);
+        var_args(nN1, 0);
+        var_args(nN1, nN2, 0);
+        var_args(nN1, nN2, nN3, nN4, nN5, 0);
     }
 
     /**
