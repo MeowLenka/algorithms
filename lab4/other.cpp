@@ -34,7 +34,7 @@ void swap(int &x, int &y)
     y = c;
 }
 
- // 3
+// 3
 int minArrOne(const int arr[], const int size)
 {
     assert(size > 0);
@@ -51,7 +51,7 @@ int minArrTwo(const int *const *arr, int n, int m)
 {
     int min = 10000;
     for (int i = 0; i < n; i++)
-    {   
+    {
         int cur = minArrOne(arr[i], m);
         min = cur < min ? cur : min;
     }
@@ -60,7 +60,32 @@ int minArrTwo(const int *const *arr, int n, int m)
 
 int my_str_cmp(const char *str1, const char *str2)
 {
-    return strcmp(str1, str2);
+    // return strcmp(str1, str2);
+    int i = 0;
+    while (str1[i] != '\0' || str2[i] != '\0')
+    {
+        if (str1[i] > str2[i])
+        {
+            return 1;
+        }
+        else if (str1[i] < str2[i])
+        {
+            return -1;
+        }
+        i++;
+    }
+    if (str1[i] == str2[i] && str2[i] == '\0')
+    {
+        return 0;
+    }
+    if (str1[i] == '\0')
+    {
+        return -1;
+    }
+    if (str2[i] == '\0')
+    {
+        return 1;
+    }
 }
 
 // 4
@@ -155,16 +180,77 @@ int encoded32_size(int raw_size)
 
 int decoded32_size(int encode_size)
 {
-    return floor(encode_size * 5 / 8);
+    return encode_size * 5 / 8;
 }
 
+static char table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456";
 int encode32(const char *raw_data, int raw_size, char *dst)
 {
+    if (!raw_data || !dst || raw_size < 0)
+    {
+        return 1;
+    }
+    char buf = 0;
+    int count = 0;
+    for (int i = 0; i < raw_size; i++)
+    {
+        for (int j = 7; j >= 0; j--)
+        {
+            buf += ((raw_data[i] >> j) & 1) << (4 - (count++ % 5));
+            if (count % 5 == 0)
+            {
+                dst[(count / 5) - 1] = table[buf];
+                buf = 0;
+            }
+        }
+    }
+    if (count % 5)
+    {
+        dst[(count / 5)] = table[buf];
+    }
+
     return 0;
 }
+static int decoding_table[256];
+int create_decoding_table(){
+    for(int i = 0; i < 256; i++){
+        if (i >= 'A' && i <= 'Z'){
+            decoding_table[i] = i - 'A';
+        }
+        else if (i >= '1' && i <= '9'){
+            decoding_table[i] = 'Z' - 'A' + 1 + i - '1';
+        }else{
+            decoding_table[i] = -1;
+        }
+    }
+    return 0;
+}
+static int _ = create_decoding_table();
 
 int decode32(const char *encoded_data, int encoded_size, char *dst)
 {
+
+    if (!encoded_data || !dst || encoded_size < 0)
+    {
+        return 1;
+    }
+    char buf = 0;
+    int count = 0;
+    for (int i = 0; i < encoded_size; i++)
+    {
+        char letter = encoded_data[i];
+        if(decoding_table[letter] == -1)
+            return 2;
+        for (int j = 4; j >= 0; j--)
+        {
+            buf += ((decoding_table[letter] >> j) & 1) << (7 - (count++ % 8));
+            if (count % 8 == 0)
+            {
+                dst[(count / 8) - 1] = buf;
+                buf = 0;
+            }
+        }
+    }
     return 0;
 }
 
@@ -182,4 +268,19 @@ void var_args(int n, ...) // вариадические параметры
     }
     std::cout << '\n';
     va_end(arg);
+}
+
+// 9
+int *my_min(int arr[], int size)
+{
+    int *pmin = &arr[0];
+
+    for (int i = 1; i < size; i++)
+    {
+        if (arr[i] < *pmin)
+        {
+            pmin = &arr[i];
+        }
+    }
+    return pmin;
 }

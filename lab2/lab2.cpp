@@ -61,7 +61,7 @@ int main()
 
         for (int i=8 * sizeof(int)-1; i>=0; i--){
             bit = 1 << i;
-            if ((y & bit) && (not flag)){
+            if ((y & bit) && (!flag)){
                 flag = 1;
                 std::cout << "\n";
             }

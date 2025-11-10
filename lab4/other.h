@@ -25,3 +25,14 @@ void add_unique(int*& arr, int *size, int newValue);
 int recur_summ(int n);
 
 void var_args(int n, ...);
+
+int *my_min(int arr[], int size);
+
+// 7
+int encoded32_size(int raw_size);
+
+int decoded32_size(int encode_size);
+
+int encode32(const char *raw_data, int raw_size, char *dst);
+
+int decode32(const char *encoded_data, int encoded_size, char *dst);

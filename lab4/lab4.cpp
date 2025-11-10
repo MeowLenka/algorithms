@@ -8,7 +8,7 @@
 
 #include "other.h"
 
-#define VAR_ARGS 
+#define VAR_ARGS(...) var_args(__VA_ARGS__, 0)
 
 int main()
 {
@@ -24,6 +24,8 @@ int main()
         ref++;
         double z = 7;
         ref = z;
+
+        int k = 0;
     }
 
     /**
@@ -50,6 +52,8 @@ int main()
         char c = 'A';
         char *pc = &c;
         char *&ref = pc;
+        ref += 1;
+        int k =0;
     }
 
     /**
@@ -129,7 +133,7 @@ int main()
      * Постарайтесь использовать во второй функции первую, чтобы не повторять
      * логику.
      */
-    if (1)
+    if (0)
     {
         /** Задайте массивы для проверки и проверьте результат работы функции */
         const int K = 10;
@@ -189,6 +193,7 @@ int main()
         /** Вызовите функцию сравнения */
 
         /** Выведите результат сравнения с помощью cout */
+        std::cout << "Результат сравнения строк: ";
         std::cout << my_str_cmp(str1, str2) << '\n';
     }
 
@@ -230,6 +235,9 @@ int main()
      * Соберите вашу программу для релиза (с директивой NDEBUG) и выполните код
      * с некорректными значениям. Объясните полученные результаты.
      */
+
+    // без -D NDEBUG - Assertion failed: (size > 0), function minArrOne, file other.cpp, line 40.
+    // с -D NDEBUG -  возвращает значение  min=10000
 
     /**
      * Задание 4. Ссылки в качестве параметров. Передача указателя на
@@ -327,7 +335,8 @@ int main()
      * Напишите рекурсивную функцию вычисления суммы первых N натуральных
      * чисел.
      */
-    if (0){
+    if (0)
+    {
         int n = 10;
         std::cout << recur_summ(n);
     }
@@ -379,7 +388,19 @@ int main()
      * после чего декодируйте их. Декодированные строки должны совпадать с
      * изначальными.
      */
+    if (1){
+        int num = 0x471E;
+        std::cout << num << '\n';
+        int dst_size = encoded32_size(2);
+        char *dst = new char[dst_size];
+        char *raw_data = reinterpret_cast<char*>(&num);
+        encode32(raw_data, 2, dst);
+        std::cout << dst << '\n';
+        decode32(dst, dst_size, raw_data);
+        std::cout << num << '\n';
 
+
+    }
     /**
      * Задание 8. Функции и макросы с переменным числом параметров.
      */
@@ -394,6 +415,7 @@ int main()
      *
      * Признаком конца списка является нулевое значение.
      */
+    if (0)
     {
         int nN1 = 5, nN2 = 11, nN3 = 4, nN4 = 7, nN5 = -1;
         var_args(nN1, 0);
@@ -409,11 +431,12 @@ int main()
      * 0. Таким образом эту функцию можно будет вызывать без нуля в конце.
      */
 
+    if (0)
     {
         int nN1 = 5, nN2 = 11, nN3 = 4, nN4 = 7, nN5 = -1;
-        // VAR_ARGS(nN1);
-        // VAR_ARGS(nN1, nN2);
-        // VAR_ARGS(nN1, nN2, nN3, nN4, nN5);
+        VAR_ARGS(nN1);
+        VAR_ARGS(nN1, nN2);
+        VAR_ARGS(nN1, nN2, nN3, nN4, nN5);
     }
 
     /**
@@ -425,6 +448,14 @@ int main()
      *
      * `*my_min(параметры) = 0;`
      */
+    if (0){
+        int numbers[] = {5, 2, 8, 1, 9, 3};
+        int size = sizeof(numbers) / sizeof(numbers[0]);
+        print_array(numbers, size);
+        *my_min(numbers, size) = 0;
+        print_array(numbers, size);
+
+    }
 
     return 0;
 }
