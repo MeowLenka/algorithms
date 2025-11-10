@@ -1,9 +1,11 @@
+//2.1
 int inc_by_value(int val);
 
 void inc_by_pointer(int *val);
 
 void inc_by_reference(int &val);
 
+//2.2
 void swap(int *x, int *y);
 
 void swap(int &x, int &y);

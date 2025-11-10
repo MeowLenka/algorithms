@@ -25,7 +25,6 @@ int main()
         double z = 7;
         ref = z;
 
-        int k = 0;
     }
 
     /**
@@ -50,10 +49,11 @@ int main()
 
     {
         char c = 'A';
+        char d = 'D';
         char *pc = &c;
         char *&ref = pc;
-        ref += 1;
-        int k =0;
+        *ref = 'C'; //тоже самое  *pc = 'C'
+        ref = &d; // тоже самое pc = &d
     }
 
     /**
@@ -294,7 +294,7 @@ int main()
      */
 
     if (0)
-    {                          // TODO: почему int*&
+    {                
         int n = 10;            // сформируйте значение n
         int *arr = new int[n]; // создайте тут массив размера n
 
