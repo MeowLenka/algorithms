@@ -7,6 +7,7 @@
 #include <cstdarg>
 
 #include "other.h"
+//cmake todo
 
 #define VAR_ARGS(...) var_args(__VA_ARGS__, 0)
 
