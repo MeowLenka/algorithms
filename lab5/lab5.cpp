@@ -4,10 +4,14 @@
  */
 
 #include <iostream>
-//#include <cstdio>
+// #include <cstdio>
 #include "other.h"
 
+// Om Theme (A Darker Dracula Theme)
+// An Old Hope Theme
+Book global_book;
 
+void print_max(int* arr){}
 int main()
 {
     /**
@@ -22,13 +26,52 @@ int main()
      *
      * С помощью функции scanf сформирйуте три коэффициента: A,B,C.
      */
-
     /**
      * Задание 1.2.
      *
      * Выведите (красиво!) таблицу значений y=A*x*x + B*x + C при изменении x в
      * диапазоне -2 до +2 с шагом 0.5
      */
+    if (0)
+    {
+        int A, B, C;
+        scanf("%d %d %d", &A, &B, &C);
+        printf("%d %d %d \n", A, B, C);
+        float x = -2.0;
+        float y;
+        int k = 17;
+        for (int i = 0; i < k + 1; i++)
+        {
+            printf("-");
+            if (i == k)
+            {
+                printf("\n");
+            }
+        }
+        printf("%4s %10s\n", "x", "y");
+        for (int i = 0; i < k + 1; i++)
+        {
+            printf("-");
+            if (i == k)
+            {
+                printf("\n");
+            }
+        }
+        while (x <= 2)
+        {
+            y = A * x * x + B * x + C;
+            printf("| %4.1f | %7.1f |\n", x, y);
+            x += 0.5;
+        }
+        for (int i = 0; i < k + 1; i++)
+        {
+            printf("-");
+            if (i == k)
+            {
+                printf("\n");
+            }
+        }
+    }
 
     /**
      * Задание 2. Указатели на функции.
@@ -44,7 +87,7 @@ int main()
      * 3. mul - аналогично для умножения;
      * 4. div - аналогично для деления;
      * 5. а для возведения в степень можете использовать функцию стандартной
-     *    библиотеки - pow(). 
+     *    библиотеки - pow().
      *
      * Подсказка 1: прототип функции находится в <cmath>.
      * Подсказка 2: стандартная библиотека предоставляет несколько
@@ -54,12 +97,56 @@ int main()
      * Предоставьте пользователю следующую возможность:
      *
      * - пока пользователь хочет пользоваться услугами вашего калькулятора, он
-     *   может вводить два значения и знак операции а вы выводите результат. 
+     *   может вводить два значения и знак операции а вы выводите результат.
      * - результат получаете посредством вызова соответствующей вашей функции
      *   по указателю.
      * - предусмотрите возможность ввода непредусмотренного знака операции.
      */
-
+    if (0)
+    {
+        double (*calculator)(double, double);
+        bool flag = true, bad = false;
+        double x, y;
+        char sign;
+        while (flag)
+        {
+            std::cout << "Введите 2 числа и знак +-*/^\n";
+            std::cin >> x >> y >> sign;
+            switch (sign)
+            {
+            case '+':
+                calculator = add;
+                break;
+            case '-':
+                calculator = sub;
+                break;
+            case '*':
+                calculator = mul;
+                break;
+            case '\\':
+                calculator = div;
+                break;
+            case '^':
+                calculator = pow;
+                break;
+            default:
+                std::cout << "Неопознанный знак.";
+                bad = true;
+                flag = false;
+                break;
+            }
+            if (!bad)
+            {
+                printf("%f %c %f = %f\n", x, sign, y, calculator(x, y));
+                std::cout << "Хотите продолжить? если да, то введите 'y'\n";
+                std::cin >> sign;
+                if (sign != 'y' and sign != 'Y')
+                {
+                    flag = false;
+                }
+            }
+        }
+    }
     /**
      * Задание 2.2. Указатель на функцию в качестве аргумента.
      *
@@ -80,23 +167,36 @@ int main()
      * принимает два void указателя и меняет значения местами.
      *
      * Напишите функцию сравнения двух целых значений - CmpInt, которая
-     * принимает два void указателя и возвращает int результат сравнения:  
+     * принимает два void указателя и возвращает int результат сравнения:
      * <0 - первый элемент меньше, чем второй;
      * =0 - равны;
      * >0 - первый элемент больше, чем второй.
      *
      * Используйте эти функции в функции сортировки.
      */
+    if (0)
     {
-        // int nAr[]=...   //массив для сортировки
-        // int nTotal=...          //количество элементов в массиве 
+        int nAr[] = {1, 108, 99, 67, 12}; // массив для сортировки
+        int nTotal = 5;                   // количество элементов в массиве
+
+        void (*SwapInt)(void *, void *) = swap_int;
+        int (*CmpInt)(void *, void *) = cmp_int;
 
         /** Печать исходного массива */
+        for (int i = 0; i < nTotal; i++)
+        {
+            std::cout << nAr[i] << ' ';
+        }
+        std::cout << '\n';
 
-        // sort(reinterpret_cast<char*>(&nAr[0]), nTotal, sizeof(int), 
-        //      SwapInt, CmpInt);
+        sort(reinterpret_cast<char *>(&nAr[0]), nTotal, sizeof(int),
+             SwapInt, CmpInt);
 
         /** Печать результатов сортировки */
+        for (int i = 0; i < nTotal; i++)
+        {
+            std::cout << nAr[i] << ' ';
+        }
     }
 
     /**
@@ -105,7 +205,30 @@ int main()
      * По аналогии с заданием 2.2.1 напишите функцию swap_double и cmp_double,
      * и вызовите функцию sort для сортировки вещественных значений.
      */
+    if (0)
+    {
+        double nAr[] = {1.5, 108.67, 9.9, 6.7, 1.2}; // массив для сортировки
+        int nTotal = 5;                              // количество элементов в массиве
 
+        void (*SwapDouble)(void *, void *) = swap_double;
+        int (*CmpDouble)(void *, void *) = cmp_double;
+
+        /** Печать исходного массива */
+        for (int i = 0; i < nTotal; i++)
+        {
+            std::cout << nAr[i] << ' ';
+        }
+        std::cout << '\n';
+
+        sort(reinterpret_cast<char *>(&nAr[0]), nTotal, sizeof(double),
+             SwapDouble, CmpDouble);
+
+        /** Печать результатов сортировки */
+        for (int i = 0; i < nTotal; i++)
+        {
+            std::cout << nAr[i] << ' ';
+        }
+    }
     /**
      * Задание 2.2.3.
      *
@@ -114,8 +237,28 @@ int main()
      * строки.
      */
 
+    if (0)
     {
-        const char* arStr[] = {"QQQ", "SDF", "ABC"};
+        const char *arStr[] = {"QQQ", "SDF", "ABC"};
+        int nTotal = 3;
+        void (*SwapStr)(void *, void *) = swap_str;
+        int (*CmpStr)(void *, void *) = cmp_str;
+        /** Печать исходного массива */
+        for (int i = 0; i < nTotal; i++)
+        {
+            std::cout << arStr[i] << ' ';
+        }
+        std::cout << '\n';
+
+        sort(reinterpret_cast<char *>(&arStr[0]), nTotal, sizeof(arStr[0]),
+             SwapStr, CmpStr);
+
+        /** Печать результатов сортировки */
+        for (int i = 0; i < nTotal; i++)
+        {
+            std::cout << arStr[i] << ' ';
+        }
+        std::cout << '\n';
     }
 
     /**
@@ -136,7 +279,11 @@ int main()
      * функций (из второго массива), примите от пользователя номер функции,
      * после чего вызовите функцию для какого-нибудь массива.
      */
-
+    {
+        typedef void (*function)(int *);
+        function actions[4];
+        actions[0] = print_max;    
+    }
     /**
      * Задание 2.4. Метод прямоугольников.
      *
@@ -172,31 +319,42 @@ int main()
      * Подсказка: объявление структуры рекомендуется выносить в заголовочный
      * файл.
      */
-
     /**
      * Задание 3.1.2.
      *
      * Создайте разными способами (глобальный, локальный, статический,
      * динамический) экземпляры (объекты) типа Book (без инициализации).
      *
-     * Определите - сколько памяти отводит компилятор под каждый такой объект. 
+     * Определите - сколько памяти отводит компилятор под каждый такой объект.
      *
      * Как инициализируются (или не инициализируются) поля структуры?
      *
      * Подумайте: от чего зависит объем выделяемой памяти?
      */
-
+    
+        // sizeof(global_book) = 40
+        Book local_book; // sizeof(local_book) = 40
+        static Book static_book; // sizeof(static_book) = 40
+        Book *dinamic_book = new Book; // sizeof(dinamic_book) = 8
+        delete dinamic_book;
+    
     /**
-     * Задание 3.1.3. 
+     * Задание 3.1.3.
      *
      * Заполните поля созданных объектов.
      *
      * Замечание: если для хранения строки используется массив, необходимо
      * предусмотреть "защиту" от выхода за границы массива.
      */
+        local_book.autor = "James Bond";
+        local_book.category = "fantasy";
+        local_book.title = "titletitle";
+        local_book.price = 999.9;
+        local_book.year = 2008;
 
+        
     /**
-     * Задание 3.1.4. 
+     * Задание 3.1.4.
      *
      * Напишите функцию, выводящую на экран реквизиты книги.
      *
@@ -204,7 +362,7 @@ int main()
      *
      * Для вывода на консоль используйте функцию стандартной библиотеки printf.
      */
-
+        print_book(local_book); 
     /**
      * Задание 3.1.5.
      *
@@ -219,13 +377,16 @@ int main()
      * Кроме этого необходимо проверить и ошибки другого рода: программа
      * ожидает число, а пользователь ввел случайно букву.
      */
+        Book new_book;
 
+        get_param(new_book);
+        print_book(new_book);
     /**
      * Задание 3.2. Матричные операции.
      */
 
     /**
-     * Задание 3.2.1. 
+     * Задание 3.2.1.
      *
      * Задайте структуру Matrix, которая будет преставлять вещественную матрицу
      * размера MxN из линейной алгебры.
