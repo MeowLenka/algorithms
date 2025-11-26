@@ -33,3 +33,14 @@ struct Book
 
 void print_book(const Book& book);
 void get_param(const Book &book);
+
+void print_max(int* arr, int size);
+
+void print_min(int* arr, int size);
+
+void sort_asc(int* arr, int size);
+
+void sort_desc(int* arr, int size);
+
+double integrate(double (*function)(double), double floor, double ceil, int num);
+

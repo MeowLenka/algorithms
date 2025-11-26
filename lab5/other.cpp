@@ -1,6 +1,7 @@
 #include "other.h"
 #include <string.h>
 #include <iostream>
+#include <algorithm>
 
 void sort(char *pcFirst, int nNumber, int size,
           void (*Swap)(void *, void *), int (*Compare)(void *, void *))
@@ -129,9 +130,11 @@ void print_book(const Book &book)
 
 const char *categories[] = {"fantasy", "detective", "comedy", "horror", "science-fiction", "mystery"};
 
-void clear_input_buffer() {
+void clear_input_buffer()
+{
     char c;
-    while ((c = getchar()) != '\n' && c != EOF); // очистка до конца строки
+    while ((c = getchar()) != '\n' && c != EOF)
+        ; // очистка до конца строки
 }
 
 void get_param(const Book &book)
@@ -156,7 +159,7 @@ void get_param(const Book &book)
         scanf("%99[^\n]", book.category);
         clear_input_buffer();
         for (int i = 0; i < 6; i++)
-        {   
+        {
             if (strcmp(categories[i], book.category) == 0)
             {
                 correct_category = true;
@@ -164,9 +167,9 @@ void get_param(const Book &book)
             }
         }
         if (!correct_category)
-            {
-                printf("Ошибка! Введите корректную категорию!\n");
-            }
+        {
+            printf("Ошибка! Введите корректную категорию!\n");
+        }
     }
 
     printf("Введите год издания книги\n");
@@ -185,4 +188,64 @@ void get_param(const Book &book)
         while (getchar() != '\n');
     }
     getchar();
+}
+
+void print_max(int *arr, int size)
+{
+    int max = arr[0];
+    for (int i = 1; i < size; i++)
+    {
+        if (arr[i] > max)
+        {
+            max = arr[i];
+        }
+    }
+    printf("%d", max);
+}
+
+void print_min(int *arr, int size)
+{
+    int min = arr[0];
+    for (int i = 1; i < size; i++)
+    {
+        if (arr[i] < min)
+        {
+            min = arr[i];
+        }
+    }
+    printf("%d", min);
+}
+
+void sort_asc(int *arr, int size)
+{
+    std::sort(arr, arr + size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+void sort_desc(int *arr, int size)
+{
+    std::sort(arr, arr + size);
+    for (int i = size - 1; i >= 0; i--)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+// метод прямоугольников для определенного интеграла
+double integrate(double (*function)(double), double floor, double ceil, int num)
+{
+    double h = (ceil - floor) / num;
+    double x = floor;
+    double result = 0;
+    while (x <= ceil)
+    {
+        result += (function(x) * h);
+        x += h;
+    }
+    return result;
 }
