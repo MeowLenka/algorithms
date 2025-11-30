@@ -175,8 +175,7 @@ void get_param(const Book &book)
     printf("Введите год издания книги\n");
     while (scanf("%d", &book.year) != 1 || book.year <= 0 || book.year > 2025)
     {
-        if (book.price)
-            printf("Ошибка! Введите корректный год!\n");
+        printf("Ошибка! Введите корректный год!\n");
         while (getchar() != '\n');
     }
     getchar();

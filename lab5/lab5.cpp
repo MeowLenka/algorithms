@@ -482,10 +482,7 @@ int main()
         m_mult(&center, &f, &save);
         m_free(&f);
         m_copy(&save, &f);
-        printf("F[%2d] = %.0f\n", i, m_get(&f, 0, 0));
+        printf("F[%2d] = %.0f \n", i, m_get(&f, 0, 0));
     }
-
-
-
     return 0;
 }
