@@ -1,5 +1,7 @@
 #include <iostream>
-#include "other.h"
+#include "book.h"
+#include "library.h"
+#include "helper.h"
 
 /**
  * Практическое занятие №6. Консольное приложение.
@@ -53,18 +55,93 @@
  * ```
  */
 
+
+void print_menu() {
+    printf("1. Распечатать содержимое картотеки\n");
+    printf("2. Добавить новую книгу\n");
+    printf("3. Удалить книгу по названию\n");
+    printf("4. Изменить информацию о книге\n");
+    printf("5. Сохранить в файл\n");
+    printf("6. Загрузить из файла\n");
+    printf("7. Статистика по годам издания\n");
+    printf("8. Выйти из программы\n");
+    printf("Выберите действие: ");
+}
+
+
 int main()
 {
-  int size = 10;
+  int library_size = 10;
   int n_book = 0;
-  struct Book *library = new struct Book[size];
+  struct Book *library = new struct Book[library_size];
 
-  Book book1;
-  get_param(book1);
-  add_book(library, book1, n_book, size);
-  // std::cout << strlen(book1.discription);
-  print_library(library, n_book);
-  
+  int choice;
+  bool running = true;
+  printf("Добро пожаловать в библиотеку!\n");
+  while (running) {
+        print_menu();
+        
+        if (scanf("%d", &choice) != 1) {
+            clear_input_buffer();
+            printf("Ошибка! Введите число от 1 до 8!\n");
+        }
+        clear_input_buffer();
+        
+        switch (choice) {
+            case 1:
+                print_library(library, n_book);
+                break;
+                
+            case 2: {
+                Book new_book;
+                get_param(new_book);
+                add_book(library, new_book, n_book, library_size);
+                printf("Всего книг в библиотеке: %d\n", n_book);
+                break;
+            }
+                
+            case 3:
+                printf("Введите название книги, которую хотите удалить:\n");
+                char *str_to_delete;
+                get_string(str_to_delete);
+                delete_book(library, str_to_delete, n_book);
+                free_space_library(library, n_book, library_size);
+                break;
+                
+            case 4:
+                // TODO: Реализовать изменение книги
+                std::cout << "Изменение книги (в разработке)" << std::endl;
+                break;
+                
+            case 5:
+                // TODO: Реализовать сохранение в файл
+                std::cout << "Сохранение в файл (в разработке)" << std::endl;
+                break;
+                
+            case 6:
+                // TODO: Реализовать загрузку из файла
+                std::cout << "Загрузка из файла (в разработке)" << std::endl;
+                break;
+                
+            case 7:
+                // TODO: Реализовать статистику
+                std::cout << "Статистика по годам (в разработке)" << std::endl;
+                break;
+                
+            case 8:
+                running = false;
+                printf("Выход из программы...\n");
+                break;
+                
+            default:
+                printf("Ошибка! Введите число от 1 до 8.\n");
+                break;
+        }
+    }
+    
+    delete[] library;
+    return 0;
+
   /**
    * Задание 1. Создание «картотеки» книг.
    * «Картотека» — это динамический массив структур.
@@ -82,21 +159,21 @@ int main()
    *
    * Пользователь должен иметь возможность выполнять следующие действия:
    *
-   * 1. Распечатать содержимое картотеки.
-   * 2. Добавить новую книгу.
-   * 3. Удалить книгу по названию.
+   * 1. Распечатать содержимое картотеки. +
+   * 2. Добавить новую книгу. + 
+   * 3. Удалить книгу по названию. 
    * 4. Изменить информацию о книге (например, изменить описание).
    * 5. Сохранить текущее содержимое картотеки в файл.
    * 6. Загрузить содержимое картотеки из файла.
    * 7. Действие по вашему варианту.
-   * 8. Выйти из программы.
+   * 8. Выйти из программы. +
    */
 
   /**
    * Задание 2. Печать картотеки.
    *
    * Реализуйте печать картотеки на экран по запросу пользователя.
-   */
+   */ 
 
   /**
    * Задание 3. Добавление новой книги.

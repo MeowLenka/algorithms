@@ -1,4 +1,5 @@
 #include "helper.h"
+#include "book.h"
 #include "library.h"
 
 #include <iostream>
@@ -32,13 +33,28 @@ void print_library(const Book *library, const int n_book)
         {
             printf("%s", library[i].discription);
             print_whitespace(total_len - my_len(library[i].discription));
-            printf(" |");
+            printf(" |\n");
         }
         else
-        {   
-            for (int j = 0; j < total_len*2 - 8; j++)
+        {
+            for (int j = 0; j < total_len * 2 - 10; j++)
                 std::cout << library[i].discription[j];
-            printf("... |");
+            printf("... |\n");
         }
+    }
+    printf("\n\n");
+}
+
+void free_space_library(const Book *library, const int n_book, int &size)
+{
+    if (n_book < size / 2) {
+        size /= 2;
+        Book *new_library = new Book[size];
+        
+        for (int i = 0; i < n_book; i++) {
+            new_library[i] = library[i];
+        }
+        delete[] library;
+        library = new_library;
     }
 }

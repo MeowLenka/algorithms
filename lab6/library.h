@@ -1,10 +1,7 @@
-struct Book
-{
-    char *title = new char[100];
-    char *autor = new char[100];
-    int year;
-    char *style = new char[100];
-    char *discription = new char[100];
-};
+#ifndef LIBRARY_H
+#define LIBRARY_H
 
 void print_library(const Book *library, const int n_book);
+void free_space_library(const Book *library, const int n_book, int &size);
+
+#endif

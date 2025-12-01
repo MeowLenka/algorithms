@@ -13,7 +13,7 @@ void clear_input_buffer()
 void get_string(char *&buffer)
 {
     int size = 100, count_symbol = 0;
-    // char *buffer = new char[size];
+    buffer = new char[size];
     char symbol = getchar();
 
     while (symbol != '\n')

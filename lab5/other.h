@@ -20,7 +20,7 @@ double mul(double x, double y);
 double div(double x, double y);
 double pow(double, double);
 
-// дедлайн 20-25 минут : чем можно заинтересовать приезжего в россию
+void clear_input_buffer();
 
 struct Book
     {

@@ -80,7 +80,7 @@ void swap_str(void *p1, void *p2)
 {
     char **pp1 = (char **)p1;
     char **pp2 = (char **)p2;
-    std::cout << *pp1 << ' ' << *pp2 << '\n';
+    // std::cout << *pp1 << ' ' << *pp2 << '\n';
     char *p = *pp1;
     *pp1 = *pp2;
     *pp2 = p;
@@ -133,8 +133,7 @@ const char *categories[] = {"fantasy", "detective", "comedy", "horror", "science
 void clear_input_buffer()
 {
     char c;
-    while ((c = getchar()) != '\n' && c != EOF)
-        ; // очистка до конца строки
+    while ((c = getchar()) != '\n' && c != EOF); // очистка до конца строки
 }
 
 void get_param(const Book &book)
@@ -173,20 +172,20 @@ void get_param(const Book &book)
     }
 
     printf("Введите год издания книги\n");
-    while (scanf("%d", &book.year) != 1 || book.year <= 0 || book.year > 2025)
+    while (scanf("%d", &book.year) != 1 || book.year < 1400 || book.year > 2025)
     {
-        printf("Ошибка! Введите корректный год!\n");
-        while (getchar() != '\n');
+        printf("Ошибка! Введите корректный год (1400 - 2025)!\n");
+        clear_input_buffer();
     }
-    getchar();
+    clear_input_buffer();
 
     printf("Введите цену книги\n");
     while (scanf("%lf", &book.price) != 1 || book.price < 0)
     {
         printf("Ошибка! Введите корректную цену!\n");
-        while (getchar() != '\n');
+        clear_input_buffer();
     }
-    getchar();
+    clear_input_buffer();
 }
 
 void print_max(int *arr, int size)
@@ -199,7 +198,7 @@ void print_max(int *arr, int size)
             max = arr[i];
         }
     }
-    printf("%d", max);
+    printf("%d\n", max);
 }
 
 void print_min(int *arr, int size)
@@ -212,7 +211,7 @@ void print_min(int *arr, int size)
             min = arr[i];
         }
     }
-    printf("%d", min);
+    printf("%d\n", min);
 }
 
 void sort_asc(int *arr, int size)

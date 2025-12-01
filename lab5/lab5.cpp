@@ -110,7 +110,7 @@ int main()
         char sign;
         while (flag)
         {
-            std::cout << "Введите 2 числа и знак +-*/^\n";
+            std::cout << "Введите 2 числа и знак +-*\\^\n";
             std::cin >> x >> y >> sign;
             switch (sign)
             {
@@ -197,6 +197,7 @@ int main()
         {
             std::cout << nAr[i] << ' ';
         }
+        std::cout << '\n';
     }
 
     /**
@@ -279,7 +280,7 @@ int main()
      * функций (из второго массива), примите от пользователя номер функции,
      * после чего вызовите функцию для какого-нибудь массива.
      */
-    {
+    if (0){
         int user_num;
         int some_array[] = {20, 89, 7, 424, 24, 12, 13, 9};
         typedef void (*function)(int *, int);
@@ -289,21 +290,22 @@ int main()
         actions[2] = sort_asc;
         actions[3] = sort_desc;
         char *description[] = {"Печатает максимальный элемент",
-                               "Печчатает минимальный элемент",
+                               "Печатает минимальный элемент",
                                "сортирует по возрастанию и выводит на печать",
                                "Сортирует по убыванию и выводит на печать"};
         for (int i = 0; i < 4; i++)
         {
             printf("%d. %s\n", i + 1, description[i]);
         }
-        printf("Введите немер функции\n");
-        scanf("%d", &user_num);
-        printf("%d\n", user_num);
-        while (user_num < 1 || user_num > 4)
+        printf("Введите номер функции\n");
+        // scanf("%d", &user_num);
+        // printf("%d\n", user_num);
+        while (scanf("%d", &user_num) != 1 || user_num < 1 || user_num > 4)
         {
             printf("Ошибка! Введите корректный номер функции!\n");
-            scanf("%d", &user_num);
+            clear_input_buffer();
         }
+        clear_input_buffer();
         (*actions[user_num - 1])(some_array, 8);
     }
     /**
@@ -466,23 +468,26 @@ int main()
      * Фибоначчи: 1 и 0. Выполняйте эту формулу итеративно и выведите первые 40
      * чисел Фибоначчи.
      */
-    Matrix f, center, save;
-    m_zero(&center, 2, 2);
-    m_set(&center, 0, 0, 1);
-    m_set(&center, 0, 1, 1);
-    m_set(&center, 1, 0, 1);
-
-    m_zero(&f, 2, 1);
-    m_set(&f, 0, 0, 1.);
-
-    m_zero(&save, 2, 1);
-
-    for (int i=2; i < 41; i++)
+    if (0)
     {
-        m_mult(&center, &f, &save);
-        m_free(&f);
-        m_copy(&save, &f);
-        printf("F[%2d] = %.0f \n", i, m_get(&f, 0, 0));
+        Matrix f, center, save;
+        m_zero(&center, 2, 2);
+        m_set(&center, 0, 0, 1);
+        m_set(&center, 0, 1, 1);
+        m_set(&center, 1, 0, 1);
+
+        m_zero(&f, 2, 1);
+        m_set(&f, 0, 0, 1.);
+
+        m_zero(&save, 2, 1);
+
+        for (int i = 2; i < 41; i++)
+        {
+            m_mult(&center, &f, &save);
+            m_free(&f);
+            m_copy(&save, &f);
+            printf("F[%2d] = %.0f \n", i, m_get(&f, 0, 0));
+        }
+        return 0;
     }
-    return 0;
 }
