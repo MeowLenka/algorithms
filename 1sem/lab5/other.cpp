@@ -136,16 +136,19 @@ void clear_input_buffer()
     while ((c = getchar()) != '\n' && c != EOF); // очистка до конца строки
 }
 
-void get_param(const Book &book)
+void get_param(Book &book)
 {
     printf("Введите название книги\n");
+    book.title = new char[100];
     scanf("%99[^\n]", book.title); // читаем всю строку до \n
     clear_input_buffer();
 
+    book.autor = new char[100];
     printf("Введите автора книги\n");
     scanf("%99[^\n]", book.autor);
     clear_input_buffer();
 
+    book.category = new char[100];
     printf("Введите категорию книги\n");
     for (int i = 0; i < 6; i++)
     {
@@ -246,4 +249,22 @@ double integrate(double (*function)(double), double floor, double ceil, int num)
         x += h;
     }
     return result;
+}
+
+void delete_book(Book &book)
+{
+    if (book.autor) {
+        delete[] book.autor;
+        book.autor = nullptr;
+    }
+    if (book.title) {
+        delete[] book.title;
+        book.title = nullptr;
+    }
+    if (book.category) {
+        delete[] book.category;
+        book.category = nullptr;
+    }
+    book.price = 0;
+    book.year = 0;
 }

@@ -355,14 +355,12 @@ int main()
      *
      * Подумайте: от чего зависит объем выделяемой памяти?
      */
-    if (0)
+    if (1)
     {
         // sizeof(global_book) = 40
         Book local_book;               // sizeof(local_book) = 40
         static Book static_book;       // sizeof(static_book) = 40
         Book *dinamic_book = new Book; // sizeof(dinamic_book) = 8
-        delete dinamic_book;
-
         /**
          * Задание 3.1.3.
          *
@@ -372,8 +370,11 @@ int main()
          * предусмотреть "защиту" от выхода за границы массива.
          */
         local_book.autor = "James Bond";
+
         local_book.category = "fantasy";
-        local_book.title = "titletitle";
+
+        local_book.title = "titletiltle";
+
         local_book.price = 999.9;
         local_book.year = 2008;
 
@@ -402,10 +403,12 @@ int main()
          * ожидает число, а пользователь ввел случайно букву.
          */
         Book new_book;
-
         get_param(new_book);
         print_book(new_book);
         printf("\n");
+
+        delete_book(new_book);
+        delete dinamic_book;
     }
     /**
      * Задание 3.2. Матричные операции.

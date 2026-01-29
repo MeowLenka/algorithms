@@ -275,7 +275,10 @@ int main()
             break;
         }
     }
-
+    for (int i=0; i < n_book; i++)
+    {
+        free_space_book(library[i]);
+    }
     delete[] library;
     return 0;
 

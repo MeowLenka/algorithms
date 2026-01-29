@@ -87,9 +87,13 @@ int file_input_library(Book *&library, const char *file_name, int &n_book)
         return 1;
 
     int str_size, n;
-
+    for (int i =0; i < n_book; i++)
+    {
+        free_space_book(library[i]);
+    }
     fscanf(fp, "%d\n", &n);
-    for (int i = n_book; i < n_book + n; i++)
+    library = new struct Book[n+10];
+    for (int i = 0; i < n; i++)
     {
 
         fscanf(fp, "%d ", &str_size);
@@ -115,7 +119,7 @@ int file_input_library(Book *&library, const char *file_name, int &n_book)
         library[i].discription[str_size] = '\0';
     }
     fclose(fp);
-    n_book += n;
+    n_book = n;
     return 0;
 }
 

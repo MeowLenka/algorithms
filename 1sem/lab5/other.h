@@ -23,24 +23,25 @@ double pow(double, double);
 void clear_input_buffer();
 
 struct Book
-    {
-        char* autor = new char[100];
-        char* title = new char[100];
-        char* category = new char[100];
-        int year;
-        double price;
-    };
+{
+    char *autor;
+    char *title;
+    char *category;
+    int year;
+    double price;
+};
 
-void print_book(const Book& book);
-void get_param(const Book &book);
+void print_book(const Book &book);
+void delete_book(Book &book);
 
-void print_max(int* arr, int size);
+void get_param(Book &book);
 
-void print_min(int* arr, int size);
+void print_max(int *arr, int size);
 
-void sort_asc(int* arr, int size);
+void print_min(int *arr, int size);
 
-void sort_desc(int* arr, int size);
+void sort_asc(int *arr, int size);
+
+void sort_desc(int *arr, int size);
 
 double integrate(double (*function)(double), double floor, double ceil, int num);
-
