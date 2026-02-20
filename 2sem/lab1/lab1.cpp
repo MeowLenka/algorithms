@@ -45,6 +45,7 @@
 #include <iostream>
 #include "rect.hpp"
 #include "barrel.hpp"
+#include "matrix.hpp"
 
 
 int main()
@@ -405,6 +406,23 @@ int main()
      */
 
     {
+        Matrix center(2, 2);
+        center.set(0, 0, 1);
+        center.set(0, 1, 1);
+        center.set(1, 0, 1);
+
+        Matrix f(2, 1);
+        f.set(0, 0, 1);
+
+        Matrix save(2, 1);
+
+        for (int i=2; i<41; i++)
+        {
+            Matrix save = center.multiply(f);
+            f.~Matrix();
+            new (&f) Matrix(save);
+            std::cout << "F[" << i << "] = " << f.get(0, 0) << '\n';
+        }
 
     }
 

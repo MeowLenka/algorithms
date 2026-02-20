@@ -1,42 +1,63 @@
 #include <iostream>
-#include <math.h>
-
-void print_arr(int a[], int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        std::cout << a[i] << ' ';
-    }
-    std::cout << '\n';
-}
-
-void swap(int *m, int *n)
-{
-    int t = *m;
-    *m = *n;
-    *n = t;
-}
-
-void rotate(int a[], unsigned size, int shift)
-{
-    for (int k = 0; k < shift; k++)
-    {
-        for (int i = 0; i < size - 1; i++)
-        {
-            i = i % size;
-            swap(&a[i], &a[i + 1]);
-        }
-    }
-}
+#include "matrix.hpp"
 
 
 int main()
 {
-    int a[] = {1, 2, 3, 4, 5};
-    int size = 5, shift = 2;
-    print_arr(a, size);
-    rotate(a, size, shift);
-    print_arr(a, size);
+    /**
+     * Задание 2.2. Объект как математическая сущность.
+     *
+     * Часто с помощью объектов реализуют математические сущности и операции с
+     * ними, потому что обычно все действия с ними хорошо определены и известны
+     * заранее.
+     *
+     * Реализуйте класс `Matrix` в файлах `matrix.hpp` и `matrix.cpp`, используя
+     * код из лабораторной работы №5 прошлого семестра.
+     *
+     * Реализуйте следующие конструкторы:
+     * - `Matrix(int n)` - инициализирует единичную матрицу размера n x n;
+     * - `Matrix(int m, int n, double fill_value = 0)` - инициализирует матрицу 
+     *   размера m x n, где все элементы будут равны `fill_value`;
+     * - конструктор копирования.
+     *
+     * Реализуйте деструктор и следующие методы:
+     * - `double get(int i, int j)` - получить значение элемента;
+     * - `void set(int i, int j, double value)` - установить значение элемента;
+     * - `int get_height()` и `int get_width()` - получить высоту и ширину
+     *   соответственно;
+     * - `void negate()` - операция `-A` для матрицы;
+     * - `void add_in_place(Matrix &other)` - операция `this += other` для
+     *   матрицы;
+     * - `Matrix multiply(Matrix &other)` - возвращает результат матричного
+     *   умножения.
+     *
+     * В случае несовместимых размеров матрицы выкиньте исключение с помощью
+     * оператора `throw` (подробнее о нем мы будем говорить позже).
+     *
+     * Реализуйте ниже вычисление чисел Фибоначчи матричным способом с помощью
+     * вашего класса, как это было сделано в прошлом семестре.
+     */
+
+    {
+        Matrix center(2, 2);
+        center.set(0, 0, 1);
+        center.set(0, 1, 1);
+        center.set(1, 0, 1);
+
+        Matrix f(2, 1);
+        f.set(0, 0, 1);
+
+        // Matrix save(2, 1);
+
+        for (int i=2; i<41; i++)
+        {
+            Matrix save(center.multiply(f));
+            // delete &f;
+            save = f;
+            printf("F[%2d] = %.0f \n", i, f.get( 0, 0));
+        }
+
+    }
 
     return 0;
 }
