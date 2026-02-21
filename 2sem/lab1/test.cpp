@@ -1,62 +1,80 @@
 #include <iostream>
-#include "matrix.hpp"
+#include <cstring>
 
+void printc(char c, int n)
+{
+    for (int i = 0; i < n; i++)
+        std::cout << c;
+}
 
 int main()
 {
-    /**
-     * Задание 2.2. Объект как математическая сущность.
-     *
-     * Часто с помощью объектов реализуют математические сущности и операции с
-     * ними, потому что обычно все действия с ними хорошо определены и известны
-     * заранее.
-     *
-     * Реализуйте класс `Matrix` в файлах `matrix.hpp` и `matrix.cpp`, используя
-     * код из лабораторной работы №5 прошлого семестра.
-     *
-     * Реализуйте следующие конструкторы:
-     * - `Matrix(int n)` - инициализирует единичную матрицу размера n x n;
-     * - `Matrix(int m, int n, double fill_value = 0)` - инициализирует матрицу 
-     *   размера m x n, где все элементы будут равны `fill_value`;
-     * - конструктор копирования.
-     *
-     * Реализуйте деструктор и следующие методы:
-     * - `double get(int i, int j)` - получить значение элемента;
-     * - `void set(int i, int j, double value)` - установить значение элемента;
-     * - `int get_height()` и `int get_width()` - получить высоту и ширину
-     *   соответственно;
-     * - `void negate()` - операция `-A` для матрицы;
-     * - `void add_in_place(Matrix &other)` - операция `this += other` для
-     *   матрицы;
-     * - `Matrix multiply(Matrix &other)` - возвращает результат матричного
-     *   умножения.
-     *
-     * В случае несовместимых размеров матрицы выкиньте исключение с помощью
-     * оператора `throw` (подробнее о нем мы будем говорить позже).
-     *
-     * Реализуйте ниже вычисление чисел Фибоначчи матричным способом с помощью
-     * вашего класса, как это было сделано в прошлом семестре.
-     */
+    const char STOP_STRING = '\n';
+    int count_prev = 0, count_symbol = 0;
+    bool flag = true;
+    const int STOP = 40;
 
+    char line[STOP + 1] = {};
+    char word[STOP] = {};
+
+    char symbol = getchar();
+    while (symbol != STOP_STRING)
     {
-        Matrix center(2, 2);
-        center.set(0, 0, 1);
-        center.set(0, 1, 1);
-        center.set(1, 0, 1);
-
-        Matrix f(2, 1);
-        f.set(0, 0, 1);
-
-        // Matrix save(2, 1);
-
-        for (int i=2; i<41; i++)
+        if (flag)
         {
-            Matrix save(center.multiply(f));
-            // delete &f;
-            save = f;
-            printf("F[%2d] = %.0f \n", i, f.get( 0, 0));
+            printc('-', STOP + 4);
+            std::cout << "\n";
+            flag = false;
         }
+        if (symbol == ' ')
+        {
+            if (count_symbol + count_prev >= STOP)
+            {
+                // std::cout << "pleasse\n";
+                std::cout << "| ";
+                for (int i = 0; i < count_prev; i++)
+                    std::cout << line[i];
+                printc(' ', STOP - count_prev);
+                std::cout << " |\n";
 
+                count_prev = 0;
+            }
+
+            for (int i = 0; i < count_symbol; i++)
+                line[i + count_prev] = word[i];
+
+            count_prev += count_symbol;
+            line[count_prev++] = ' ';
+            count_symbol = 0;
+        }
+        else
+        {
+            if (count_symbol >= STOP)
+            {
+                std::cout << "| ";
+                for (int i = 0; i < count_symbol; i++)
+                    std::cout << word[i];
+                std::cout << " |\n";
+                count_symbol = 0;
+            }
+
+            word[count_symbol++] = symbol;
+        }
+        symbol = getchar();
+    }
+    std::cout << "| ";
+    for (int i = 0; i < count_prev; i++)
+        std::cout << line[i];
+    printc(' ', STOP - count_prev);
+    std::cout << " |\n";
+    printc('-', STOP + 4);
+    std::cout << "\n";
+
+    char cat[] = "       \\ \n         /\\_/\\  (\n        ( ^.^ ) _)\n          \\\"/  (\n        ( | | )\n       (__d b__)";
+
+    for (int i = 0; cat[i] != '\0'; i++)
+    {
+        putchar(cat[i]);
     }
 
     return 0;
