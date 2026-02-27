@@ -47,7 +47,7 @@
 #include "barrel.hpp"
 #include "matrix.hpp"
 #include "my_string.hpp"
-#include "text_wrapper.hpp"
+// #include "text_wrapper.hpp"
 
 int main()
 {
@@ -363,8 +363,8 @@ int main()
 
     if (0)
     {
-        Barrel alch(100, 0.96); // бочка со спиртом
-        Barrel water(100, 0);
+        Barrel alch(20, 0.96); // бочка со спиртом
+        Barrel water(20, 0);
         int n_iteration = 0;
         int k = 0;
         while (alch.get_concentration() > 0.5)
@@ -414,7 +414,7 @@ int main()
      * вашего класса, как это было сделано в прошлом семестре.
      */
 
-    if (0)
+    if (1)
     {
         Matrix center(2, 2);
         center.set(0, 0, 1);
@@ -516,13 +516,13 @@ int main()
      * Примерное использование класса приведено ниже.
      */
 
-    {
-        int line_width = 40;
-        MyString input;
-        input.read_line();
-        TextWrapper wrapper(input, line_width);
-        wrapper.print_wrapped();
-    }
+    // if (0){ // ??
+    //     int line_width = 40;
+    //     MyString input("Print Hello World Kakashka lol kek\n");
+    //     // input.read_line();
+    //     TextWrapper wrapper(input, line_width);
+    //     wrapper.print_wrapped();
+    // }
 
     /**
      * Задание 3. Сборка проекта, Make-файлы.
@@ -538,7 +538,7 @@ int main()
      *
      * Создайте файл с названием `Makefile`. В нем вы будете определять цели
      * сборки и необходимые шаги для сборки программы. Например, для сборки
-     * отладочной версии вашей программы вам нужно выполнить вызвать программу
+     * отладочной версии вашей программы вам нужно вызвать программу
      * `g++` с нужными параметрами. Для этого в Makefile'е нужно указать цель и
      * шаги, например:
      *
