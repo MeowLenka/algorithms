@@ -12,7 +12,6 @@ int main()
     rect1.set_width(20);
     assert((rect1.get_left() ==  1 && rect1.get_right() == 21));
     assert(rect1.get_square() == 200);
-    
 
     return 0;
 }

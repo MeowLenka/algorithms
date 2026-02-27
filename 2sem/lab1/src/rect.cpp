@@ -16,6 +16,7 @@ Rect::Rect(int left, int right, int top, int bottom)
     this->right = right;
     this->top = top;
     this->bottom = bottom;
+    side_correcting();
     std::cout << "kons w params " << this << '\n';
 }
 
@@ -25,6 +26,7 @@ Rect::Rect(const Rect &other)
     this->right = other.right;
     this->top = other.top;
     this->bottom = other.bottom;
+    side_correcting();
     std::cout << "copy kons " << this << '\n';
 }
 
@@ -59,6 +61,8 @@ void Rect::set_all(int left, int right, int top, int bottom)
     this->right = right;
     this->top = top;
     this->bottom = bottom;
+    side_correcting();
+
 }
 
 void Rect::inflate(int amount)
@@ -116,6 +120,24 @@ void Rect::set_width(int width)
 void Rect::set_height(int height)
 {
     top = bottom + height;
+}
+
+void Rect::side_correcting()
+{
+    int temp;
+    if (left > right)
+    {
+        temp = left;
+        left = right;
+        right = left;      
+    } 
+    if (bottom > top)
+    {
+        temp = bottom;
+        bottom = top;
+        top = temp;
+
+    }
 }
 
 Rect bounding_rect(Rect r1, Rect r2)

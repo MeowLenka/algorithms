@@ -33,6 +33,8 @@ public:
     void set_width(int width);
     void set_height(int height);
 
+    void side_correcting();
+
 };
 
 Rect bounding_rect(Rect r1, Rect r2);
