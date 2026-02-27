@@ -9,12 +9,11 @@ void printc(char c, int n);
 class TextWrapper
 {
 private:
-    const char STOP_STRING = '\n';
     MyString string;
     int count_prev, count_symbol;
     int stop;
-    char line[1];
-    char word[1];
+    char *line;
+    char *word;
     char symbol;
 
     void end_of_word();
@@ -24,6 +23,7 @@ private:
 public:
     TextWrapper(const MyString string, int stop);
     void print_wrapped();
+    ~TextWrapper();
 };
 
 TextWrapper::TextWrapper(const MyString string, int line_width)
@@ -66,15 +66,14 @@ void TextWrapper::end_of_word()
 
 void TextWrapper::print_wrapped()
 {
-    line[stop + 1] = {};
-    word[stop] = {};
+    line= new char[stop + 1];
+    word = new char [stop];
     print_roof();
     for (int i = 0; i < string.get_str_size() + 1; i++)
     {
         symbol = string.get(i);
         if (symbol == ' ')
             end_of_word();
-
         else
         {
             if (count_symbol >= stop)
@@ -90,6 +89,11 @@ void TextWrapper::print_wrapped()
 
 }
 
+TextWrapper::~TextWrapper()
+{
+    delete[] line;
+    delete[] word;
+}
 void printc(char c, int n)
 {
     for (int i = 0; i < n; i++)
