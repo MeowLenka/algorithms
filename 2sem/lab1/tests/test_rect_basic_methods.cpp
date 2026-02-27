@@ -5,6 +5,7 @@ int main()
 {
     Rect zero_rect;
     assert((!zero_rect.get_left() && !zero_rect.get_right() && !zero_rect.get_bottom() && !zero_rect.get_height()) && "сторона не равна 0!");
+    
     zero_rect.set_all(10, 11, 12, 13);
     assert((zero_rect.get_left() == 10));
     assert((zero_rect.get_right() == 11));
