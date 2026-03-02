@@ -6,8 +6,7 @@ CC = clang++
 TARGET_DEBUG = $(PREF_BUILD)debug.out
 TARGET_LEAKS = $(PREF_BUILD)leaks.out
 
-DEP_FLAGS=-MMD -MP
-FLAGS=$(foreach D, src, -I$(D)) -g $(DEP_FLAGS)
+FLAGS=$(foreach D, src, -I$(D)) -g -MMD -MP
 
 SRC = $(wildcard $(PREF_SRC)*.cpp)
 OBJ = $(patsubst $(PREF_SRC)%.cpp, $(PREF_BUILD)%.o, $(SRC))

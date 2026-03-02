@@ -143,7 +143,7 @@ int main()
      */
 
     /**
-     * Задание 1.6. Когда вызываются конструкторы и деструкторы? TODO:что тут происходит  
+     * Задание 1.6. Когда вызываются конструкторы и деструкторы? 
      *
      * Определите явно конструктор копирования в классе `Rect`, который делал
      * бы то же, что и конструктор копирования, определенный неявно.
@@ -157,22 +157,23 @@ int main()
      * деструкторов и объясните это количество.
      */
 
-    if (0)
+    if (0) // конструкторы - 12 деструкторы - 12
     {
         Rect r1;                         // def kons 0x16fdfef44
         Rect *pR = new Rect(1, 2, 1, 2); // kons w params 0x153a04080
         {
             Rect r2(r1);                // copy kons 0x16fdfef28
             Rect arRect[2];             // def kons 0x16fdfefb8 def kons 0x16fdfefc8
-            for (int i = 0; i < 3; i++) // одинаково на каждой итерации цикла
+            for (int i = 0; i < 3; i++) 
             {
-                static Rect r3(i, i, i, i); // kons w params 0x100008000
-                Rect r4(*pR);               // copy kons 0x16fdfef14
-                Rect r5(i, i, i, i);        // kons w params 0x16fdfef04
-            } // dest 0x16fdfef04 dest 0x16fdfef14
+                static Rect r3(i, i, i, i); // kons w params 0x100008000 (1)
+                Rect r4(*pR);               // copy kons 0x16fdfef14 (3)
+                Rect r5(i, i, i, i);        // kons w params 0x16fdfef04 (3)
+            } // dest 0x16fdfef04 dest 0x16fdfef14 (3)
         } // dest 0x16fdfefc8 dest 0x16fdfefb8 dest 0x16fdfef28
         delete pR; // dest 0x153a04080
     } // dest 0x16fdfef44
+    // после завершения main() dest 0x100008000 
 
     /**
      * Задание 1.7. Публичные и приватные поля класса.
@@ -470,12 +471,12 @@ int main()
     if (0)
     {
         MyString s1;
-        char *str2 = "Lenka kolenka\n";
+        char *str2 = "hello world\n";
         MyString str3(str2);
         s1.set_new_string(str2);
         s1.print();
-        s1.set(6, 'l');
-        s1.set(8, 'p');
+        s1.set(0, 'H');
+        s1.set(6, 'W');
         s1.print();
         s1.read_line();
         s1.print();
@@ -512,9 +513,10 @@ int main()
      * Примерное использование класса приведено ниже.
      */
 
-    if (1){ 
+    if (0)
+    {
         int line_width = 40;
-        MyString input("Print Hello World HELOOOOOOOOOOOOOOOOOoooOOoooooo lol kek mnogo mnogo clov yeeee vvvvvvkvvvvvvvvvvvvvvv \n");
+        MyString input("Print Hello World HELOOOOOOOOOOOOOOOOOoooOOoooooo lol kek mnogo mnogo clov yeeee vvvvvvkvvvvvvvvvvvvvvv\n");
         // input.read_line();
         TextWrapper wrapper(input, line_width);
         wrapper.print_wrapped();
@@ -673,7 +675,7 @@ int main()
      * добавьте тест для проверки этого случая.
      */
 
-// линуовщик чо делает, процессы там : трансляция, компиляция и линковка
+    // линуовщик чо делает, процессы там : трансляция, компиляция и линковка
 
     /**
      * Задание 4.3. Запуск всех тестов.
