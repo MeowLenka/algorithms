@@ -14,13 +14,13 @@ public:
     ~MyString();
     
     
-    char get(int i);
+    char get(int i) const;
     void set(int i, char c);
     void set_new_string(const char *str); // замена текущего содержимого на новое
     void print();
     void read_line(); //  замена текущего содержимого строки на строку, считанную с консоли (неопределенного размера)
 
-    int get_str_size();
+    int get_str_size() const;
 };
 
 #endif

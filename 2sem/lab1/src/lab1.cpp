@@ -47,7 +47,7 @@
 #include "barrel.hpp"
 #include "matrix.hpp"
 #include "my_string.hpp"
-// #include "text_wrapper.hpp"
+#include "text_wrapper.hpp"
 
 int main()
 {
@@ -90,7 +90,7 @@ int main()
 
     if (0)
     {
-        Rect rect; // ?? вызывается default конструктор
+        Rect rect; // default конструктор
         // rect.x1 = 1 rect.y1 = 580976882 rect.x2 = 2 rect.y2 = 58097840%
     }
 
@@ -143,7 +143,7 @@ int main()
      */
 
     /**
-     * Задание 1.6. Когда вызываются конструкторы и деструкторы?
+     * Задание 1.6. Когда вызываются конструкторы и деструкторы? TODO:что тут происходит  
      *
      * Определите явно конструктор копирования в классе `Rect`, который делал
      * бы то же, что и конструктор копирования, определенный неявно.
@@ -372,12 +372,8 @@ int main()
             alch.transfuse(water, 1);
             water.transfuse(alch, 1);
             n_iteration++;
-            // std::cout<< n_iteration << '\n';
-            // std::cout << alch.get_concentration() << '\n';
-            // std::cout << water.get_concentration() << '\n';
-            // std::cin >> k;
         }
-        std::cout << n_iteration; 
+        std::cout << n_iteration; // 32
     }
 
     /**
@@ -414,7 +410,7 @@ int main()
      * вашего класса, как это было сделано в прошлом семестре.
      */
 
-    if (1)
+    if (0)
     {
         Matrix center(2, 2);
         center.set(0, 0, 1);
@@ -516,13 +512,13 @@ int main()
      * Примерное использование класса приведено ниже.
      */
 
-    // if (0){ // ??
-    //     int line_width = 40;
-    //     MyString input("Print Hello World Kakashka lol kek\n");
-    //     // input.read_line();
-    //     TextWrapper wrapper(input, line_width);
-    //     wrapper.print_wrapped();
-    // }
+    if (1){ 
+        int line_width = 40;
+        MyString input("Print Hello World HELOOOOOOOOOOOOOOOOOoooOOoooooo lol kek mnogo mnogo clov yeeee vvvvvvkvvvvvvvvvvvvvvv \n");
+        // input.read_line();
+        TextWrapper wrapper(input, line_width);
+        wrapper.print_wrapped();
+    }
 
     /**
      * Задание 3. Сборка проекта, Make-файлы.

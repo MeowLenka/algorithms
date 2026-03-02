@@ -18,7 +18,7 @@ MyString::MyString(const MyString& other)
     strcpy(string, other.string);
 }
 
-char MyString::get(int i)
+char MyString::get(int i) const
 {
     return string[i];
 }
@@ -71,7 +71,7 @@ MyString::~MyString()
     delete[] string;
 }
 
-int MyString::get_str_size()
+int MyString::get_str_size() const
 {
     return strlen(string);
 }

@@ -20,19 +20,23 @@ $(TARGET_LEAKS): $(OBJ)
 	$(CC) -g -fsanitize=address $(OBJ) -o $(TARGET_LEAKS) 
 
 
-build/rect.o: $(PREF_SRC)rect.cpp $(PREF_SRC)rect.hpp
+$(PREF_BUILD)rect.o: $(PREF_SRC)rect.cpp $(PREF_SRC)rect.hpp
 	$(CC) -g -c -o $(PREF_BUILD)rect.o $(PREF_SRC)rect.cpp
 
-build/barrel.o: $(PREF_SRC)barrel.cpp $(PREF_SRC)barrel.hpp
+$(PREF_BUILD)barrel.o: $(PREF_SRC)barrel.cpp $(PREF_SRC)barrel.hpp
 	$(CC) -g -c -o $(PREF_BUILD)barrel.o $(PREF_SRC)barrel.cpp
 
-build/matrix.o: $(PREF_SRC)matrix.cpp $(PREF_SRC)matrix.hpp
+$(PREF_BUILD)matrix.o: $(PREF_SRC)matrix.cpp $(PREF_SRC)matrix.hpp
 	$(CC) -g -c -o $(PREF_BUILD)matrix.o $(PREF_SRC)matrix.cpp
 
-build/my_string.o: $(PREF_SRC)my_string.cpp $(PREF_SRC)my_string.hpp
+$(PREF_BUILD)my_string.o: $(PREF_SRC)my_string.cpp $(PREF_SRC)my_string.hpp
 	$(CC) -g -c -o $(PREF_BUILD)my_string.o $(PREF_SRC)my_string.cpp
 
-build/lab1.o	:	$(PREF_SRC)lab1.cpp
+$(PREF_BUILD)text_wrapper.o: $(PREF_SRC)text_wrapper.cpp $(PREF_SRC)text_wrapper.hpp
+	$(CC) -g -c -o $(PREF_BUILD)text_wrapper.o $(PREF_SRC)text_wrapper.cpp
+
+
+$(PREF_BUILD)lab1.o	:	$(PREF_SRC)lab1.cpp
 	$(CC) -g -c -o $(PREF_BUILD)lab1.o $(PREF_SRC)lab1.cpp 
 
 

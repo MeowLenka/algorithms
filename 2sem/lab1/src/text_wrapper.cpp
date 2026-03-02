@@ -1,35 +1,10 @@
 #include <iostream>
-#include "my_string.hpp"
+#include "text_wrapper.hpp"
 
-#ifndef TEXT_WRAPPER_HPP
-#define TEXT_WRAPPER_HPP
-
-void printc(char c, int n);
-
-class TextWrapper
+TextWrapper::TextWrapper(const MyString &string, int line_width) : string(string), stop(line_width)
 {
-private:
-    MyString string;
-    int count_prev, count_symbol;
-    int stop;
-    char *line;
-    char *word;
-    char symbol;
-
-    void end_of_word();
-    void print_roof();
-    void print_line(int &count);
-
-public:
-    TextWrapper(const MyString string, int stop);
-    void print_wrapped();
-    ~TextWrapper();
-};
-
-TextWrapper::TextWrapper(const MyString string, int line_width)
-{
-    stop = line_width;
-    this->string = string;
+    count_prev = 0;
+    count_symbol = 0;
 }
 
 void TextWrapper::print_roof()
@@ -66,8 +41,8 @@ void TextWrapper::end_of_word()
 
 void TextWrapper::print_wrapped()
 {
-    line= new char[stop + 1];
-    word = new char [stop];
+    line = new char[stop + 1];
+    word = new char[stop];
     print_roof();
     for (int i = 0; i < string.get_str_size() + 1; i++)
     {
@@ -84,9 +59,7 @@ void TextWrapper::print_wrapped()
         }
     }
     print_line(count_prev);
-    printc(' ', stop - count_prev);
     print_roof();
-
 }
 
 TextWrapper::~TextWrapper()
@@ -94,10 +67,9 @@ TextWrapper::~TextWrapper()
     delete[] line;
     delete[] word;
 }
-void printc(char c, int n)
+
+void TextWrapper::printc(char c, int n)
 {
     for (int i = 0; i < n; i++)
         std::cout << c;
 }
-
-#endif
