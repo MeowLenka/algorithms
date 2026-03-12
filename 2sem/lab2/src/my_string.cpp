@@ -40,6 +40,8 @@ void MyString::print()
 {
     for (int i = 0; i < strlen(string); i++)
         std::cout << string[i];
+    if (string[strlen(string)-1] != '\n')
+        std::cout << '\n';;
 }
 
 void MyString::read_line()

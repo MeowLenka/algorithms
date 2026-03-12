@@ -100,5 +100,7 @@
     "unordered_map": "cpp",
     "variant": "cpp",
     "vector": "cpp"
-  }
+  },
+  "cmake.sourceDirectory": "/Users/elenat/Documents/вуз/algorithms/2sem/lab2",
+  "C_Cpp.errorSquiggles": "disabled"
 }

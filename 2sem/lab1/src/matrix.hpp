@@ -3,7 +3,7 @@
 
 class Matrix
 {
-private:
+public:
     int rows;
     int cols;
     double **data;

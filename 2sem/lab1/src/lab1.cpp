@@ -90,7 +90,7 @@ int main()
 
     if (0)
     {
-        Rect rect; // default конструктор
+        Rect rect; // default конструктор TODO: память там динамическа и static куда будет сохраняться
         // rect.x1 = 1 rect.y1 = 580976882 rect.x2 = 2 rect.y2 = 58097840%
     }
 
@@ -421,14 +421,16 @@ int main()
         Matrix f(2, 1);
         f.set(0, 0, 1);
 
-        Matrix save(2, 1);
+        Matrix save = center.multiply(f);
 
         for (int i = 2; i < 20; i++)
         {
-            Matrix save = center.multiply(f);
-            f.~Matrix();
-            new (&f) Matrix(save);
+            Matrix f(save); // TODO: засатаавить работать 
             std::cout << "F[" << i << "] = " << f.get(0, 0) << '\n';
+            std::cout << f.cols << " " << f.rows << "\n";
+            std::cout << center.cols << " " << center.rows << "\n";
+            save = center.multiply(f);
+            std::cout << save.cols << " " << save.rows << "\n";
         }
     }
 
