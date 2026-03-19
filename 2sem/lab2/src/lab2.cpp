@@ -2,7 +2,6 @@
 #include "my_string.hpp"
 #include "base_file.hpp"
 
-
 /**
  * Лабораторная работа №2. Массивы объектов, простое наследование, виртуальные
  * функции, применение наследования.
@@ -19,6 +18,20 @@
  * стандартной библиотеки и нужно следовать принципам инкапсуляции.
  */
 
+void write_int(IFile &file, int n)
+{
+    if (n < 0) { file.write("-", 1);  n*=-1;}
+    int divisor = 1;
+    while (n / divisor >= 10) {divisor *= 10;}
+    while (n > 0) {
+        int digit = n / divisor;
+        char c = '0' + digit;
+        file.write(&c, 1);
+        n %= divisor;
+        divisor /= 10;
+    }
+}
+
 int main() {
     /**
      * Задание 1. Массивы объектов класса.
@@ -31,7 +44,7 @@ int main() {
      * Выведите элементы массива на консоль.
      */
 
-    if (0){
+    if (1){
         MyString ar[3] = {"Eight", "March", "Holiday"};
         for (int i = 0; i < 3; i++)
             ar[i].print();
@@ -165,10 +178,12 @@ int main() {
      * получилось ли добиться уменьшения размера хранимых данных. 
      */
 
-    {
-        RleFile rlefile("test.txt", "w");
+    if (1){
+        FILE *test_file = fopen("../t_t.txt", "w");
+        RleFile rlefile(test_file);
         char *input = "       \\ \n         /\\_/\\  (\n        ( ^.^ ) _)\n          \\\"/  (\n        ( | | )\n       (__d b__)";
-        rlefile.write(input);
+        int k = rlefile.write(input, strlen(input)+1);
+        std::cout << k << '\n';
     } 
     
 
@@ -181,6 +196,12 @@ int main() {
      * инициализации и деинициализации этих классов.
      */
 
+   if (1){
+        FILE *test_file = fopen("../t_t.txt", "r");
+        BaseFile base(test_file); // BaseFile constructor
+        Base32File base32(test_file); // BaseFile constructor, Base32File constructor
+        RleFile rle32(test_file); // BaseFile constructor, // RleFile constructor
+    }
     /**
      * Задание 2.4. Ранее связывание.
      *
@@ -190,32 +211,47 @@ int main() {
      * запись.
      */
 
-    /* {
-        BaseFile bf(...);
-        Base32File b32f(...);
-        RleFile rf(...);
+    if (1){
+        BaseFile bf("../t_bf.txt", "w+");
+        Base32File b32f("../t_b32f.txt", "w+");
+        RleFile rf("../t_rle.txt", "w+");
 
         int n = 123456;
-        if (n < 0) { bf.write(...); }
+        if (n < 0) { bf.write("-", 1);  n*=-1;}
+        int divisor = 1;
+        while (n / divisor >= 10) {divisor *= 10;}
         while (n > 0) {
-            bf.write(...);
-            // ...
+            int digit = n / divisor;
+            char c = '0' + digit;
+            bf.write(&c, 1);
+            n %= divisor;
+            divisor /= 10;
         }
 
         n = 123456;
-        if (n < 0) { b32f.write(...); }
+        if (n < 0) { b32f.write("-", 1);  n*=-1;}
+        divisor = 1;
+        while (n / divisor >= 10) {divisor *= 10;}
         while (n > 0) {
-            b32f.write(...);
-            // ...
+            int digit = n / divisor;
+            char c = '0' + digit;
+            b32f.write(&c, 1);
+            n %= divisor;
+            divisor /= 10;
         }
 
         n = 123456;
-        if (n < 0) { rf.write(...); }
+        if (n < 0) { rf.write("-", 1);  n*=-1;}
+        divisor = 1;
+        while (n / divisor >= 10) {divisor *= 10;}
         while (n > 0) {
-            rf.write(...);
-            // ...
+            int digit = n / divisor;
+            char c = '0' + digit;
+            rf.write(&c, 1);
+            n %= divisor;
+            divisor /= 10;
         }
-    } */
+    }
 
     /**
      * Задание 2.5. Передача объекта по ссылке / указателю.
@@ -235,6 +271,17 @@ int main() {
      * что и код, который вы написали выше? Почему?
      */
 
+    if (1){
+        BaseFile bf("../t_wint_bf.txt", "w"); 
+        Base32File b32f("../t_wint_b32f.txt", "w");
+        RleFile rf("../t_wint_rf.txt", "w");
+        int n = 123456;
+        write_int(bf, n);
+        write_int(b32f, n);
+        write_int(rf, n);
+
+        // другой результат, происходит вызов метода write базового класса
+    }
     /**
      * Задание 2.6. Виртуальные функции, позднее связывание.
      *
@@ -246,6 +293,12 @@ int main() {
      * классов? Почему?
      */
 
+    {
+        // virtual сообщает компилятору, что функция предназначена для переопределения в производных классах.
+        // обеспечивает полиморфизм 
+        // был размер - 8 байт, стал - 16.
+        // потому что в памяти еще хранится vtable (таблица указателей на виртуальные функции класса)
+    }
     /**
      * Задание 2.7. Виртуальный деструктор.
      *
@@ -257,17 +310,21 @@ int main() {
      * Исправьте эту ситуацию.
      */
 
-    /* {
+    if (1){
         BaseFile *files[] = { 
-            new BaseFile(...), 
-            new RleFile(...), 
-            new Base32File(...), 
+            new BaseFile("../t_t1.txt", "w"), 
+            new RleFile("../t_t2.txt", "w"), 
+            new Base32File("../t_t3.txt", "w")
         };
 
         for (int i = 0; i < 3; ++i) {
             files[i]->write("Hello!", 6);
+            delete files[i]; 
         }
-    } */
+
+        // если не виртуальный деструктор, то basefile destructors
+        // нужно сделать виртуальный: получатся base, rle, base, base32, base destructors
+    }
 
     /**
      * Задание 2.8. Массив объектов производных классов.
@@ -282,16 +339,17 @@ int main() {
      * логику, используя массив указателей на объекты базового класса.
      */
 
-    /* {
-        BaseFile *base_files = new BaseFile[2] { BaseFile(...), BaseFile(...) };
-        BaseFile *b32_files = new Base32File[2] { Base32File(...), Base32File(...) };
+    if (0){ 
+
+        BaseFile *base_files = new BaseFile[2] { BaseFile("../t_arr_bf_1.txt", "w"), BaseFile("../t_arr_bf_2.txt", "w") };
+        BaseFile *b32_files = new Base32File[2] { Base32File("../t_arr_b32f_1.txt", "w"), Base32File("../t_arr_b32f_2.txt", "w") };
         for (int i = 0; i < 2; ++i) {
             base_files[i].write("Hello!", 6);
             b32_files[i].write("Hello!", 6);
         }
         delete [] base_files;
         delete [] b32_files;
-    } */
+    }
 
     /**
      * Задание 3. Чисто виртуальные функции. Интерфейсы. Композиция классов.
@@ -326,6 +384,9 @@ int main() {
      * *чисто виртуальными*.
      *
      * Какие ограничения накладывает на класс наличие чисто виртуального метода?
+     * 
+     * - нельзя создать объект абстрактного класса
+     * - производные классы должны реализовать все чистые методы, иначе они тоже будут асбтрактными
      *
      * Получается, что в классе `IFile` есть только чисто виртуальные методы, и
      * единственная цель такого класса - определять, что должны уметь делать его
@@ -356,12 +417,12 @@ int main() {
      * классов `Base32File` и `RleFile`.
      */
 
-    /* {
-        Base32File2 b32f(new BaseFile(...));
-        RleFile2 rf(new Base32File(...));
+    if (1){
+        Base32File2 b32f(new BaseFile("../t_new_b32f.txt", "w"));
+        RleFile2 rf(new Base32File("../t_new_rf.txt", "w"));
         write_int(b32f, 123456);
         write_int(rf, 123456);
-    } */
+    } 
 
     /**
      * Задание 3.3. Больше композиции!
@@ -371,8 +432,15 @@ int main() {
      * после чего применять сжатие RLE и только после этого писать в файл.
      */
 
-    {
+    if (1){
+        Base32File2 fp{new Base32File2(new RleFile2(new BaseFile("../t_bf33.txt", "w+")))};
 
+        fp.write("Hello world", 12);
+        char str[1024];
+        size_t i = fp.read(str, 1023);
+        str[i] = '\0';
+        printf("%zu %s", i, str);
+        
     }
 
     /**

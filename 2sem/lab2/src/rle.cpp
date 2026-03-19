@@ -89,7 +89,6 @@ size_t rle_decode(FILE *_file, const void *dst, size_t max_bytes)
             while (!feof(_file) && let >= '0' && let <= '9')
             {
                 count = (count) * 10 + (let - '0');
-
                 let = static_cast<char>(getc(_file));
             }
         }
@@ -135,6 +134,52 @@ size_t rle_decode(FILE *_file, const void *dst, size_t max_bytes)
 //     }
 
 //     return i;
+// }
+
+// read() rle
+// {
+//     char *buf = (char *)dst; // output
+//     char let;
+
+//     int output_index = 0;
+//     size_t i = 0, n_result = 0;
+
+//     while (!feof(_file) && n_result < max_bytes)
+//     {
+//         let = static_cast<char>(getc(_file));
+
+//         int count = 0;
+//         if (let >= '0' && let <= '9')
+//         {
+//             while (!feof(_file) && let >= '0' && let <= '9')
+//             {
+//                 count = (count) * 10 + (let - '0');
+//                 let = static_cast<char>(getc(_file));
+//             }
+//         }
+//         if (count < max_bytes - n_result)
+//         {
+//             if (count == 0)
+//             {
+//                 buf[n_result++] = let;
+//             }
+//             else
+//             {
+//                 for (int j = 0; j < count; j++)
+//                 {
+//                     buf[n_result++] = let;
+//                 }
+//             }
+//         }
+//         if else ()
+//         else
+//         {
+//             buf[n_result] = '\0';
+//             return n_result;
+//         }
+//     }
+//     buf[n_result] = '\0';
+//     return n_result;
 // }
 
 int main()
