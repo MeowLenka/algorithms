@@ -411,26 +411,21 @@ int main()
      * вашего класса, как это было сделано в прошлом семестре.
      */
 
-    if (0)
-    {
-        Matrix center(2, 2);
-        center.set(0, 0, 1);
-        center.set(0, 1, 1);
-        center.set(1, 0, 1);
+    if (1)
+    {   
+        Matrix center(2, 2, 1);
+        center.set(0, 0, 0);
 
         Matrix f(2, 1);
-        f.set(0, 0, 1);
+        f.set(1, 0, 1);
 
-        Matrix save = center.multiply(f);
-
-        for (int i = 2; i < 20; i++)
+        for (int i = 0; i < 20; i++)
         {
-            Matrix f(save); // TODO: засатаавить работать 
             std::cout << "F[" << i << "] = " << f.get(0, 0) << '\n';
-            std::cout << f.cols << " " << f.rows << "\n";
-            std::cout << center.cols << " " << center.rows << "\n";
-            save = center.multiply(f);
-            std::cout << save.cols << " " << save.rows << "\n";
+            f = center.multiply(f);
+            // std::cout << f.cols << " " << f.rows << "\n";
+            // std::cout << center.cols << " " << center.rows << "\n";
+            // std::cout << save.cols << " " << save.rows << "\n";
         }
     }
 

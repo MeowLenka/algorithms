@@ -31,6 +31,26 @@ Matrix::Matrix(int m, int n, double fill_value)
     }
 }
 
+const Matrix &Matrix::operator=(const Matrix &other)
+{
+    if (this != &other)
+    {
+        delete[] data;
+        rows = other.rows;
+        cols = other.cols;
+        data = new double *[rows];
+        for (int i = 0; i < rows; i++)
+        {
+            data[i] = new double[cols];
+            for (int j = 0; j < cols; j++)
+            {
+                data[i][j] = other.data[i][j];
+            }
+        }
+    }
+    return *this;
+}
+
 Matrix::Matrix(const Matrix &other)
 {
     int o_rows = other.rows;
@@ -96,7 +116,7 @@ void Matrix::add_in_place(Matrix &other)
 
 Matrix Matrix::multiply(Matrix &other)
 {
-    Matrix dst(cols, other.rows, 0);
+    Matrix dst(rows, other.cols, 0);
 
     if (cols == other.rows)
     {

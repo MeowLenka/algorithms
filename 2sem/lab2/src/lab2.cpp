@@ -44,7 +44,7 @@ int main() {
      * Выведите элементы массива на консоль.
      */
 
-    if (1){
+    if (0){
         MyString ar[3] = {"Eight", "March", "Holiday"};
         for (int i = 0; i < 3; i++)
             ar[i].print();
@@ -178,7 +178,7 @@ int main() {
      * получилось ли добиться уменьшения размера хранимых данных. 
      */
 
-    if (1){
+    if (0){
         FILE *test_file = fopen("../t_t.txt", "w");
         RleFile rlefile(test_file);
         char *input = "       \\ \n         /\\_/\\  (\n        ( ^.^ ) _)\n          \\\"/  (\n        ( | | )\n       (__d b__)";
@@ -196,7 +196,7 @@ int main() {
      * инициализации и деинициализации этих классов.
      */
 
-   if (1){
+   if (0){
         FILE *test_file = fopen("../t_t.txt", "r");
         BaseFile base(test_file); // BaseFile constructor
         Base32File base32(test_file); // BaseFile constructor, Base32File constructor
@@ -211,7 +211,7 @@ int main() {
      * запись.
      */
 
-    if (1){
+    if (0){
         BaseFile bf("../t_bf.txt", "w+");
         Base32File b32f("../t_b32f.txt", "w+");
         RleFile rf("../t_rle.txt", "w+");
@@ -271,7 +271,7 @@ int main() {
      * что и код, который вы написали выше? Почему?
      */
 
-    if (1){
+    if (0){
         BaseFile bf("../t_wint_bf.txt", "w"); 
         Base32File b32f("../t_wint_b32f.txt", "w");
         RleFile rf("../t_wint_rf.txt", "w");
@@ -310,7 +310,7 @@ int main() {
      * Исправьте эту ситуацию.
      */
 
-    if (1){
+    if (0){
         BaseFile *files[] = { 
             new BaseFile("../t_t1.txt", "w"), 
             new RleFile("../t_t2.txt", "w"), 
@@ -338,17 +338,20 @@ int main() {
      * указателей на базовый класс, как это было сделано выше. Реализуйте ту же
      * логику, используя массив указателей на объекты базового класса.
      */
-
-    if (0){ 
+    if (1){ 
 
         BaseFile *base_files = new BaseFile[2] { BaseFile("../t_arr_bf_1.txt", "w"), BaseFile("../t_arr_bf_2.txt", "w") };
-        BaseFile *b32_files = new Base32File[2] { Base32File("../t_arr_b32f_1.txt", "w"), Base32File("../t_arr_b32f_2.txt", "w") };
+        // BaseFile *b32_files = new Base32File[2] { Base32File("../t_arr_b32f_1.txt", "w"), Base32File("../t_arr_b32f_2.txt", "w") };
+        BaseFile *b32_files[] = {new Base32File("../t_arr_b32f_1.txt", "w"), new Base32File("../t_arr_b32f_2.txt", "w")};
+        
         for (int i = 0; i < 2; ++i) {
             base_files[i].write("Hello!", 6);
-            b32_files[i].write("Hello!", 6);
+            b32_files[i]->write("Hello!", 6);
+            delete b32_files[i];
         }
         delete [] base_files;
-        delete [] b32_files;
+        // delete [] b32_files;
+        // было: zsh: bus error  ./lab2
     }
 
     /**
@@ -417,7 +420,7 @@ int main() {
      * классов `Base32File` и `RleFile`.
      */
 
-    if (1){
+    if (0){
         Base32File2 b32f(new BaseFile("../t_new_b32f.txt", "w"));
         RleFile2 rf(new Base32File("../t_new_rf.txt", "w"));
         write_int(b32f, 123456);
@@ -433,9 +436,9 @@ int main() {
      */
 
     if (1){
-        Base32File2 fp{new Base32File2(new RleFile2(new BaseFile("../t_bf33.txt", "w+")))};
+        Base32File2 fp{new Base32File2(new RleFile2(new BaseFile("../t_bf33.txt", "r+")))};
 
-        fp.write("Hello world", 12);
+        //fp.write("Hello world", 12);
         char str[1024];
         size_t i = fp.read(str, 1023);
         str[i] = '\0';
@@ -461,9 +464,8 @@ int main() {
      * автоматического теста, настройте запуск для всех тестов в виде отдельной
      * цели (например, `make test`).
      */
-
     {
-
+        
     }
 
     return 0;

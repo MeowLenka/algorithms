@@ -11,8 +11,8 @@ public:
 public:
     Matrix(int n); // единичная матрица n*n
     Matrix(int m, int n, double fill_value = 0);
-
     Matrix(const Matrix &other); 
+    const Matrix &operator=(const Matrix &other);
     ~Matrix();
 
     double get(int i, int j);
