@@ -6,15 +6,11 @@
 
 int main()
 {
-    std::cout << "\n=== Testing BaseFile ===\n";
-
-    const size_t DATA_SIZE = 50000; // > 40KB
+    std::cout << "Running BaseFile test\n";
+    const size_t DATA_SIZE = 50000; 
     const size_t BUFFER_SIZE = 256;
-
-    // Генерируем случайные данные
     char *original_data = generate_random_data(DATA_SIZE);
 
-    // Записываем
     BaseFile writer("test_base.txt", "w");
     size_t total_written = 0;
     while (total_written < DATA_SIZE)
@@ -26,7 +22,6 @@ int main()
     }
     assert(total_written == DATA_SIZE);
 
-    // Читаем
     BaseFile reader("test_base.txt", "r");
     char *read_data = new char[DATA_SIZE];
     size_t total_read = 0;
@@ -39,10 +34,9 @@ int main()
     }
     assert(total_read == DATA_SIZE);
 
-    // // Сравниваем
     assert(compare_buffers(original_data, read_data, DATA_SIZE));
 
-    // delete[] original_data;
+    delete[] original_data;
     delete[] read_data;
     std::cout << "BaseFile test PASSED\n";
 

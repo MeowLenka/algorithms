@@ -6,11 +6,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(lab2 src/lab2.cpp)
 
-# Вспомогательная библиотека для тестов
+# библиотека для тестов
+
 add_library(test_helper STATIC tests/test_helper.cpp)
 target_include_directories(test_helper PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 
-# Отдельные тестовые программы
+# тестовые программы
 add_executable(test_base_file tests/test_base_file.cpp)
 target_link_libraries(test_base_file PRIVATE myfile test_helper)
 
@@ -20,7 +21,7 @@ target_link_libraries(test_base32_file PRIVATE myfile test_helper)
 add_executable(test_rle_file tests/test_rle_file.cpp)
 target_link_libraries(test_rle_file PRIVATE myfile test_helper)
 
-# Цель для запуска всех тестов
+# запуск всех тестов
 add_custom_target(test
     COMMAND test_base_file
     COMMAND test_base32_file
@@ -30,7 +31,7 @@ add_custom_target(test
     VERBATIM
 )
 
-# Пытаемся найти внешнюю библиотеку
+# поиск внешн библиотеки
 find_library(MyString
     NAMES my_string
     PATHS ${CMAKE_CURRENT_SOURCE_DIR}/string_lib/build
@@ -49,12 +50,11 @@ if(ENABLE_LEAKS)
     target_link_options(lab2 PRIVATE -fsanitize=address)
 endif()
 
-# Проверяем, нашлась ли библиотека
 if(NOT MyString)
-    message(FATAL_ERROR "Внешняя библиотека не найдена! Путь: ${CMAKE_CURRENT_SOURCE_DIR}/string_lib/build")
+    message(FATAL_ERROR "внешняя библиотека не найдена")
 endif()
 
-message(STATUS "Найдена внешняя библиотека: ${MyString}")
+message(STATUS "найдена внешняя библиотека: ${MyString}")
 
 add_library(myfile src/base_file.cpp)
 
@@ -62,11 +62,10 @@ target_include_directories(myfile PRIVATE $
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-# Указываем где искать заголовочные файлы внешней библиотеки
+# то где искать h файлы внешн библиотеки
 target_include_directories(lab2 PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}/string_lib/src
 )
 
-# Линкуем внешнюю библиотеку
 target_link_libraries(lab2 PRIVATE myfile ${MyString})
 

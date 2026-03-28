@@ -44,7 +44,7 @@ int main() {
      * Выведите элементы массива на консоль.
      */
 
-    if (0){
+    if (1){
         MyString ar[3] = {"Eight", "March", "Holiday"};
         for (int i = 0; i < 3; i++)
             ar[i].print();
@@ -178,12 +178,13 @@ int main() {
      * получилось ли добиться уменьшения размера хранимых данных. 
      */
 
-    if (0){
+    if (1){
         FILE *test_file = fopen("../t_t.txt", "w");
         RleFile rlefile(test_file);
         char *input = "       \\ \n         /\\_/\\  (\n        ( ^.^ ) _)\n          \\\"/  (\n        ( | | )\n       (__d b__)";
         int k = rlefile.write(input, strlen(input)+1);
-        std::cout << k << '\n';
+        std::cout << k << '\n'; 
+        //  \  чо это такое 
     } 
     
 
@@ -196,7 +197,7 @@ int main() {
      * инициализации и деинициализации этих классов.
      */
 
-   if (0){
+   if (1){
         FILE *test_file = fopen("../t_t.txt", "r");
         BaseFile base(test_file); // BaseFile constructor
         Base32File base32(test_file); // BaseFile constructor, Base32File constructor
@@ -211,7 +212,7 @@ int main() {
      * запись.
      */
 
-    if (0){
+    if (1){
         BaseFile bf("../t_bf.txt", "w+");
         Base32File b32f("../t_b32f.txt", "w+");
         RleFile rf("../t_rle.txt", "w+");
@@ -271,7 +272,7 @@ int main() {
      * что и код, который вы написали выше? Почему?
      */
 
-    if (0){
+    if (1){
         BaseFile bf("../t_wint_bf.txt", "w"); 
         Base32File b32f("../t_wint_b32f.txt", "w");
         RleFile rf("../t_wint_rf.txt", "w");
@@ -310,7 +311,7 @@ int main() {
      * Исправьте эту ситуацию.
      */
 
-    if (0){
+    if (1){
         BaseFile *files[] = { 
             new BaseFile("../t_t1.txt", "w"), 
             new RleFile("../t_t2.txt", "w"), 
@@ -420,7 +421,7 @@ int main() {
      * классов `Base32File` и `RleFile`.
      */
 
-    if (0){
+    if (1){
         Base32File2 b32f(new BaseFile("../t_new_b32f.txt", "w"));
         RleFile2 rf(new Base32File("../t_new_rf.txt", "w"));
         write_int(b32f, 123456);
@@ -464,9 +465,14 @@ int main() {
      * автоматического теста, настройте запуск для всех тестов в виде отдельной
      * цели (например, `make test`).
      */
-    {
-        
-    }
 
     return 0;
 }
+
+// todo: что содержится в .a файлах? Что такое мы скомпилировали?
+
+//  по курсовой: 
+// обязательно подвязать трекер задач в курсаче Utrack или GitHubProjects (тут меньше вроде возможностей), сделать свои автотесты в гитхабе 
+// проект Kanban open issues choose reposetory проще сделать форк из готового репозитория курсовой
+// обязательно добавлять feature вутки от dev например: issue - сделтаь класс бота и под него там отдельную веточку сдлетаь пул реквест и сказать что он закрывает данную issue 
+

@@ -5,14 +5,12 @@
 
 
 int main() {
-    std::cout << "Running RleFile test...\n";
-    
+    std::cout << "Running RleFile test\n";
+
     const size_t DATA_SIZE = 50000;
-    const size_t BUFFER_SIZE = 256;
-    
+    const size_t BUFFER_SIZE = 256;    
     char* original_data = generate_random_data(DATA_SIZE);
-    
-    // Записываем со сжатием
+
     RleFile writer("test_rle.txt", "w");
     size_t total_written = 0;
     while (total_written < DATA_SIZE) {
@@ -22,8 +20,7 @@ int main() {
         assert(written > 0);
         total_written += to_write;
     }
-    
-    //Читаем с распаковкой
+
     RleFile reader("test_rle.txt", "r");
     char* read_data = new char[DATA_SIZE];
     size_t total_read = 0;
@@ -37,8 +34,8 @@ int main() {
     
     assert(compare_buffers(original_data, read_data, DATA_SIZE));
     
-    // delete[] original_data;
+    delete[] original_data;
     delete[] read_data;
-    std::cout << "  RleFile test PASSED\n";
+    std::cout << "RleFile test PASSED\n";
     return 0;
 }
