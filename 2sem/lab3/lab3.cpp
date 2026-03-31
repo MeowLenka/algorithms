@@ -18,7 +18,14 @@
 #include <cassert>
 #include <iostream>
 
-int main() {
+#include "my_string.hpp"
+#include "matrix.hpp"
+
+
+MyString addTxtExtension(const MyString &path) { return path + ".txt"; }
+
+int main()
+{
 
     /**
      * Задание 1. Перегрузка операторов.
@@ -29,25 +36,25 @@ int main() {
      *
      * Перегрузите оператор присваивания для классов `MyString` и `Matrix`.
      * Ожидается, что оператор присваивания работает так же, как конструктор
-     * копирования. 
+     * копирования.
      *
      * Проверьте корректность работы оператора в следующих блоках кода.
      */
 
-    /* {
-            MyString s1("AAA"), s2;
-            s2 = s1;
-            s1 = "CCC";
-            s2 = MyString("tmp");
-            s1 = s1;
-    } */
+    if (0){
+        MyString s1("AAA"), s2;
+        s2 = s1;
+        s1 = "CCC";
+        s2 = MyString("tmp");
+        s1 = s1;
+    }
 
-    /* {
+    if (0){
         Matrix m1(10), m2(10, 2);
         m1 = m2;
         m2 = Matrix(3, 4, 1.0);
         m1 = m1;
-    } */
+    }
 
     /**
      * Задание 1.2. Перегрузка арифметических операторов. Перегрузка методами и
@@ -67,13 +74,13 @@ int main() {
      * Ваши операторы должны работать в следующем блоке кода.
      */
 
-    /* {
+    if (0){
         Matrix m1(4), m2(4, 4, 1);
         m2 += m1;
         m2 -= m1 += m1;
         m1 *= 2;
         m2 /= 3;
-    } */
+    }
 
     /**
      * Задание 1.2.2. Бинарные операторы.
@@ -87,10 +94,17 @@ int main() {
      * новое значение.
      */
 
-    /* {
+    if (0){
         Matrix m1(4), m2(4, 4, 1);
         Matrix m3 = (m1 + m2) * m1 * 4 / 2 - m2;
-    } */
+
+        // for (int i = 0; i < m3.get_height(); i++)
+        // {
+        //     for (int j = 0; j < m3.get_width(); j++)
+        //         std::cout << m3.get(i, j) << ' ';
+        //     std::cout << '\n';
+        // }
+    }
 
     /**
      * Задание 1.2.3. Перегрузка глобальными функциями.
@@ -102,24 +116,26 @@ int main() {
      * функции.
      *
      * Какую из этих функций нельзя перегрузить методом класса? Почему?
+     * - нельзя функцию double * Matrix
+     * - при перегрузке методом класса первый (левый) операнд всегда является объектом того класса, для которого перегркжается оператор
      */
 
     /**
      * Задание 1.2.4. Операторы для строки.
      *
      * Перегрузите операторы `+` и `+=` для класса `MyString`, где в качестве
-     * правого операнда будет `MyString` или `const char *`. Сложение в этом 
+     * правого операнда будет `MyString` или `const char *`. Сложение в этом
      * случае должно выполнять конкатенацию строк.
      *
      * Ваши операторы должны работать в следующем блоке кода.
      */
 
-    /* {
+    if (0){
         MyString s1("abc"), s2("def"), s3;
         s1 += s2 += "111";
         s2 += "222" + s1 + "333";
         s3 += s3;
-    } */
+    }
 
     /**
      * Задание 1.3. Move-семантика.
@@ -134,7 +150,7 @@ int main() {
      * move-оператора/конструктора и после.
      */
 
-    /* {
+    {
         MyString s1("abc");
         MyString s2 = s1 + "ccc";
         s1 = "abc" + s2;
@@ -143,7 +159,24 @@ int main() {
         Matrix m1(4), m2 = m1 + m1;
         m1 = m2 * m1;
         m2 = std::move(m1);
-    } */
+    }
+
+    /** todo
+        1: name = 'malloc', locations = 4, resolved = 4, hit count = 0
+        2: name = 'free', locations = 3, resolved = 3, hit count = 2
+        4: name = 'operator delete', locations = 9, resolved = 9, hit count = 0
+        5: name = 'operator new', locations = 6, resolved = 6, hit count = 0
+        6: name = 'operator new[]', locations = 6, resolved = 6, hit count = 0
+        7: name = 'operator delete[]', locations = 9, resolved = 9, hit count = 0
+
+        после реализации move
+        1: name = 'malloc', locations = 4, resolved = 4, hit count = 0
+        2: name = 'free', locations = 3, resolved = 3, hit count = 4
+        3: name = 'operator delete', locations = 9, resolved = 9, hit count = 0 
+        4: name = 'operator new', locations = 6, resolved = 6, hit count = 0
+        5: name = 'operator new[]', locations = 6, resolved = 6, hit count = 0
+        6: name = 'operator delete[]', locations = 9, resolved = 9, hit count = 0
+     */
 
     /**
      * Задание 1.4. Операторы сравнения.
@@ -154,7 +187,7 @@ int main() {
      * Операторы должны сравнивать строки лексикoграфически.
      */
 
-    /* {
+    {
         MyString s1("abc"), s2("ab"), s3 = s1;
         assert(s2 < s1);
         assert(s1 == s3);
@@ -163,7 +196,7 @@ int main() {
         assert("ab" == s2);
         assert("aba" < s1);
         assert("aba" <= s3);
-    } */
+    }
 
     /**
      * Задание 1.5. Оператор индексирования.
@@ -173,10 +206,10 @@ int main() {
      * массива, киньте какое-нибудь исключение.
      */
 
-    /* {
+    {
         MyString s1("abc");
         s1[0] = s1[1] = 'd';
-    } */
+    }
 
     /**
      * Задание 1.6. Операторы ввода и вывода с потоками стандартной библиотеки.
@@ -190,13 +223,13 @@ int main() {
      * Проверьте работу этих операторов на следующем примере.
      */
 
-    /* {
+    {
         MyString s("123");
-        std::cout << "This is my string: ' << s << "'\n";
+        std::cout << "This is my string: '" << s << "'\n";
         std::cout << "Enter your string: ";
         std::cin >> s;
         std::cout << "Your string: '" << s << "'\n";
-    } */
+    }
 
     /**
      * Задание 2. Константные методы.
@@ -340,7 +373,7 @@ int main() {
      * Задание 4.3. Очередь уведомлений.
      *
      * Реализуйте класс `NotificationQueue`, в котором были бы следующие методы:
-     * 
+     *
      * - `push(notification)` - добавление уведомления в очередь;
      * - `size()` - количество уведомлений в очереди;
      * - `pop()` - возвращает следующее уведомление в порядке First In First
@@ -368,7 +401,7 @@ int main() {
      *    `уведомление от приложения`.
      * 4. Среди уведомлений одного типа за один момент времени актуальнее то,
      *    что было раньше добавлено в очередь.
-     * 
+     *
      * Проверьте работу этого класса при помощи автоматических тестов.
      */
 
@@ -384,7 +417,6 @@ int main() {
      */
 
     {
-
     }
 
     /**
@@ -453,5 +485,5 @@ int main() {
 
     } */
 
-	return 0;
+    return 0;
 }
