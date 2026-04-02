@@ -20,6 +20,7 @@
 
 #include "my_string.hpp"
 #include "matrix.hpp"
+#include "worker_db.hpp"
 
 
 MyString addTxtExtension(const MyString &path) { return path + ".txt"; }
@@ -226,9 +227,10 @@ int main()
     {
         MyString s("123");
         std::cout << "This is my string: '" << s << "'\n";
-        std::cout << "Enter your string: ";
-        std::cin >> s;
-        std::cout << "Your string: '" << s << "'\n";
+        // внизу не отладка вернуть!
+        // std::cout << "Enter your string: ";
+        // std::cin >> s;
+        // std::cout << "Your string: '" << s << "'\n";
     }
 
     /**
@@ -262,13 +264,13 @@ int main()
      * Используйте для хранения строковых данных ваш класс MyString.
      */
 
-    /* {
+    {
         WorkerDb db;
-        db["Ivanov"] = WorkerData("Ivan", 34, ...);
-        db["Petrov"] = WorkerData("Petr", 43, ...);
-        std::cout << "Ivanov's name = " << db["Ivanov"].name << "\n";
-        std::cout << "Petrov's age = " << db["Petrov"].age << "\n";
-    } */
+        db["Ivanov"] = WorkerData("Ivan", 34, 10.10);
+        db["Petrov"] = WorkerData("Petr", 43, 13.13);
+        std::cout << "Ivanov's name = " << db["Ivanov"]._name << "\n";
+        std::cout << "Petrov's age = " << db["Petrov"]._age << "\n";
+    }
 
     /**
      * Задание 3.2. Итератор.
@@ -312,15 +314,15 @@ int main()
      * Проверьте ниже работу итератора.
      */
 
-    /* {
+    {
         WorkerDb db;
-        db["Ivanov"] = WorkerData("Ivan", 34, ...);
-        db["Petrov"] = WorkerData("Petr", 43, ...);
+        db["Ivanov"] = WorkerData("Ivan", 34, 10.10);
+        db["Petrov"] = WorkerData("Petr", 43, 13.13);
         for (auto it = db.begin(); it != db.end(); ++it)
         {
-            std::cout << it.key() << " -> " << it->name << '\n';
+            std::cout << it.key() << " -> " << it->_name << '\n';
         }
-    } */
+    }
 
     /**
      * Задание 3.3. Работа "прикладного программиста".
@@ -331,6 +333,14 @@ int main()
      * возраст сотрудников. Эти функции не должны быть дружественными классу
      * `WorkerDb`.
      */
+
+    {
+        WorkerDb db;
+        db["Ivanov"] = WorkerData("Ivan", 34, 10.10);
+        db["Petrov"] = WorkerData("Petr", 43, 13.13);
+        print_db(db);
+        std::cout << "Average age: " << get_avg_age(db) << '\n';
+    }
 
     /**
      * Задание 4. Объединения, полиморфизм в "старом" стиле, очередь с
