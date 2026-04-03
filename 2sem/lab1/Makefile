@@ -18,7 +18,6 @@ $(TARGET_DEBUG): $(OBJ)
 $(TARGET_LEAKS): $(OBJ)
 	$(CC) -g -fsanitize=address $(OBJ) -o $(TARGET_LEAKS) 
 
-
 $(PREF_BUILD)rect.o: $(PREF_SRC)rect.cpp $(PREF_SRC)rect.hpp
 	$(CC) -g -c -o $(PREF_BUILD)rect.o $(PREF_SRC)rect.cpp
 

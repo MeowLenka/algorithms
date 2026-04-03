@@ -3,8 +3,28 @@
 
 TextWrapper::TextWrapper(const MyString &string, int line_width) : string(string), stop(line_width)
 {
-    count_prev = 0;
-    count_symbol = 0;
+private:
+    MyString string;
+    int count_prev = 0, count_symbol = 0;
+    int stop;
+    char *line;
+    char *word;
+    char symbol;
+
+    void end_of_word();
+    void print_roof();
+    void print_line(int &count);
+
+public:
+    TextWrapper(const MyString string, int stop);
+    void print_wrapped();
+    ~TextWrapper();
+};
+
+TextWrapper::TextWrapper(const MyString string, int line_width)
+{
+    stop = line_width;
+    this->string = string;
 }
 
 void TextWrapper::print_roof()
@@ -43,6 +63,7 @@ void TextWrapper::print_wrapped()
 {
     line = new char[stop + 1];
     word = new char[stop];
+
     print_roof();
     for (int i = 0; i < string.get_str_size() + 1; i++)
     {

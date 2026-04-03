@@ -47,7 +47,7 @@
 #include "barrel.hpp"
 #include "matrix.hpp"
 #include "my_string.hpp"
-#include "text_wrapper.hpp"
+// #include "text_wrapper.hpp"
 
 int main()
 {
@@ -518,7 +518,7 @@ int main()
         TextWrapper wrapper(input, line_width);
         wrapper.print_wrapped();
     }
-
+    
     /**
      * Задание 3. Сборка проекта, Make-файлы.
      */
@@ -671,8 +671,6 @@ int main()
      * при вводе, аналогично - "верх" и "низ". Обработайте эту ситуацию и
      * добавьте тест для проверки этого случая.
      */
-
-    // линуовщик чо делает, процессы там : трансляция, компиляция и линковка
 
     /**
      * Задание 4.3. Запуск всех тестов.

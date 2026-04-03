@@ -1,6 +1,7 @@
 #include <iostream>
 #include "rect.hpp"
 
+
 Rect::Rect() : Rect(0, 0, 0, 0)
 {
     // std::cout << "def kons " << this << '\n';
@@ -90,20 +91,86 @@ void Rect::inflate(int dw, int dh)
 
 void Rect::inflate(int d_left, int d_right, int d_top, int d_bottom)
 {
-    set_all(get_left() - d_left, get_right() + d_right, get_top() + d_top, get_bottom() - d_bottom);
+    right += d_right;
+    left -= d_left;
+    top += d_top;
+    bottom -= d_bottom;
 }
 
-void Rect::move(int dx, int dy)
+void Rect::move(int dx = 0, int dy = 0)
 {
-    set_all(get_left() + dx, get_right() + dx, get_top() + dy, get_bottom() + dy);
+    right += dx;
+    left += dx;
+    top += dy;
+    bottom += dy;
 }
 
-Rect bounding_rect(const Rect r1, const Rect r2)
+int Rect::get_width()
 {
-    int n_left = std::min(r1.get_left(), r2.get_left());
-    int n_right = std::max(r1.get_right(), r2.get_right());
-    int n_top = std::max(r1.get_top(), r2.get_top());
-    int n_bottom = std::min(r1.get_bottom(), r2.get_bottom());
+    return right - left;
+}
+
+int Rect::get_height()
+{
+    return top - bottom;
+}
+
+int Rect::get_square()
+{
+    return get_width() * get_height();
+}
+
+void Rect::set_width(int width)
+{
+    right = left + width;
+}
+
+void Rect::set_height(int height)
+{
+    top = bottom + height;
+}
+
+void Rect::side_correcting()
+{
+    int temp;
+    if (left > right)
+    {
+        temp = left;
+        left = right;
+        right = left;      
+    } 
+    if (bottom > top)
+    {
+        temp = bottom;
+        bottom = top;
+        top = temp;
+
+    }
+}
+
+Rect bounding_rect(Rect r1, Rect r2)
+{
+    int n_left, n_right, n_top, n_bottom;
+
+    if (r1.get_left() < r2.get_left())
+        n_left = r1.get_left();
+    else
+        n_left = r2.get_left();
+
+    if (r1.get_right() > r2.get_right())
+        n_right = r1.get_right();
+    else
+        n_right = r2.get_right();
+
+    if (r1.get_top() > r2.get_top())
+        n_top = r1.get_top();
+    else
+        n_top = r2.get_top();
+
+    if (r1.get_bottom() < r2.get_bottom())
+        n_bottom = r1.get_bottom();
+    else
+        n_bottom = r2.get_bottom();
 
     return Rect(n_left, n_right, n_top, n_bottom);
 }

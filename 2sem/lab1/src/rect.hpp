@@ -14,7 +14,7 @@ public:
     Rect(const Rect &other);
 
     ~Rect();
-
+ 
     int get_left() const;
     int get_right() const;
     int get_top() const;
