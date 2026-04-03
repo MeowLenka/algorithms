@@ -21,7 +21,8 @@
 #include "my_string.hpp"
 #include "matrix.hpp"
 #include "worker_db.hpp"
-
+#include "notification.hpp"
+#include "notification_queue.hpp"
 
 MyString addTxtExtension(const MyString &path) { return path + ".txt"; }
 
@@ -42,7 +43,8 @@ int main()
      * Проверьте корректность работы оператора в следующих блоках кода.
      */
 
-    if (0){
+    if (0)
+    {
         MyString s1("AAA"), s2;
         s2 = s1;
         s1 = "CCC";
@@ -50,7 +52,8 @@ int main()
         s1 = s1;
     }
 
-    if (0){
+    if (0)
+    {
         Matrix m1(10), m2(10, 2);
         m1 = m2;
         m2 = Matrix(3, 4, 1.0);
@@ -75,7 +78,8 @@ int main()
      * Ваши операторы должны работать в следующем блоке кода.
      */
 
-    if (0){
+    if (0)
+    {
         Matrix m1(4), m2(4, 4, 1);
         m2 += m1;
         m2 -= m1 += m1;
@@ -95,7 +99,8 @@ int main()
      * новое значение.
      */
 
-    if (0){
+    if (0)
+    {
         Matrix m1(4), m2(4, 4, 1);
         Matrix m3 = (m1 + m2) * m1 * 4 / 2 - m2;
 
@@ -131,7 +136,8 @@ int main()
      * Ваши операторы должны работать в следующем блоке кода.
      */
 
-    if (0){
+    if (0)
+    {
         MyString s1("abc"), s2("def"), s3;
         s1 += s2 += "111";
         s2 += "222" + s1 + "333";
@@ -173,7 +179,7 @@ int main()
         после реализации move
         1: name = 'malloc', locations = 4, resolved = 4, hit count = 0
         2: name = 'free', locations = 3, resolved = 3, hit count = 4
-        3: name = 'operator delete', locations = 9, resolved = 9, hit count = 0 
+        3: name = 'operator delete', locations = 9, resolved = 9, hit count = 0
         4: name = 'operator new', locations = 6, resolved = 6, hit count = 0
         5: name = 'operator new[]', locations = 6, resolved = 6, hit count = 0
         6: name = 'operator delete[]', locations = 9, resolved = 9, hit count = 0
@@ -372,11 +378,29 @@ int main()
      * функций.
      */
 
+    {
+        std::cout << "--------------\n";
+        Notification notifications[6];
+        notifications[0] = Notification::createSystemNotification("update roblox", REGULAR);
+        notifications[1] = Notification::createInstantMessage("Lenka", "hello my friend");
+        notifications[2] = Notification::createAppNotification("MAX", "new message", "DOWNLOAD ME");
+        notifications[3] = Notification::createSystemNotification("update system", EMERGENCY);
+        notifications[4] = Notification::createInstantMessage("Bob", "bebebeb bububu");
+        notifications[5] = Notification::createAppNotification("Telegram", "message title", "iam isnot working");
+        for (int i = 0; i < 6; i++)
+            notifications[i].print();
+        std::cout << "--------------\n";
+        std::cout << "count system notifications: " << countNotificationsByType(notifications, 6, SYSTEM) << '\n';
+    }
     /**
      * Задание 4.2. Отличие от наследования.
      *
      * Как эту же задачу можно было бы решить с помощью наследования классов? В чем
      * преимущества и недостатки каждого из методов?
+     *
+     * - был бы бащовый класс Notification, а также классы наследники под каждый тип уведомления
+     * -Структура: быстрее, меньше памяти занимает
+     * -Классы и наследование: полиморйизм, удобно масштабировать, мне больше нравится
      */
 
     /**
@@ -394,7 +418,27 @@ int main()
      *
      * Проверьте работу этого класса.
      */
+    {
+        NotificationQueue queue;
+        queue.push(Notification::createSystemNotification("update roblox", EMERGENCY));
+        queue.push(Notification::createInstantMessage("Bob", "bebebeb bububu"));
+        queue.push(Notification::createAppNotification("Telegram", "message title", "iam isnot working"));
 
+        std::cout << "-------------\n";
+        std::cout << "queue size: " << queue.size() << '\n';
+
+        for (QueueIterator it = queue.begin(); it != queue.end(); ++it)
+            it->print();
+
+        std::cout << "-------------\n";
+        while (queue.size() != 0)
+        {
+            Notification notif = queue.pop();
+            std::cout << "popped: ";
+            notif.print();
+        }
+        std::cout << "queue size: " << queue.size() << '\n';
+    }
     /**
      * Задание 4.4. Определение приоритета.
      *
@@ -415,6 +459,8 @@ int main()
      * Проверьте работу этого класса при помощи автоматических тестов.
      */
 
+    //todo: !!!!! tests !!!!!
+    
     /**
      * Задание 5. Неявно определенные операторы. Удаление операторов.
      *
