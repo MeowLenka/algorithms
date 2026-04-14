@@ -23,6 +23,8 @@
 #include "worker_db.hpp"
 #include "notification.hpp"
 #include "notification_queue.hpp"
+#include "base_file.hpp"
+#include "bool_array.hpp"
 
 MyString addTxtExtension(const MyString &path) { return path + ".txt"; }
 
@@ -459,13 +461,17 @@ int main()
      * Проверьте работу этого класса при помощи автоматических тестов.
      */
 
-    //todo: !!!!! tests !!!!!
-    
+    // todo: !!!!! tests !!!!!
+
     /**
      * Задание 5. Неявно определенные операторы. Удаление операторов.
      *
      * Проверьте, определен ли оператор присваивания для класса `BaseFile` из
      * работы 2? Что он делает? Имеется ли смысл в таком операторе?
+     * определен неявный оператор присваивания :
+     * _file = other._file;
+     * return *this;
+     * он просто копирует указатель, смысла в нем нет
      *
      * Явно удалите оператор присваивания и конструктор копирования ключевым
      * словом `delete`, но определите их move-аналоги в этом классе.
@@ -473,6 +479,13 @@ int main()
      */
 
     {
+        BaseFile f1("test.txt", "w");
+        BaseFile f2 = std::move(f1);
+        std::cout << f1.is_open() << '\n'; // false
+        std::cout << f2.is_open() << '\n'; // true
+
+        const char *data = "hello";
+        f2.write(data, strlen(data));
     }
 
     /**
@@ -490,7 +503,7 @@ int main()
      * Класс должен поддерживать следующее поведение:
      */
 
-    /* {
+    {
         /// Создается массив из 10 значений false
         BoolArray ar1(10);
 
@@ -508,38 +521,56 @@ int main()
 
         /// Выведем массив на печать
         std::cout << "[";
-        for (int i = 0; i < ar1.size(); ++i) {
-            if (i > 0) std::cout << ", ";
+        for (int i = 0; i < ar1.size(); ++i)
+        {
+            if (i > 0)
+                std::cout << ", ";
             std::cout << ar1[i];
         }
         std::cout << "]\n";
 
         /// Выведем массив на печать по-другому
         std::cout << "[";
-        for (int i = 0, printed = 0; i < ar1.size(); ++i) {
-            if (ar1[i]) {
-                if (printed++ > 0) std::cout << ", ";
+        for (int i = 0, printed = 0; i < ar1.size(); ++i)
+        {
+            if (ar1[i])
+            {
+                if (printed++ > 0)
+                    std::cout << ", ";
                 std::cout << i;
             }
         }
         std::cout << "]\n";
 
-
-       /// Метод `resize` изменяет размер массива. Если новый размер больше, то
-       /// новые значения дополняются заданным значением (по умолчанию false). Если
-       /// новый размер меньше, то конец массива отбрасывается.
+        /// Метод `resize` изменяет размер массива. Если новый размер больше, то
+        /// новые значения дополняются заданным значением (по умолчанию false). Если
+        /// новый размер меньше, то конец массива отбрасывается.
 
         ar1.resize(12, true);
-        /// выведите массив на печать
 
+        /// выведите массив на печать
+        std::cout << "[";
+        for (int i = 0; i < ar1.size(); ++i)
+        {
+            if (i > 0)
+                std::cout << ", ";
+            std::cout << ar1[i];
+        }
+        std::cout << "]\n";
         //...
 
         ar1.resize(4, true);
         /// выведите массив на печать снова
-
+        std::cout << "[";
+        for (int i = 0; i < ar1.size(); ++i)
+        {
+            if (i > 0)
+                std::cout << ", ";
+            std::cout << ar1[i];
+        }
+        std::cout << "]\n";
         //...
-
-    } */
+    }
 
     return 0;
 }
