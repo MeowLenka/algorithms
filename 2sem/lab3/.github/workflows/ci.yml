@@ -1,0 +1,35 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        compiler: [clang, gcc]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup GCC
+      if: matrix.compiler == 'gcc'
+      run: |
+        brew install gcc@13
+        echo "CC=gcc-13" >> $GITHUB_ENV
+        echo "CXX=g++-13" >> $GITHUB_ENV
+    
+    - name: Setup Clang
+      if: matrix.compiler == 'clang'
+      run: |
+        echo "CC=clang" >> $GITHUB_ENV
+        echo "CXX=clang++" >> $GITHUB_ENV
+    
+    - name: Configure
+      run: cmake -B build -DBUILD_TESTS=ON
+    
+    - name: Build
+      run: cmake --build build
+    
+    - name: Test
+      run: |
+        cd build
+        ctest --output-on-failure
