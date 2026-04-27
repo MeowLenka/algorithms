@@ -27,7 +27,7 @@ int test_worker_db() {
     }
     assert(count == 3);
     
-    assert(get_avg_age(db) == 20);
+    assert(get_avg_age(db2) == 20);
     
     return 0;
 }

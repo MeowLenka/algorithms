@@ -59,8 +59,8 @@ public:
     NotificationQueue();
     ~NotificationQueue();
 
-    void push(const Notification &notification); // - добавление уведомления в очередь;
-    int size() const; // - количество уведомлений в очереди;
+    void push(const Notification &notification);
+    int size() const;
     Notification pop(); // - возвращает следующее уведомление в порядке First In First Out  и удаляет его из очереди;
     QueueIterator begin();
     QueueIterator end();

@@ -1,0 +1,15 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{Введение}{4}{section*.3}%
+\contentsline {section}{\numberline {1}Задачи}{5}{section.0.1}%
+\contentsline {section}{\numberline {2}Segmentation fault}{6}{section.0.2}%
+\contentsline {subsection}{\numberline {2.1}Измененние строкового литерала}{6}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {2.2}Обращение к освобожденной памяти}{6}{subsection.0.2.2}%
+\contentsline {subsection}{\numberline {2.3}Разыменовывание нулевого указателя}{7}{subsection.0.2.3}%
+\contentsline {subsection}{\numberline {2.4}Выход за границы массива}{7}{subsection.0.2.4}%
+\contentsline {section}{\numberline {3}Утечка памяти}{9}{section.0.3}%
+\contentsline {subsection}{\numberline {3.1}Прмеры кода}{9}{subsection.0.3.1}%
+\contentsline {subsection}{\numberline {3.2}Обнаружениее утечек памяти}{10}{subsection.0.3.2}%
+\contentsline {section}{\numberline {4}Ошибка линковки}{11}{section.0.4}%
+\contentsline {section}{\numberline {5}Undefined behaviour}{12}{section.0.5}%
+\contentsline {section}{Заключение}{13}{section*.4}%
+\contentsline {section}{Список используемых источников}{14}{section*.4}%

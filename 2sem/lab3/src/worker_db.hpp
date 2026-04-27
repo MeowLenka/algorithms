@@ -35,6 +35,7 @@ private:
 public:
     WorkerDb();
     ~WorkerDb();
+    // todo: почитать про бинарные деревья поиска
 
     class Iterator
     {

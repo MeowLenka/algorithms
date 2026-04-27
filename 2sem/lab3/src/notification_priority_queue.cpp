@@ -36,16 +36,19 @@ bool NotificationPriorityQueue::hasHigherPriority(const Notification &a, const N
 
     if (priorityA != priorityB)
     {
-        return priorityA < priorityB; // меньше число - выше приоритет
+        return priorityA < priorityB; 
     }
     return a._time < b._time;
 }
 
 void NotificationPriorityQueue::push(const Notification &notification)
 {
+    // todo: кратко рассказать, что происходит (связный список)
+    // todo: почитать про то, что такое куча (heap)
+    // todo: два вида хеш таблиц: бакеты - цепочки (связные списки напрмер) и открытая адресация (заполнение по какому то правилу, напримр просто суем в некст свободный)
     PriorityQueueNode *newNode = new PriorityQueueNode(notification);
 
-    // если пустая очередь или новый узел имеет более высокий приоритет, чем head
+    // если очередь пуста или новый узел имеет более высокий приоритет, чем head
     if (head == nullptr || hasHigherPriority(notification, head->data))
     {
         newNode->next = head;

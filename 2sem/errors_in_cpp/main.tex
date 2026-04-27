@@ -1,0 +1,251 @@
+\documentclass[14pt]{extreport}
+\usepackage{indentfirst}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{parskip}
+\usepackage[top = 20mm, left = 20mm, right = 20mm, bottom = 20mm]{geometry}
+\setlength\parindent{12.5mm} 
+\renewcommand{\baselinestretch}{1.5} 
+\def\hrf#1{\hbox to#1{\hrulefill}} 
+\usepackage{ragged2e} 
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{decorations.pathmorphing,arrows.meta}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{tipa}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{moreverb}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\lstset{
+   breaklines=true,
+   basicstyle=\ttfamily,
+   extendedchars=\true,
+   keepspaces=true,
+   extendedchars=\true}
+\usepackage[colorlinks=true, citecolor=blue, urlcolor=blue, linkcolor=blue]{hyperref}
+\renewcommand\thesection{\arabic{section}}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+    \centering{
+    \hspace{0.2cm}МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ\\
+    Федеральное государственное автономное образовательное учреждение высшего образования\\
+    {\bf «Санкт-Петербургский политехнический университет Петра Великого»}\\[10pt]
+    Институт компьютерных наук и кибербезопасности\\
+    Высшая школа технологий искусственного интелекта\\
+    02.03.01 Математика и компьютерные науки\\
+    \vspace{1.5cm}
+    {\large
+    \bf Отчёт\\
+    \bf Современные технологии разработки программного обеспечения}\\
+    {\large\bf Отладка и анализ ошибок в C++}\\
+    \vspace{\fill}
+    }
+    \vspace{1.5cm}
+    \flushleft{
+        {\bf Выполнил:}\\
+        студент группы 5130201/50301 \hspace{2.25cm} 
+        \line(1,0){120} \quad Ташлыкова Е.В.\\
+        {\bf Принял:}\\
+        Ассистент \hspace{66mm}
+        \line(1,0){120} \quad Кирпиченко С.Р.\\
+        \vspace{1cm}
+        \hspace{11.6cm}<<\hrf{2em}>> \hrf{6em} 2026г.
+        }
+        
+    \vspace{1.5cm}
+    \centering{
+    Санкт-Петербург, 2026
+    }
+
+\newpage
+\justifying
+{\centering\section*{Аннотация}}
+Текст
+\newpage
+\renewcommand\contentsname{\vspace{-3.2cm}\centering\LargeСодержание}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+{\centering\section*{Введение}}\addcontentsline{toc}{section}{Введение}
+Текст
+
+\newpage
+{\centering\section{Задачи}}
+Текст
+
+\newpage
+{\centering\section{Segmentation fault}}
+Ошибка, которая возникает во время обращения программы к участку памяти, доступ к которой ей запрещен или которая не существует. \\
+Частые причины возникновения ошибки:
+\begin{itemize}
+    \item Получение доступа к памяти, которой программа не владеет.
+    \item Разыменовывание nullptr указатель.
+    \item Изменение памяти доступпной только для чтения.
+\end{itemize}
+
+
+{\centering\subsection{Измененние строкового литерала}}
+\begin{verbatim}
+int main()
+{
+    char* str;
+    str = "hello";
+    *(str + 1) = 'n'; // Error
+    return 0;
+}
+\end{verbatim}
+Проблема возниает потому что мы пытаемся записать данные в память, доступную только для чтения. 
+Обнаружить ошибку можно с помощью \dots \\
+
+
+{\centering\subsection{Обращение к освобожденной памяти}}
+\begin{verbatim}
+int main()
+{
+    int n = 10;
+    char *str = new char[n];
+    str = "hello";
+    delete str;
+    *str = "world"; // Error
+    return 0;
+}
+\end{verbatim}
+Проблема возникает потому что, указатель str разыменовывается после освобождения блока памяти, что недопустимо с точки зрения компилятора. \\
+
+{\centering\subsection{Разыменовывание нулевого указателя}}
+\begin{verbatim}
+#include <iostream>
+int main()
+{
+    int* ptr;
+    std::cout << *ptr; // Error
+    return 0;
+}
+\end{verbatim}
+Происходит обращение к неизвестному участку памяти, что приводит к ошибке сегментации или к другому неопределенному поведению\\
+
+
+{\centering\subsection{Выход за границы массива}}
+\begin{verbatim}
+int main()
+{
+    int arr[2];
+    arr[3] = 10; // Error
+    return 0;
+}
+\end{verbatim}
+Обращение к индексу массива за его пределеми может привести к возникновению ошибки сегментации или другому неопределенному поведению.
+
+\newpage
+{\centering\section{Утечка памяти}}
+Это ситуация, когда память, выделенная для выполнения определенной задачи, остается выделенной даже после того, как необходимость в ней отпадает. Это приводит к нерациональному использованию памяти, поскольку она недоступна для других задач до завершения работы программы.
+Так как в С++ нет автоматических сборщиков мусора любое выделение и освобождение динамической памяти становится ответственностью программиста.
+
+{\centering\subsection{Прмеры кода}}
+\begin{verbatim}
+void f() 
+{
+    int* ptr = new int[10]; // Выделяем память
+    // Не освобождаем ее 
+    return;
+}
+
+int main() 
+{
+    f();
+    // ...
+}
+\end{verbatim}
+Выделенная память перестает быть доступной, но при этом остается занятой. Со временем, если программа продолжает расходовать память, то система начнет работать медленнее, появятся доругие ошибки, а память, так как это ограниченный ресурс, закончиться.
+
+{\centering\subsection{Обнаружениее утечек памяти}}
+Для обнаружения утечек памяти существуют такие иснтрументы, как Valgrind и AddressSanitizer.
+
+Valgrind — это фреймворк для отладки и профилирования памяти. Он может обнаруживать утечки памяти, некорректные обращения к памяти и другие ошибки. Valgrind предоставляет подробные отчеты об утечках памяти, включая информацию об их происхождении и возможных причинах.
+\begin{verbatim}
+# установка
+brew install valgrind
+
+# компиляция с отладочной информацией и запуск 
+g++ -g -O0 main.cpp -o programm
+valgrind --leak-check=full ./programm
+\end{verbatim}
+
+AddressSanitizer, также известный как (Asan), — это быстрый детектор ошибок в работе с памятью, который встроен в компиляторы GCC и Clang.
+\begin{verbatim}
+g++ -fsanitize=address -g -O0 main.cpp -o programm && ./programm
+# или
+clang++ -fsanitize=address -g -O0 main.cpp -o program ./programm
+\end{verbatim}
+
+
+\newpage
+{\centering\section{Ошибка линковки}}
+Связывание - это процесс объединения отдельных объектных файлов и библиотек в одну исполняемую программу. Ошибки связывания возникают, когда компоновщик не может разрешить ссылки между различными объектными файлами или библиотеками. Эти ошибки препятствуют созданию конечного исполняемого файла.
+
+Частые причины возниконовения ошибок линковки - это отсутствие реализации функции, некорректные пути к библиотекам, несовпадение сигнатур функций и циклические зависимости
+\begin{verbatim}
+// header.hpp
+int calculate(int x);
+
+// main.cpp
+#include "header.hpp"
+int main() 
+{
+    int result = calculate(10);  // Error
+    return 0;
+}
+\end{verbatim}
+Возникает ошибка - неопределенная ссылка на calculate. \\
+Для обнаружения ошибок можно использовать флаги компилятора и компоновщика:
+\begin{verbatim}
+gcc -Wall -Wextra -Werror main.c -o program
+\end{verbatim}
+
+\newpage
+{\centering\section{Undefined behaviour}}
+Текст
+
+\begin{verbatim}
+// 1. Использовать объект после move
+std::string x = "hello";
+std::string y = std::move(x);
+std::cout << x;  // ОШИБКА! Неопределённое поведение
+\end{verbatim}
+
+\newpage
+\section*{Заключение}\addcontentsline{toc}{section}{Заключение}
+Текст
+
+\newpage
+\renewcommand{\bibname}{\vspace{-3.2cm}\centering\LargeСписок используемых источников}\addcontentsline{toc}{section}{Список используемых источников}
+\begin{thebibliography}{6}
+\bibitem{ruwiki}
+"TeX — история создания, разработчики, первый выпуск — РУВИКИ" [Электронный ресурс]:  \href{https://ru.ruwiki.ru/wiki/-TeX}{https://ru.ruwiki.ru/wiki/-TeX} (дата обращения: 25.11.2024).
+\bibitem{suhanova}
+Суханова Н.Т. Подготовка текстовых документов с помощью издательской
+системы \LaTeX: учеб. пособие / Н.Т. Суханова; Нижегор. гос. архитектур.- 
+строит. ун-т. - Н.Новгород: ННГАСУ, 2023. - 124 с. ISBN 978-5-528-00517-1
+\bibitem{lemport}
+"Лесли Лэмпорт — человек, который придумал LaTeX" [Электронный ресурс]: \href{https://habr.com/ru/companies/serverspace/articles/774114/}{https://habr.com/ru/companies/serverspace/articles/774114/} (дата обращения: 25.11.2024).
+\bibitem{voronzov}
+\LaTeXe\ в примерах - Воронцов К.В. 2005
+\bibitem{tikzpgf}
+"Пакеты TikZ и PGF" [Электронный ресурс]:  \href{https://tikz.dev/tikz}{https://tikz.dev/tikz} (дата обращения: 28.11.2024).
+\bibitem{tikzdec}
+"Decorated Paths - PGF/TikZ Manual" [Электронный ресурс]:  \href{https://tikz.dev/tikz-decorations}{https://tikz.dev/tikz-decorations} (дата обращения: 29.11.2024).
+\end{thebibliography}
+
+\end{document}

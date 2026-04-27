@@ -1,0 +1,30 @@
+cmake_minimum_required(VERSION 4.0)
+project(Lab4 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_executable(lab4 src/main.cpp)
+
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_options(lab4 PRIVATE -g -O0)
+    target_link_options(lab4 PRIVATE -g -O0)
+
+endif()
+
+option(ENABLE_LEAKS "Enable AddressSanitizer" OFF)
+if(ENABLE_LEAKS)
+    target_compile_options(lab4 PRIVATE -fsanitize=address)
+    target_link_options(lab4 PRIVATE -fsanitize=address)
+endif()
+
+add_library(mylist src/list.cpp)
+add_library(mypointandcircle src/other.cpp)
+
+target_include_directories(mylist PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(mypointandcircle PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_link_libraries(lab4 PRIVATE mylist mypointandcircle)
+

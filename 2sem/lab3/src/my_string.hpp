@@ -1,6 +1,7 @@
 #ifndef MY_STRING_HPP
 #define MY_STRING_HPP
 
+#include "iostream"
 class MyString
 {
 private:

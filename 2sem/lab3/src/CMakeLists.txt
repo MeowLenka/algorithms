@@ -21,12 +21,7 @@ set(HEADERS
     notification_priority_queue.hpp
 )
 
-# статическая библиотеки для тестирования
 add_library(lab3_lib STATIC ${SOURCES} ${HEADERS})
-
-# Установка свойств для библиотеки
 target_include_directories(lab3_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-
-# Если нужно собрать исполняемый файл (опционально)
 add_executable(lab3 lab3.cpp)
 target_link_libraries(lab3 lab3_lib)

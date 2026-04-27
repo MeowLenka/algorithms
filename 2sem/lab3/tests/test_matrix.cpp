@@ -14,7 +14,7 @@ int test_matrix1()
     assert(m2.get(2, 2) == 5);
 
     Matrix m3(m2);
-    assert(m3.get_height() == 2 && m3.get_width() == 2));
+    assert(m3.get_height() == 2 && m3.get_width() == 2);
     assert(m3.get(0, 0) == 5);
 
     m1 = m2;

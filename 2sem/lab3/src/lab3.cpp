@@ -168,23 +168,12 @@ int main()
         Matrix m1(4), m2 = m1 + m1;
         m1 = m2 * m1;
         m2 = std::move(m1);
+        // todo: что делает move и как выглядит его сигнатура?
     }
 
-    /** todo
-        1: name = 'malloc', locations = 4, resolved = 4, hit count = 0
-        2: name = 'free', locations = 3, resolved = 3, hit count = 2
-        4: name = 'operator delete', locations = 9, resolved = 9, hit count = 0
-        5: name = 'operator new', locations = 6, resolved = 6, hit count = 0
-        6: name = 'operator new[]', locations = 6, resolved = 6, hit count = 0
-        7: name = 'operator delete[]', locations = 9, resolved = 9, hit count = 0
-
-        после реализации move
-        1: name = 'malloc', locations = 4, resolved = 4, hit count = 0
-        2: name = 'free', locations = 3, resolved = 3, hit count = 4
-        3: name = 'operator delete', locations = 9, resolved = 9, hit count = 0
-        4: name = 'operator new', locations = 6, resolved = 6, hit count = 0
-        5: name = 'operator new[]', locations = 6, resolved = 6, hit count = 0
-        6: name = 'operator delete[]', locations = 9, resolved = 9, hit count = 0
+    /** 
+        примерно 8 конструктор, аремемнный результат в +, копирование в s2, удаление временного рез
+        после реализации move примерно 3 конструктор, врмененый результат, временный результат
      */
 
     /**
@@ -235,7 +224,6 @@ int main()
     {
         MyString s("123");
         std::cout << "This is my string: '" << s << "'\n";
-        // внизу не отладка вернуть!
         // std::cout << "Enter your string: ";
         // std::cin >> s;
         // std::cout << "Your string: '" << s << "'\n";
