@@ -43,9 +43,6 @@ bool NotificationPriorityQueue::hasHigherPriority(const Notification &a, const N
 
 void NotificationPriorityQueue::push(const Notification &notification)
 {
-    // todo: кратко рассказать, что происходит (связный список)
-    // todo: почитать про то, что такое куча (heap)
-    // todo: два вида хеш таблиц: бакеты - цепочки (связные списки напрмер) и открытая адресация (заполнение по какому то правилу, напримр просто суем в некст свободный)
     PriorityQueueNode *newNode = new PriorityQueueNode(notification);
 
     // если очередь пуста или новый узел имеет более высокий приоритет, чем head

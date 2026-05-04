@@ -25,6 +25,22 @@ add_library(mypointandcircle src/other.cpp)
 target_include_directories(mylist PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(mypointandcircle PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
+add_subdirectory(implicit_lib) # неявное
+add_subdirectory(explicit_lib) # явное
 
-target_link_libraries(lab4 PRIVATE mylist mypointandcircle)
+target_link_libraries(lab4 PRIVATE mylist mypointandcircle implicit_lib)
+
+if(APPLE OR UNIX)
+    target_link_libraries(lab4 PRIVATE dl)
+endif()
+
+# копирвуем динамические библиотеки в директорию сборки
+add_custom_command(TARGET lab4 POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${CMAKE_CURRENT_BINARY_DIR}/implicit_lib/libimplicit_lib.dylib
+        ${CMAKE_CURRENT_BINARY_DIR}/
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${CMAKE_CURRENT_BINARY_DIR}/explicit_lib/libexplicit_lib.dylib
+        ${CMAKE_CURRENT_BINARY_DIR}/
+)
 

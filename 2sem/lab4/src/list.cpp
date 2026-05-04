@@ -93,73 +93,110 @@ void List::clear()
     _tail._pPrev = &_head;
 }
 
+size_t List::get_size() const { return m_size; };
+
 List::~List()
 {
     clear();
 }
 
+List::Node *List::get_middle(Node *head) const
+{
+    if (head == nullptr || head->_pNext == nullptr)
+        return head;
+
+    Node *left = head;
+    Node *right = head->_pNext;
+
+    while (right != nullptr && right->_pNext != nullptr)
+    {
+        left = left->_pNext;
+        right = right->_pNext->_pNext;
+    }
+
+    return left;
+}
+
+List::Node *List::merge(Node *left, Node *right)
+{
+    if (left == nullptr)
+        return right;
+    if (right == nullptr)
+        return left;
+
+    Node *result = nullptr;
+    if (left->m_Data._radius <= right->m_Data._radius)
+    {
+        result = left;
+        result->_pNext = merge(left->_pNext, right);
+    }
+    else
+    {
+        result = right;
+        result->_pNext = merge(left, right->_pNext);
+    }
+    if (result->_pNext)
+        result->_pNext->_pPrev = result; // чзх wtf!!!???
+    result->_pPrev = nullptr;
+
+    return result;
+}
+
+// todo: сделать merge sort прямо на элементах списка
+List::Node *List::merge_sort(Node *head)
+{
+    if (head == nullptr || head->_pNext == nullptr)
+        return head;
+    Node *mid = get_middle(head);
+    Node *mid_next = mid->_pNext;
+    mid->_pNext = nullptr;
+    if (mid_next)
+        mid_next->_pPrev = nullptr;
+    Node *left = merge_sort(head);
+    Node *right = merge_sort(mid_next);
+
+    return merge(left, right);
+}
+
 void List::sort()
 {
-    Node *cur = _head._pNext;
-    if (m_size <= 1)
-        return;
-    while (cur->_pNext != &_tail)
+    if (m_size < 2)
     {
-        Node *min = cur;
-        Node *next = cur->_pNext;
-        while (next != &_tail)
-        {
-            if (next->m_Data._radius < min->m_Data._radius)
-                min = next;
-            next = next->_pNext;
-        }
+        return;
+    }
 
-        if (min != cur)
-        {
-            if (cur->_pNext == min) //если соседи
-            {
-                Node *cur_prev = cur->_pPrev;
-                Node *min_next = min->_pNext;
+    Node *first = _head._pNext;
+    first->_pPrev = nullptr;
 
-                if (cur_prev != nullptr)
-                    cur_prev->_pNext = min;
-                min->_pPrev = cur_prev;
-                min->_pNext = cur;
+    Node *last_node = _tail._pPrev;
+    if (last_node)
+        last_node->_pNext = nullptr;
 
-                cur->_pPrev = min;
-                cur->_pNext = min_next;
+    Node *sorted = merge_sort(first);
 
-                if (min_next != nullptr)
-                    min_next->_pPrev = cur;
-            }
-            else
-            {
-                Node *cur_prev = cur->_pPrev;
-                Node *cur_next = cur->_pNext;
-                Node *min_prev = min->_pPrev;
-                Node *min_next = min->_pNext;
+    _head._pNext = sorted;
+    if (sorted)
+        sorted->_pPrev = &_head;
 
-                if (cur_prev != nullptr)
-                    cur_prev->_pNext = min;
-                min->_pPrev = cur_prev;
-                min->_pNext = cur_next;
-                if (cur_next != nullptr)
-                    cur_next->_pPrev = min;
+    Node *last = sorted;
+    while (last != nullptr && last->_pNext != nullptr)
+    {
+        last = last->_pNext;
+    }
 
-                if (min_prev != nullptr)
-                    min_prev->_pNext = cur;
-                cur->_pPrev = min_prev;
-                cur->_pNext = min_next;
-                if (min_next != nullptr)
-                    min_next->_pPrev = cur;
-            }
-            cur = min;
-        }
-        cur = cur->_pNext;
+    if (last)
+    {
+        last->_pNext = &_tail;
+        _tail._pPrev = last;
+    }
+    else
+    {
+        _head._pNext = &_tail;
+        _tail._pPrev = &_head;
     }
 }
 
-std::ostream& operator<<(std::ostream& os, const List& lst)
+std::ostream &operator<<(std::ostream &os, const List &lst)
 {
     List::Node *cur = lst._head._pNext;
     while (cur != &lst._tail)
@@ -171,8 +208,7 @@ std::ostream& operator<<(std::ostream& os, const List& lst)
     return os;
 }
 
-
-void List::save_to_file(const char* filename) const
+void List::save_to_file(const char *filename) const
 {
     std::ofstream fout(filename);
     if (!fout.is_open())
@@ -180,12 +216,11 @@ void List::save_to_file(const char* filename) const
         throw "Open file error";
         return;
     }
-    fout << *this; 
+    fout << *this;
     fout.close();
 }
 
-
-void List::load_from_file(const char* filename)
+void List::load_from_file(const char *filename)
 {
     std::ifstream fin(filename);
     if (!fin.is_open())
