@@ -13,16 +13,15 @@
 #include <dlfcn.h>
 #endif
 
-typedef void (*CatPrintFunc)(const char*);
+typedef void (*CatPrintFunc)(const char*); // указатель на функцию, которая принимает const char* и возвращает void
 
 int main()
 {
-
     // неявное связывание
     double radius = 5.0;
     std::cout << "Radius: " << radius << "\n";
-    std::cout << "Square: " << CircleFunc::circle_square(radius) << "\n";
-    std::cout << "Perimeter: " << CircleFunc::circle_perimeter(radius) << "\n\n";
+    std::cout << "Square: " << circle_square(radius) << "\n";
+    std::cout << "Perimeter: " << circle_perimeter(radius) << "\n\n";
 
 
     // явное связывание
@@ -46,10 +45,9 @@ int main()
         return 1;
     }
     
-    print_cat("Looooong message, extra task for automatic weapon xexexexe");
+    print_cat("Looooong message, extra task for automatic weapon");
     dlclose(handle);
     
-    // 
     std::cout << "Continue....\n";
     int k = 5;
     List myList;

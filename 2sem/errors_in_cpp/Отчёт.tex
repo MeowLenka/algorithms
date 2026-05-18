@@ -1,0 +1,1191 @@
+
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage[babelshorthands=true]{russian}
+\setotherlanguage{english}
+%\setmainfont{Tinos}
+%\setsansfont{DejaVu Sans}
+%\setmonofont{DejaVu Sans Mono}
+
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+%\newfontfamily\cyrillicfont{Tinos}
+%\newfontfamily\cyrillicfonttt{DejaVu Sans Mono}
+
+\newfontfamily\cyrillicfont{Times New Roman}
+\newfontfamily\cyrillicfonttt{Courier New}
+
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{left=30mm,right=15mm,top=20mm,bottom=20mm}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\usepackage{array,booktabs,longtable,tabularx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\renewcommand{\lstlistingname}{Листинг}
+\renewcommand{\lstlistlistingname}{Список листингов}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  tabsize=2,
+  captionpos=b
+}
+\captionsetup[table]{justification=centering,labelsep=colon}
+\captionsetup[lstlisting]{justification=centering,labelsep=colon}
+\begin{document}
+
+\begin{titlepage}
+\fontsize{12}{14}\selectfont
+\thispagestyle{empty}
+\begin{center}
+МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ
+
+\vspace{4pt}
+{\normalsize федеральное государственное автономное образовательное учреждение высшего образования “Санкт-Петербургский политехнический университет Петра Великого”
+
+\vspace{4pt}
+Институт компьютерных наук и кибербезопасности
+
+\vspace{4pt}
+Высшая школа технологий искусственного интеллекта
+
+\vspace{4pt}
+02.03.01 Математика и компьютерные науки}
+
+\vspace{1.9cm}
+{\large Отчет по курсовой работе
+
+\vspace{4pt}
+{\normalsize Разработка игрового бота для расширенной версии игры “Крестики-нолики”}
+
+\vspace{4pt}
+{\normalsize по дисциплине “Структуры данных”}}
+\end{center}
+
+\vspace{2.2cm}
+\begin{flushleft}
+Выполнил:
+
+Студент группы 5130201/50302\hspace{3.0cm}\rule{3.5cm}{0.5pt}\hspace{3pt}Кузнецов М.С.
+
+\vspace{10pt}
+Проверил:
+
+Преподаватель\hspace{6.0cm}\rule{3.5cm}{0.5pt}\hspace{8pt}Сеннов Н.В.
+\end{flushleft}
+
+\vspace{0.7cm}
+\begin{flushright}
+“\rule{1cm}{0.5pt}”\rule{2.1cm}{0.5pt}\hspace{3pt}2026 г.
+\end{flushright}
+
+\vfill
+\begin{center}
+Санкт-Петербург, 2026
+\end{center}
+\end{titlepage}
+
+\setcounter{page}{2}
+\tableofcontents
+
+\clearpage
+\section*{Введение}
+\addcontentsline{toc}{section}{Введение}
+
+В данной работе рассматривается разработка игрового бота для расширенной версии игры “Крестики-нолики”. В отличие от классической игры на поле $3 \times 3$, рассматриваемая версия проводится на поле $20 \times 20$, может содержать препятствия, а победной считается непрерывная линия из пяти одинаковых символов по горизонтали, вертикали или диагонали. Из-за большого размера поля простой полный перебор продолжений быстро становится непрактичным, поэтому при проектировании игрока использовались эвристические методы, основанные на оценке локальных и позиционных признаков. Такой подход соответствует общим принципам построения алгоритмов для дискретных задач и методам принятия решений в игровых задачах искусственного интеллекта [1, 2].
+
+Предметная область работы относится к классу комбинаторных игр на клеточном поле. В таких играх качество решения определяется не только формальной проверкой победной линии, но и способностью алгоритма заранее оценивать угрозы, перспективные направления развития атаки и влияние занятых клеток на дальнейшие ходы [3]. Для рассматриваемой игры дополнительно важно асимметричное правило завершения партии: игрок $O$ выигрывает сразу после построения линии, а игрок $X$ после своей линии должен учитывать последний ответный ход игрока $O$. Эта особенность меняет оценку позиции и делает стратегию для двух знаков различной.
+
+Цель работы состоит в разработке бота MyPlayer, который по текущему состоянию поля выбирает допустимую клетку для хода за ограниченное время. Для достижения этой цели в работе формализована модель поля, описано множество рассматриваемых ходов, введены оценки атаки и защиты, реализована обработка немедленных побед и блокировок, а также проведены серии автоматических игр против базовых игроков. Исходный код был написан на C++, а при описании реализации использовались справочные материалы по языку [4]. При редактировании пояснительного текста применялся инструмент ChatGPT\footnote{OpenAI. ChatGPT: программный инструмент на основе большой языковой модели [Электронный ресурс]. URL: \url{https://openai.com/chatgpt/} (дата обращения: 10.05.2026).}.
+
+\clearpage
+\section{Постановка задачи}
+
+Необходимо реализовать игрока для уже заданной игровой среды расширенных “Крестиков-ноликов”. Логика игрового движка, смена ходов, хранение истории партии и определение общего результата игры не разрабатываются заново; бот получает состояние партии через предоставленный интерфейс и должен вернуть только один следующий ход. Таким образом, задача состоит не в реализации всей игры, а в разработке алгоритма выбора клетки для текущего игрока.
+
+На вход алгоритму подаются размеры поля $N$ и $M$, матрица состояния клеток $A$, знак текущего игрока $s \in \{X,O\}$, а также информация о клетках, недоступных для хода. В данной работе эксперименты проводятся для поля $20 \times 20$. Каждая клетка может быть свободной, занятой символом $X$, занятой символом $O$ или заблокированной препятствием. Ход допустим только в свободную клетку внутри границ поля. На выходе алгоритм должен выдать координаты одной допустимой клетки $(i^*,j^*)$, в которую игровой движок поставит символ текущего игрока.
+
+Алгоритм должен учитывать пять групп условий. Во-первых, он обязан возвращать только допустимый ход. Во-вторых, при наличии немедленной победы текущего игрока ход должен выбираться с учётом правила последнего ответа для $X$. В-третьих, при отсутствии собственной немедленной победы необходимо блокировать ход соперника, который приводит к его победной линии. В-четвёртых, обычные ходы должны сравниваться по численной оценке, включающей атакующие возможности, защиту, близость к активной области и влияние препятствий. В-пятых, алгоритм должен работать достаточно быстро для серийного запуска партий, поэтому перебор всех игровых продолжений не используется.
+
+К сдаче предъявляются количественные требования по скорости и силе игры. Алгоритм должен быть эффективным: время вычисления одного хода должно составлять величину порядка $50$ "--- $100$ мс на рабочей станции или ноутбуке. Алгоритм также должен быть достаточно сильным: процент побед над игроком базового уровня сложности без учёта ничьих должен быть больше $50\%$, а над игроком повышенного уровня сложности "--- больше $25\%$. Оба базовых игрока предоставляются как подключаемая библиотека с закрытым исходным кодом, которая подключается к проекту; соответствующий релиз библиотеки доступен по адресу: \url{https://github.com/vsennov/tictactoe-course/releases/tag/v1.1.0}.
+
+Результатом работы является программная реализация бота MyPlayer и экспериментальная проверка его поведения. Корректность решения оценивается по допустимости возвращаемых ходов, выполнению указанных требований к скорости и силе игры, а также по среднему времени выбора хода.
+
+\clearpage
+\section{Математическое описание алгоритма}
+
+\subsection{Модель поля и допустимого хода}
+
+Игровое поле рассматривается как матрица
+\begin{equation}
+A = (a_{ij}), \qquad i=1,2,\ldots,N, \quad j=1,2,\ldots,M,
+\label{eq:board}
+\end{equation}
+где $a_{ij}$ обозначает состояние клетки в строке $i$ и столбце $j$. Множество возможных состояний клетки задаётся как
+\begin{equation}
+S = \{\varnothing, X, O, B\},
+\label{eq:states}
+\end{equation}
+где $\varnothing$ означает свободную клетку, $X$ и $O$ "--- символы игроков, а $B$ "--- препятствие. Ход $(i,j)$ допустим тогда и только тогда, когда $1 \leq i \leq N$, $1 \leq j \leq M$ и $a_{ij}=\varnothing$.
+
+Для проверки линий используются четыре направления
+\begin{equation}
+D = \{(1,0),(0,1),(1,1),(1,-1)\}.
+\label{eq:directions}
+\end{equation}
+Если для некоторого направления $(d_i,d_j) \in D$ пять последовательных клеток
+\[
+(i,j),\ (i+d_i,j+d_j),\ (i+2d_i,j+2d_j),\ (i+3d_i,j+3d_j),\ (i+4d_i,j+4d_j)
+\]
+находятся внутри поля и содержат один и тот же знак игрока, то этот игрок построил победную линию длины $5$.
+
+\subsection{Правило победы для игроков X и O}
+
+Пусть $L_s(A)$ означает наличие на поле $A$ линии из пяти символов игрока $s$. Для игрока $O$ победа определяется прямым условием
+\begin{equation}
+\mathrm{Win}_O(A) \Longleftrightarrow L_O(A).
+\label{eq:win_o}
+\end{equation}
+Для игрока $X$ учитывается последний ответ игрока $O$. Обозначим через $R_O(A)$ количество свободных клеток, ход в которые позволяет игроку $O$ немедленно построить линию из пяти символов. Тогда гарантированная победа игрока $X$ задаётся условием
+\begin{equation}
+\mathrm{Win}_X(A) \Longleftrightarrow L_X(A) \wedge R_O(A)=0.
+\label{eq:win_x}
+\end{equation}
+Если после хода $X$ линия $X$ уже построена, но $R_O(A)>0$, такой ход рассматривается не как гарантированная победа, а как позиция, в которой $O$ может последним ответом добиться ничьей. Поэтому в оценочной функции для $X$ защитная составляющая имеет больший вес, чем для $O$.
+
+\subsection{Свободные области и центр кластера}
+
+Из-за препятствий геометрический центр поля не всегда является хорошей областью для первого хода и для позиционного выбора. Поэтому вводится понятие свободного кластера. Свободный кластер "--- это максимальное множество свободных клеток, в котором любые две клетки связаны цепочкой соседних свободных клеток. Соседними считаются клетки, имеющие общую сторону или вершину, то есть используется связность по восьми направлениям.
+
+Пусть $K=\{(i_1,j_1),\ldots,(i_k,j_k)\}$ "--- крупнейший свободный кластер. Его средняя точка определяется формулами
+\begin{equation}
+\bar{i}=\frac{1}{k}\sum_{t=1}^{k} i_t, \qquad
+\bar{j}=\frac{1}{k}\sum_{t=1}^{k} j_t.
+\label{eq:cluster_mean}
+\end{equation}
+Центром кластера считается такая свободная клетка $(i_c,j_c)\in K$, для которой евклидово расстояние до точки $(\bar{i},\bar{j})$ минимально. Если несколько клеток имеют одинаковое расстояние, выбирается клетка с большим количеством потенциальных отрезков длины $5$ и меньшим штрафом за близость к препятствиям.
+
+\subsection{Множество ходов-кандидатов}
+
+Пусть $F$ "--- множество всех свободных клеток поля:
+\[
+F = \{(i,j) \mid a_{ij}=\varnothing\}.
+\]
+После начала партии алгоритм не оценивает все клетки из $F$, потому что удалённые от уже поставленных символов клетки редко влияют на ближайшую тактику. Множество кандидатов $C$ определяется как
+\begin{equation}
+C = \{(i,j)\in F \mid \exists (p,q): a_{pq}\in\{X,O\},\ |i-p|\leq 2,\ |j-q|\leq 2\}.
+\label{eq:candidates}
+\end{equation}
+Если на поле ещё нет символов игроков, то используется специальное правило первого хода. Если множество $C$ оказалось пустым из-за изолированного расположения свободных клеток, алгоритм возвращается к рассмотрению всех клеток из $F$.
+
+\subsection{Первый ход}
+
+Для первого хода нельзя использовать близость к уже поставленным символам, поэтому каждая свободная клетка оценивается по трём параметрам. Пусть $L(i,j)$ "--- количество отрезков длины $5$, которые проходят через клетку $(i,j)$ и полностью состоят из свободных клеток; $P(i,j)$ "--- штраф за препятствия в окрестности радиуса $2$; $Q(i,j)$ "--- манхэттенское расстояние до центра крупнейшего свободного кластера. Тогда оценка первого хода равна
+\begin{equation}
+F_0(i,j)=1000L(i,j)-20P(i,j)-Q(i,j).
+\label{eq:first_score}
+\end{equation}
+Первым ходом выбирается клетка
+\begin{equation}
+(i^*,j^*)=\arg\max_{(i,j)\in F} F_0(i,j).
+\label{eq:first_argmax}
+\end{equation}
+Такая формула задаёт все используемые веса явно: потенциальная линия получает вес $1000$, близость к препятствию штрафуется с коэффициентом $20$, а расстояние до центра кластера используется как слабый позиционный критерий.
+
+\subsection{Оценка отрезков длины 5}
+
+Для оценки атаки рассматриваются все отрезки длины $5$ в направлениях из формулы \eqref{eq:directions}. Для выбранного игрока $s$ в каждом отрезке подсчитываются три величины: $k$ "--- количество символов игрока $s$, $e$ "--- количество свободных клеток, $b$ "--- количество заблокированных клеток. К заблокированным относятся символы соперника и препятствия. Оценка одного отрезка равна
+\[
+\mathrm{Score}(k,e,b)=
+\begin{cases}
+0, & b>0,\\
+100000000, & k\geq 5,\\
+3000000, & k=4,\ e=1,\\
+80000, & k=3,\ e=2,\\
+3000, & k=2,\ e=3,\\
+30, & k=1,\ e=4,\\
+0, & \text{иначе.}
+\end{cases}
+\]
+Атакующая ценность позиции для игрока $s$ определяется как сумма оценок по всем подходящим отрезкам:
+\[
+A(A,s)=\sum \mathrm{Score}(k,e,b).
+\]
+
+\subsection{Тактические угрозы и итоговая оценка хода}
+
+Пусть $A'$ "--- состояние поля после предполагаемого хода текущего игрока $s$ в клетку $(i,j)$, а $\bar{s}$ "--- знак соперника. Через $R_s(A')$ обозначается количество ходов, после которых игрок $s$ может немедленно построить линию из пяти символов. Тактическая часть оценки задаётся формулами
+\begin{equation}
+T_{\mathrm{danger}}(i,j)=-50000000\cdot R_{\bar{s}}(A'),
+\label{eq:danger}
+\end{equation}
+\[
+T_{\mathrm{attack}}(i,j)=
+\begin{cases}
+30000000, & R_s(A')\geq 2,\\
+3000000, & R_s(A')=1,\\
+0, & R_s(A')=0,
+\end{cases}
+\]
+\[
+T(i,j)=T_{\mathrm{attack}}(i,j)+T_{\mathrm{danger}}(i,j).
+\]
+
+Позиционная близость к активной зоне учитывается функцией $N(i,j)$. В окрестности радиуса $2$ собственный символ на манхэттенском расстоянии $1$ даёт $30$ баллов, собственный символ на расстоянии $2$ даёт $8$ баллов, символ соперника на расстоянии $1$ даёт $15$ баллов, а символ соперника на расстоянии $2$ даёт $4$ балла. Близость к центру свободного кластера задаётся функцией
+\[
+Q_c(i,j)=-(|i-i_c|+|j-j_c|).
+\]
+
+Итоговая оценка различается для игроков $X$ и $O$:
+\begin{equation}
+F_O(i,j)=T(i,j)+22A(A',O)-24A(A',X)+N(i,j)+Q_c(i,j),
+\label{eq:o_score}
+\end{equation}
+\begin{equation}
+F_X(i,j)=T(i,j)+12A(A',X)-24A(A',O)+N(i,j)+Q_c(i,j).
+\label{eq:x_score}
+\end{equation}
+Игрок $O$ получает более высокий атакующий коэффициент, поскольку его линия немедленно завершает партию. Игрок $X$ сильнее ориентирован на защиту, так как после его линии возможен последний ответ $O$.
+
+\subsection{Итоговый алгоритм выбора хода}
+
+На вход алгоритму подаются матрица $A$, размеры поля $N$ и $M$, знак текущего игрока $s$ и множество состояний клеток из формулы \eqref{eq:states}. На выходе алгоритм выдаёт координаты допустимого хода $(i^*,j^*)$. Порядок выбора хода следующий.
+
+\begin{enumerate}
+\item Найти крупнейший свободный кластер и его центр по формуле \eqref{eq:cluster_mean}.
+\item Если на поле нет символов $X$ и $O$, выбрать первый ход по формулам \eqref{eq:first_score} и \eqref{eq:first_argmax} и завершить алгоритм.
+\item Сформировать множество ходов-кандидатов $C$ по формуле \eqref{eq:candidates}.
+\item Для каждого хода из $C$ проверить, создаёт ли он немедленную победу текущего игрока. Для $O$ используется условие \eqref{eq:win_o}; для $X$ используется условие \eqref{eq:win_x}. Если такой ход существует, выбрать его и завершить алгоритм.
+\item Если собственной немедленной победы нет, проверить, существует ли ход соперника, который на следующем ходе создаёт его победную линию. Если такая клетка найдена, занять её текущим ходом.
+\item Если срочного хода нет, для каждой клетки из $C$ построить временное состояние $A'$ и вычислить оценку по формуле \eqref{eq:o_score} для $O$ или по формуле \eqref{eq:x_score} для $X$.
+\item Вернуть клетку с максимальной итоговой оценкой:
+\[
+(i^*,j^*)=\arg\max_{(i,j)\in C} F_s(i,j).
+\]
+\end{enumerate}
+
+\subsection{Обоснование выбранного подхода}
+
+Полный перебор дерева игры на поле $20 \times 20$ приводит к слишком большому числу продолжений, поэтому в работе используется эвристический алгоритм. Он оценивает не всю будущую партию, а признаки, которые непосредственно влияют на ближайшие ходы: готовые линии, открытые отрезки, немедленные угрозы, двойные угрозы, положение относительно активной зоны и влияние препятствий. Такой подход не гарантирует оптимальную игру во всех позициях, но позволяет получать ход за малое время и сохранять разумное качество решений в длинных сериях партий.
+
+\clearpage
+\section{Особенности реализации}
+
+Реализация выполнена на языке C++ в классе MyPlayer. Класс содержит два поля: $m\_sign$, в котором хранится знак текущего игрока, и $m\_name$, в котором хранится имя экземпляра игрока. Метод set\_sign получает знак, назначенный игровым движком, метод get\_name возвращает имя игрока, а метод make\_move принимает состояние партии и возвращает координаты следующего хода. Интерфейс класса приведён в приложении~\ref{app:hpp}, а полный код реализации приведён в приложении~\ref{app:cpp}.
+
+Внутри алгоритма состояние поля преобразуется во вспомогательную структуру Board. Она хранит число столбцов, число строк и последовательность значений клеток. Математически эта структура соответствует матрице $A$ из формулы \eqref{eq:board}; одномерное хранение используется только как способ размещения данных в памяти. Доступ к клетке осуществляется по её координатам, а проверки допустимости хода сводятся к проверке принадлежности координат границам поля и проверке равенства клетки состоянию $\varnothing$.
+
+Вспомогательные функции разделены по смыслу. Функции inside, is\_free и is\_player\_sign проверяют границы поля, свободность клетки и принадлежность значения одному из игроков. Функция get\_candidate\_cells строит множество $C$ из формулы \eqref{eq:candidates}. Функции has\_line\_from\_cell и has\_line\_after\_move проверяют наличие победной линии в четырёх направлениях из формулы \eqref{eq:directions}. Функции count\_immediate\_wins и count\_immediate\_wins\_limited вычисляют количество немедленных угроз $R_s(A)$, используемое в формулах \eqref{eq:win_x} и \eqref{eq:danger}.
+
+Поиск крупнейшего свободного кластера реализован обходом в ширину. Для каждой найденной компоненты свободных клеток вычисляется размер и средняя точка, после чего выбирается свободная клетка, ближайшая к этой точке. При равенстве расстояний учитывается число возможных отрезков длины $5$ и штраф за препятствия. Этот порядок соответствует математическому описанию из подраздела 2.3 и не зависит от особенностей C++.
+
+Основной метод make\_move реализует порядок, описанный в подразделе 2.8. Сначала он обрабатывает первый ход, затем ищет собственную немедленную победу, затем блокирует немедленную победу соперника, после чего оценивает оставшиеся кандидаты. Для игрока $X$ отдельно сохраняется ход, который строит линию $X$, но позволяет $O$ последним ходом добиться ничьей; такой ход используется как запасной вариант, если обычная оценка позиции оказывается неблагоприятной.
+
+Реализация является детерминированной: случайный выбор не используется, поэтому при одинаковом состоянии поля бот возвращает один и тот же ход. Это упрощает отладку и делает результаты серийных экспериментов воспроизводимыми.
+
+\clearpage
+\section{Результаты работы программы}
+
+Для проверки бота были проведены автоматические серии игр в стандартном игровом движке проекта. Во всех сериях использовалось поле $20 \times 20$ с теми же правилами победы и препятствий, для которых разрабатывался алгоритм. Для каждого внешнего соперника запускались две серии по $1000$ партий: в первой серии MyPlayer играл за $X$, во второй "--- за $O$. Дополнительно была проведена серия из $1000$ партий MyPlayer против MyPlayer. Такая постановка эксперимента позволяет отдельно оценить влияние знака игрока, поскольку правила для $X$ и $O$ несимметричны.
+
+В таблице~\ref{tab:results} приведены абсолютные и процентные результаты игр. Проценты рассчитаны относительно $1000$ партий в каждой серии.
+
+
+\begin{table}[htbp]
+\centering
+\caption{Результаты серийного тестирования бота MyPlayer}
+\label{tab:results}
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{1.25cm} >{\centering\arraybackslash}p{1.7cm} >{\centering\arraybackslash}p{1.75cm} >{\centering\arraybackslash}p{1.45cm} >{\centering\arraybackslash}p{1.75cm}}
+\toprule
+Серия & Знак & Победы MyPlayer & Победы соперника & Ничьи & Победы без ничьих \\
+\midrule
+MyPlayer "--- BaselineEasy & $X$ & 819 / 81,9\% & 92 / 9,2\% & 89 / 8,9\% & 89,9\% \\
+BaselineEasy "--- MyPlayer & $O$ & 556 / 55,6\% & 334 / 33,4\% & 110 / 11,0\% & 62,5\% \\
+MyPlayer "--- BaselineHard & $X$ & 185 / 18,5\% & 232 / 23,2\% & 583 / 58,3\% & 44,4\% \\
+BaselineHard "--- MyPlayer & $O$ & 156 / 15,6\% & 502 / 50,2\% & 342 / 34,2\% & 23,7\% \\
+MyPlayer "--- MyPlayer & $X/O$ & 877 / 87,7\% & 119 / 11,9\% & 4 / 0,4\% & 88,1\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Результаты из таблицы~\ref{tab:results} показывают, что против BaselineEasy разработанный бот имеет устойчивое преимущество. В сумме за две серии против этого соперника MyPlayer выиграл $1375$ партий из $2000$, то есть $68{,}75\%$ всех партий. Если исключить ничьи, то на $1801$ результативную партию приходится $1375$ побед MyPlayer, что составляет $76{,}3\%$ и превышает требуемые $50\%$. Против BaselineHard результат заметно слабее: всего было получено $341$ победа MyPlayer, $734$ победы соперника и $925$ ничьих. Без учёта ничьих доля побед MyPlayer равна $31{,}7\%$, поэтому формальное требование $25\%$ также выполнено, хотя при игре за $O$ результат хуже, чем при игре за $X$. Это говорит о том, что локальные эвристики хорошо справляются с простым соперником, но против более сильной стратегии им не всегда хватает поиска на несколько ходов вперёд.
+
+Необычный результат наблюдается в серии MyPlayer против MyPlayer: первый экземпляр бота выиграл $87{,}7\%$ партий. Вероятное объяснение состоит в преимуществе первого хода и в агрессивном развитии инициативы после выбора активной области. Поскольку оба экземпляра используют одинаковую детерминированную стратегию, первый игрок раньше занимает центральные перспективные клетки и чаще первым создаёт угрозы, которые второму игроку приходится блокировать.
+
+Время выбора хода измерялось средствами игрового движка. Работа была выполнена на ноутбуке Asus с процессором 13th Gen Intel(R) Core(TM) i7-1355U 1.70 GHz, оперативной памятью 32,00 ГБ и 64-разрядной операционной системой. Средние значения приведены в таблице~\ref{tab:time}.
+
+\begin{table}[htbp]
+\centering
+\caption{Среднее время расчёта хода и обработки партии}
+\label{tab:time}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{2.25cm} >{\centering\arraybackslash}p{2.25cm} >{\centering\arraybackslash}p{2.35cm}}
+\toprule
+Серия & Ход MyPlayer, мс & Ход соперника, мс & Игровой процесс, мс \\
+\midrule
+MyPlayer "--- BaselineEasy & 3,4036 & 0,0025 & 1,7132 \\
+BaselineEasy "--- MyPlayer & 3,3977 & 0,0025 & 1,7097 \\
+MyPlayer "--- BaselineHard & 4,5028 & 0,0028 & 2,2596 \\
+BaselineHard "--- MyPlayer & 4,5816 & 0,0029 & 2,3002 \\
+MyPlayer "--- MyPlayer & 1,0336 / 1,1970 & "--- & 1,1185 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Данные из таблицы~\ref{tab:time} показывают, что даже при проверке немедленных угроз, обходе кандидатов и вычислении оценок отрезков длины $5$ среднее время выбора хода остаётся в пределах нескольких миллисекунд. Это значительно меньше требуемого диапазона $50$ "--- $100$ мс на рабочей станции или ноутбуке. Время против BaselineEasy и BaselineHard оказалось больше, чем в режиме MyPlayer против MyPlayer, потому что партии против базовых игроков чаще уходили в глубокую стадию, когда почти всё поле уже занято и приходится анализировать больше сложных локальных конфигураций. В самоигре наблюдалась полная доминация первого игрока $X$, из-за чего партии завершались быстрее, а среднее число оцениваемых поздних позиций было меньше.
+
+\clearpage
+\section*{Заключение}
+\addcontentsline{toc}{section}{Заключение}
+
+В ходе работы был разработан бот MyPlayer для расширенной версии игры “Крестики-нолики” на поле $20 \times 20$. Основным результатом стала детерминированная эвристическая стратегия, которая принимает на вход состояние поля и знак текущего игрока, строит множество ходов-кандидатов, проверяет немедленную победу и необходимость блокировки, а затем выбирает ход по оценочной функции. В алгоритме явно учтены препятствия, центр крупнейшего свободного кластера, потенциальные отрезки длины $5$, двойные угрозы и асимметричное правило последнего хода для игрока $X$.
+
+Практическая проверка показала, что бот уверенно превосходит простого соперника BaselineEasy: суммарно он выиграл $1375$ партий из $2000$, что составляет $68{,}75\%$ всех партий и $76{,}3\%$ результативных партий без учёта ничьих. Против BaselineHard суммарная доля побед без учёта ничьих составила $31{,}7\%$, поэтому формальное требование к игроку повышенного уровня сложности также выполнено. Среднее время выбора хода составило примерно $3{,}4$ мс против BaselineEasy и $4{,}5$"---$4{,}6$ мс против BaselineHard, что значительно меньше требуемого времени порядка $50$ "--- $100$ мс на ноутбуке.
+
+При выполнении работы были закреплены навыки формализации игровой задачи, проектирования эвристической функции, работы с матричным представлением поля, реализации обхода в ширину для поиска связных областей, обработки специальных правил игры и анализа результатов статистического тестирования. Главным ограничением решения остаётся отсутствие полноценного поиска в глубину: бот хорошо оценивает ближайшие угрозы, но может не видеть сложные многоходовые комбинации. Дальнейшее развитие алгоритма целесообразно связать с minimax-поиском по ограниченному множеству лучших кандидатов, автоматическим подбором весов и более точным различением открытых и закрытых линий.
+
+\clearpage
+\section*{Список литературы}
+\addcontentsline{toc}{section}{Список литературы}
+\begin{enumerate}
+\item Кормен Т.~Х., Лейзерсон Ч.~Е., Ривест Р.~Л., Штайн К. Алгоритмы: построение и анализ. 3-е изд. М.: Вильямс, 2013. 1328 с.
+\item Рассел С., Норвиг П. Искусственный интеллект: современный подход. 4-е изд. М.: Диалектика, 2021. 1152 с.
+\item Beck J. Combinatorial Games: Tic-Tac-Toe Theory. Cambridge: Cambridge University Press, 2008. 732 p.
+\item C++ reference: справочник по языку C++ [Электронный ресурс]. URL: \url{https://en.cppreference.com/w/} (дата обращения: 10.05.2026).
+\end{enumerate}
+
+\clearpage
+\appendix
+\section{Исходный код заголовочного файла my\_player.hpp}
+\label{app:hpp}
+
+В приложении приведён полный заголовочный файл класса MyPlayer. Этот файл содержит объявление полей класса, конструктора и методов, которые используются игровым движком. Основная роль интерфейса описана в разделе 3, а сам интерфейс приведён в листинге~\ref{lst:hpp}.
+
+\begin{lstlisting}[language=C++,caption={Файл my\_player.hpp},label={lst:hpp}]
+#pragma once
+#include "core/game.hpp"
+namespace ttt::my_player {
+using game::Event;
+using game::IPlayer;
+using game::Point;
+using game::Sign;
+using game::State;
+class MyPlayer : public IPlayer {
+Sign m_sign = Sign::NONE;
+const char *m_name;
+public:
+MyPlayer(const char *name) : m_sign(Sign::NONE), m_name(name)
+{}
+void set_sign(Sign sign) override;
+Point make_move(const State &game) override;
+const char *get_name() const override;
+};
+}; // namespace ttt::my_player
+
+\end{lstlisting}
+
+\clearpage
+\section{Исходный код файла реализации my\_player.cpp}
+\label{app:cpp}
+
+В приложении приведён полный файл реализации разработанного бота. В нём находятся функции подготовки поля, поиска кандидатов, проверки линий, оценки позиции и выбора итогового хода. Подробное описание основных групп функций дано в разделе 3, а полный код реализации помещён в приложении~\ref{app:cpp}.
+
+\begin{lstlisting}[language=C++,caption={Файл my\_player.cpp},label={lst:cpp}]
+#include "my_player.hpp"
+#include <cmath>
+#include <limits>
+#include <queue>
+#include <vector>
+namespace ttt::my_player {
+static const int WIN_LENGTH = 5;
+void MyPlayer::set_sign(Sign sign) { m_sign = sign; }
+const char *MyPlayer::get_name() const { return m_name; }
+struct Board {
+int cols;
+int rows;
+std::vector<Sign> cells;
+Sign get(int x, int y) const {
+return cells[y * cols + x];
+}
+void set(int x, int y, Sign sign) {
+cells[y * cols + x] = sign;
+}
+};
+struct ClusterInfo {
+bool valid;
+int center_x;
+int center_y;
+int size;
+};
+static Point make_point(int x, int y);
+static bool inside(const Board &board, int x, int y);
+static bool is_free(const Board &board, int x, int y);
+static bool is_player_sign(Sign sign);
+static int count_possible_lines_through_cell(
+const Board &board,
+int x,
+int y
+);
+static int obstacle_penalty_near_cell(
+const Board &board,
+int x,
+int y
+);
+static ClusterInfo find_largest_free_cluster_center(const Board
+&board);
+static Sign get_enemy(Sign sign) {
+if (sign == Sign::X)
+return Sign::O;
+if (sign == Sign::O)
+return Sign::X;
+return Sign::NONE;
+}
+static bool is_player_sign(Sign sign) {
+return sign == Sign::X || sign == Sign::O;
+}
+static bool inside(const Board &board, int x, int y) {
+return x >= 0 && x < board.cols && y >= 0 && y < board.rows;
+}
+static bool is_free(const Board &board, int x, int y) {
+return inside(board, x, y) && board.get(x, y) == Sign::NONE;
+}
+static Point make_point(int x, int y) {
+Point p;
+p.x = x;
+p.y = y;
+return p;
+}
+static Board make_board(const State &state) {
+Board board;
+board.cols = state.get_opts().cols;
+board.rows = state.get_opts().rows;
+board.cells.resize(board.cols * board.rows);
+for (int y = 0; y < board.rows; ++y) {
+for (int x = 0; x < board.cols; ++x) {
+board.set(x, y, state.get_value(x, y));
+}
+}
+return board;
+}
+static bool board_empty(const Board &board) {
+for (int y = 0; y < board.rows; ++y) {
+for (int x = 0; x < board.cols; ++x) {
+if (is_player_sign(board.get(x, y))) {
+return false;
+}
+}
+}
+return true;
+}
+static int count_free_cells(const Board &board) {
+int result = 0;
+for (int y = 0; y < board.rows; ++y) {
+for (int x = 0; x < board.cols; ++x) {
+if (board.get(x, y) == Sign::NONE) {
+++result;
+}
+}
+}
+return result;
+}
+static bool has_neighbor(const Board &board, int x, int y, int
+radius) {
+for (int dy = -radius; dy <= radius; ++dy) {
+for (int dx = -radius; dx <= radius; ++dx) {
+if (dx == 0 && dy == 0)
+continue;
+int nx = x + dx;
+int ny = y + dy;
+if (!inside(board, nx, ny))
+continue;
+if (is_player_sign(board.get(nx, ny))) {
+return true;
+}
+}
+}
+return false;
+}
+static std::vector<Point> get_candidate_cells(const Board &board
+) {
+std::vector<Point> result;
+bool empty = board_empty(board);
+for (int y = 0; y < board.rows; ++y) {
+for (int x = 0; x < board.cols; ++x) {
+if (!is_free(board, x, y))
+continue;
+if (empty || has_neighbor(board, x, y, 2)) {
+result.push_back(make_point(x, y));
+}
+}
+}
+if (!result.empty()) {
+return result;
+}
+for (int y = 0; y < board.rows; ++y) {
+for (int x = 0; x < board.cols; ++x) {
+if (is_free(board, x, y)) {
+result.push_back(make_point(x, y));
+}
+}
+}
+return result;
+}
+static bool has_line_from_cell(
+const Board &board,
+int x,
+int y,
+Sign sign
+) {
+const int directions[4][2] = {
+{1, 0},
+{0, 1},
+{1, 1},
+{1, -1}
+};
+for (int d = 0; d < 4; ++d) {
+int dx = directions[d][0];
+int dy = directions[d][1];
+int count = 1;
+int nx = x + dx;
+int ny = y + dy;
+while (inside(board, nx, ny) && board.get(nx, ny) == sign) {
+++count;
+nx += dx;
+ny += dy;
+}
+nx = x - dx;
+ny = y - dy;
+while (inside(board, nx, ny) && board.get(nx, ny) == sign) {
+++count;
+nx -= dx;
+ny -= dy;
+}
+if (count >= WIN_LENGTH) {
+return true;
+}
+}
+return false;
+}
+static bool has_line_after_move(
+const Board &board,
+Point move,
+Sign sign
+) {
+Board copy = board;
+copy.set(move.x, move.y, sign);
+return has_line_from_cell(copy, move.x, move.y, sign);
+}
+static int count_immediate_wins(
+const Board &board,
+Sign sign
+) {
+std::vector<Point> cells = get_candidate_cells(board);
+int result = 0;
+for (Point move : cells) {
+if (has_line_after_move(board, move, sign)) {
+++result;
+}
+}
+return result;
+}
+static int count_immediate_wins_limited(
+const Board &board,
+Sign sign,
+int limit
+) {
+std::vector<Point> cells = get_candidate_cells(board);
+int result = 0;
+for (Point move : cells) {
+if (has_line_after_move(board, move, sign)) {
+++result;
+if (result >= limit) {
+return result;
+}
+}
+}
+return result;
+}
+// X поставил линию.
+// Это реальная победа X только если O не может последним ходом
+собрать линию.
+static bool is_real_x_win_after_move(
+const Board &board,
+Point move
+) {
+Board after_x = board;
+after_x.set(move.x, move.y, Sign::X);
+if (!has_line_from_cell(after_x, move.x, move.y, Sign::X)) {
+return false;
+}
+// Если поле заполнено, O не может сделать последний ход.
+if (count_free_cells(after_x) == 0) {
+return true;
+}
+int o_answers = count_immediate_wins_limited(after_x, Sign::O,
+1);
+return o_answers == 0;
+}
+// X поставил линию, но O может ответить своей линией.
+// Это не победа X, а гарантированная ничья.
+static bool is_x_draw_after_move(
+const Board &board,
+Point move
+) {
+Board after_x = board;
+after_x.set(move.x, move.y, Sign::X);
+if (!has_line_from_cell(after_x, move.x, move.y, Sign::X)) {
+return false;
+}
+if (count_free_cells(after_x) == 0) {
+return false;
+}
+int o_answers = count_immediate_wins_limited(after_x, Sign::O,
+1);
+return o_answers > 0;
+}
+static long long pattern_score(
+int own_count,
+int empty_count,
+int blocked_count
+) {
+if (blocked_count > 0) {
+return 0;
+}
+if (own_count >= 5) {
+return 100000000LL;
+}
+if (own_count == 4 && empty_count == 1) {
+return 3000000LL;
+}
+if (own_count == 3 && empty_count == 2) {
+return 80000LL;
+}
+if (own_count == 2 && empty_count == 3) {
+return 3000LL;
+}
+if (own_count == 1 && empty_count == 4) {
+return 30LL;
+}
+return 0;
+}
+static long long evaluate_board_for_sign(
+const Board &board,
+Sign sign
+) {
+const int directions[4][2] = {
+{1, 0},
+{0, 1},
+{1, 1},
+{1, -1}
+};
+Sign enemy = get_enemy(sign);
+long long score = 0;
+for (int y = 0; y < board.rows; ++y) {
+for (int x = 0; x < board.cols; ++x) {
+for (int d = 0; d < 4; ++d) {
+int dx = directions[d][0];
+int dy = directions[d][1];
+int end_x = x + (WIN_LENGTH - 1) * dx;
+int end_y = y + (WIN_LENGTH - 1) * dy;
+if (!inside(board, end_x, end_y))
+continue;
+int own_count = 0;
+int empty_count = 0;
+int blocked_count = 0;
+for (int i = 0; i < WIN_LENGTH; ++i) {
+int nx = x + i * dx;
+int ny = y + i * dy;
+Sign cell = board.get(nx, ny);
+if (cell == sign) {
+++own_count;
+} else if (cell == Sign::NONE) {
+++empty_count;
+} else if (cell == enemy) {
+++blocked_count;
+} else {
+++blocked_count;
+}
+}
+score += pattern_score(own_count, empty_count,
+blocked_count);
+}
+}
+}
+return score;
+}
+static int neighbor_bonus(
+const Board &board,
+Point move,
+Sign my_sign
+) {
+int bonus = 0;
+Sign enemy = get_enemy(my_sign);
+for (int dy = -2; dy <= 2; ++dy) {
+for (int dx = -2; dx <= 2; ++dx) {
+if (dx == 0 && dy == 0)
+continue;
+int x = move.x + dx;
+int y = move.y + dy;
+if (!inside(board, x, y))
+continue;
+Sign cell = board.get(x, y);
+int distance = std::abs(dx) + std::abs(dy);
+int value = distance <= 1 ? 30 : 8;
+if (cell == my_sign) {
+bonus += value;
+} else if (cell == enemy) {
+bonus += value / 2;
+}
+}
+}
+return bonus;
+}
+static int strategic_center_bonus(
+Point move,
+const ClusterInfo &cluster
+) {
+if (!cluster.valid) {
+return 0;
+}
+int distance =
+std::abs(move.x - cluster.center_x) +
+std::abs(move.y - cluster.center_y);
+return -distance;
+}
+// Специальный выбор атакующего хода за O.
+// Ищем ход, после которого у O появляется одна или несколько
+// немедленных победных угроз на следующий ход.
+// При этом не выбираем ход, после которого X сразу получает
+линию.
+static bool find_o_attack_move(
+const Board &board,
+const std::vector<Point> &cells,
+const ClusterInfo &cluster,
+Point &best_move
+) {
+bool found = false;
+long long best_score = std::numeric_limits<long long>::min();
+for (Point move : cells) {
+Board after_o = board;
+after_o.set(move.x, move.y, Sign::O);
+// Если после нашего хода X сразу может собрать линию,
+// такой ход слишком опасен.
+int x_wins = count_immediate_wins_limited(after_o, Sign::X,
+1);
+if (x_wins > 0) {
+continue;
+}
+int o_wins = count_immediate_wins_limited(after_o, Sign::O,
+2);
+if (o_wins == 0) {
+continue;
+}
+long long score = 0;
+// Две и более угрозы почти всегда сильнее одной.
+if (o_wins >= 2) {
+score += 150000000LL;
+} else {
+score += 30000000LL;
+}
+score += evaluate_board_for_sign(after_o, Sign::O) * 12;
+score -= evaluate_board_for_sign(after_o, Sign::X) * 8;
+score += neighbor_bonus(board, move, Sign::O);
+score += strategic_center_bonus(move, cluster);
+if (!found || score > best_score) {
+found = true;
+best_score = score;
+best_move = move;
+}
+}
+return found;
+}
+static long long evaluate_move(
+const Board &board,
+Point move,
+Sign my_sign,
+const ClusterInfo &cluster
+) {
+Sign enemy = get_enemy(my_sign);
+Board after_my_move = board;
+after_my_move.set(move.x, move.y, my_sign);
+// Особое правило:
+// O выигрывает сразу, X выигрывает только если O не может
+ответить линией.
+if (my_sign == Sign::O) {
+if (has_line_from_cell(after_my_move, move.x, move.y, Sign::
+O)) {
+return 1000000000LL;
+}
+}
+if (my_sign == Sign::X) {
+if (has_line_from_cell(after_my_move, move.x, move.y, Sign::
+X)) {
+if (count_free_cells(after_my_move) == 0) {
+return 1000000000LL;
+}
+int o_answers = count_immediate_wins_limited(after_my_move
+, Sign::O, 1);
+if (o_answers == 0) {
+return 1000000000LL;
+}
+// Это не победа, а ничья. Хорошо как fallback,
+// но не считаем это абсолютной победой.
+return 10000000LL;
+}
+}
+long long score = 0;
+int enemy_immediate_wins = count_immediate_wins(after_my_move,
+enemy);
+int my_immediate_wins_next = count_immediate_wins(
+after_my_move, my_sign);
+if (enemy_immediate_wins > 0) {
+if (my_sign == Sign::O) {
+score -= 120000000LL * enemy_immediate_wins;
+} else {
+score -= 50000000LL * enemy_immediate_wins;
+}
+}
+if (my_sign == Sign::O) {
+if (my_immediate_wins_next >= 2) {
+score += 150000000LL;
+} else if (my_immediate_wins_next == 1) {
+score += 30000000LL;
+}
+} else {
+if (my_immediate_wins_next >= 2) {
+score += 30000000LL;
+} else if (my_immediate_wins_next == 1) {
+score += 3000000LL;
+}
+}
+long long attack = evaluate_board_for_sign(after_my_move,
+my_sign);
+long long defense = evaluate_board_for_sign(after_my_move,
+enemy);
+if (my_sign == Sign::O) {
+// O должен атаковать, но не может игнорировать угрозы X.
+// При слабой защите O слишком часто проигрывает.
+score += attack * 22;
+score -= defense * 24;
+} else {
+// X должен защищаться сильнее, потому что после линии X у O
+есть последний ход.
+score += attack * 12;
+score -= defense * 24;
+}
+score += neighbor_bonus(board, move, my_sign);
+score += strategic_center_bonus(move, cluster);
+return score;
+}
+static int count_possible_lines_through_cell(
+const Board &board,
+int x,
+int y
+) {
+const int directions[4][2] = {
+{1, 0},
+{0, 1},
+{1, 1},
+{1, -1}
+};
+int result = 0;
+for (int d = 0; d < 4; ++d) {
+int dx = directions[d][0];
+int dy = directions[d][1];
+for (int shift = -(WIN_LENGTH - 1); shift <= 0; ++shift) {
+int start_x = x + shift * dx;
+int start_y = y + shift * dy;
+bool valid = true;
+for (int i = 0; i < WIN_LENGTH; ++i) {
+int nx = start_x + i * dx;
+int ny = start_y + i * dy;
+if (!inside(board, nx, ny) || board.get(nx, ny) != Sign
+::NONE) {
+valid = false;
+break;
+}
+}
+if (valid) {
+++result;
+}
+}
+}
+return result;
+}
+static int obstacle_penalty_near_cell(
+const Board &board,
+int x,
+int y
+) {
+int penalty = 0;
+for (int dy = -2; dy <= 2; ++dy) {
+for (int dx = -2; dx <= 2; ++dx) {
+if (dx == 0 && dy == 0)
+continue;
+int nx = x + dx;
+int ny = y + dy;
+if (!inside(board, nx, ny))
+continue;
+Sign cell = board.get(nx, ny);
+if (cell != Sign::NONE && cell != Sign::X && cell != Sign
+::O) {
+int distance = std::abs(dx) + std::abs(dy);
+if (distance <= 1) {
+penalty += 20;
+} else {
+penalty += 7;
+}
+}
+}
+}
+return penalty;
+}
+static ClusterInfo find_largest_free_cluster_center(const Board
+&board) {
+ClusterInfo best_cluster;
+best_cluster.valid = false;
+best_cluster.center_x = 0;
+best_cluster.center_y = 0;
+best_cluster.size = 0;
+std::vector<int> visited(board.cols * board.rows, 0);
+const int directions[8][2] = {
+{1, 0},
+{-1, 0},
+{0, 1},
+{0, -1},
+{1, 1},
+{1, -1},
+{-1, 1},
+{-1, -1}
+};
+for (int y = 0; y < board.rows; ++y) {
+for (int x = 0; x < board.cols; ++x) {
+if (!is_free(board, x, y)) {
+continue;
+}
+int start_index = y * board.cols + x;
+if (visited[start_index]) {
+continue;
+}
+std::queue<Point> queue;
+std::vector<Point> component;
+visited[start_index] = 1;
+queue.push(make_point(x, y));
+long long sum_x = 0;
+long long sum_y = 0;
+while (!queue.empty()) {
+Point current = queue.front();
+queue.pop();
+component.push_back(current);
+sum_x += current.x;
+sum_y += current.y;
+for (int d = 0; d < 8; ++d) {
+int nx = current.x + directions[d][0];
+int ny = current.y + directions[d][1];
+if (!inside(board, nx, ny)) {
+continue;
+}
+int index = ny * board.cols + nx;
+if (visited[index]) {
+continue;
+}
+if (!is_free(board, nx, ny)) {
+continue;
+}
+visited[index] = 1;
+queue.push(make_point(nx, ny));
+}
+}
+int component_size = static_cast<int>(component.size());
+if (component_size == 0) {
+continue;
+}
+Point center_cell = component.front();
+long long best_distance = std::numeric_limits<long long>::
+max();
+long long best_cell_score = std::numeric_limits<long long
+>::min();
+for (Point cell : component) {
+long long dx = static_cast<long long>(cell.x) *
+component_size - sum_x;
+long long dy = static_cast<long long>(cell.y) *
+component_size - sum_y;
+long long distance = dx * dx + dy * dy;
+int possible_lines = count_possible_lines_through_cell(
+board,
+cell.x,
+cell.y
+);
+int obstacle_penalty = obstacle_penalty_near_cell(
+board,
+cell.x,
+cell.y
+);
+long long cell_score = 0;
+cell_score += possible_lines * 1000LL;
+cell_score -= obstacle_penalty * 20LL;
+if (distance < best_distance ||
+(distance == best_distance && cell_score >
+best_cell_score)) {
+best_distance = distance;
+best_cell_score = cell_score;
+center_cell = cell;
+}
+}
+if (!best_cluster.valid || component_size > best_cluster.
+size) {
+best_cluster.valid = true;
+best_cluster.center_x = center_cell.x;
+best_cluster.center_y = center_cell.y;
+best_cluster.size = component_size;
+}
+}
+}
+return best_cluster;
+}
+static Point choose_first_move(
+const Board &board,
+const ClusterInfo &cluster
+) {
+Point best = make_point(0, 0);
+long long best_score = std::numeric_limits<long long>::min();
+for (int y = 0; y < board.rows; ++y) {
+for (int x = 0; x < board.cols; ++x) {
+if (!is_free(board, x, y))
+continue;
+int possible_lines = count_possible_lines_through_cell(
+board, x, y);
+if (possible_lines == 0)
+continue;
+int obstacle_penalty = obstacle_penalty_near_cell(board, x
+, y);
+int distance_to_cluster_center = 0;
+if (cluster.valid) {
+distance_to_cluster_center =
+std::abs(x - cluster.center_x) +
+std::abs(y - cluster.center_y);
+}
+long long score = 0;
+score += possible_lines * 1000LL;
+score -= obstacle_penalty * 20LL;
+score -= distance_to_cluster_center;
+if (score > best_score) {
+best_score = score;
+best = make_point(x, y);
+}
+}
+}
+return best;
+}
+Point MyPlayer::make_move(const State &state) {
+Board board = make_board(state);
+ClusterInfo free_cluster = find_largest_free_cluster_center(
+board);
+std::vector<Point> cells = get_candidate_cells(board);
+if (cells.empty()) {
+if (free_cluster.valid) {
+return make_point(free_cluster.center_x, free_cluster.
+center_y);
+}
+return make_point(0, 0);
+}
+if (board_empty(board)) {
+return choose_first_move(board, free_cluster);
+}
+Point draw_by_x = cells.front();
+bool has_draw_by_x = false;
+// 1. Немедленная победа с учетом особого правила X/O.
+if (m_sign == Sign::O) {
+// O выигрывает сразу.
+for (Point move : cells) {
+if (has_line_after_move(board, move, Sign::O)) {
+return move;
+}
+}
+} else if (m_sign == Sign::X) {
+// X выигрывает только если O не сможет ответить своей
+линией.
+for (Point move : cells) {
+if (is_real_x_win_after_move(board, move)) {
+return move;
+}
+}
+// Если есть ход X в линию, но O может ответить линией,
+// это гарантированная ничья. Запоминаем как fallback.
+for (Point move : cells) {
+if (is_x_draw_after_move(board, move)) {
+draw_by_x = move;
+has_draw_by_x = true;
+break;
+}
+}
+}
+// 2. Блок немедленной победы соперника.
+// Для X это критично: O выигрывает сразу.
+// Для O тоже блокируем линию X, потому что иначе X получает
+сильнейший темп,
+// а O часто не успевает реализовать ответ.
+if (m_sign == Sign::X) {
+for (Point move : cells) {
+if (has_line_after_move(board, move, Sign::O)) {
+return move;
+}
+}
+} else if (m_sign == Sign::O) {
+// Сначала обязательно блокируем немедленную линию X.
+for (Point move : cells) {
+if (has_line_after_move(board, move, Sign::X)) {
+return move;
+}
+}
+// Если срочного блока нет, ищем активный атакующий ход за O
+.
+Point o_attack_move = cells.front();
+if (find_o_attack_move(board, cells, free_cluster,
+o_attack_move)) {
+return o_attack_move;
+}
+}
+Point best_move = cells.front();
+long long best_score = std::numeric_limits<long long>::min();
+for (Point move : cells) {
+long long score = evaluate_move(board, move, m_sign,
+free_cluster);
+if (score > best_score) {
+best_score = score;
+best_move = move;
+}
+}
+// Если мы играем за X и обычная эвристика видит плохую
+позицию,
+// но есть ход, который гарантирует ничью, выбираем ничью.
+if (m_sign == Sign::X && has_draw_by_x && best_score < 0) {
+return draw_by_x;
+}
+return best_move;
+}
+} // namespace ttt::my_player
+46__
+
+\end{lstlisting}
+
+\end{document}

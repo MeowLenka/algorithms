@@ -161,16 +161,14 @@ List::Node *List::merge_sort(Node *head)
 void List::sort()
 {
     if (m_size < 2)
-    {
         return;
-    }
 
     Node *first = _head._pNext;
     first->_pPrev = nullptr;
 
-    Node *last_node = _tail._pPrev;
-    if (last_node)
-        last_node->_pNext = nullptr;
+    Node *last = _tail._pPrev;
+    if (last)
+        last->_pNext = nullptr;
 
     Node *sorted = merge_sort(first);
 
@@ -178,16 +176,16 @@ void List::sort()
     if (sorted)
         sorted->_pPrev = &_head;
 
-    Node *last = sorted;
-    while (last != nullptr && last->_pNext != nullptr)
+    Node *last_last = sorted;
+    while (last != nullptr && last_last->_pNext != nullptr)
     {
-        last = last->_pNext;
+        last_last = last_last->_pNext;
     }
 
-    if (last)
+    if (last_last)
     {
-        last->_pNext = &_tail;
-        _tail._pPrev = last;
+        last_last->_pNext = &_tail;
+        _tail._pPrev = last_last;
     }
     else
     {
