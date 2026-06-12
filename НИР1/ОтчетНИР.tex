@@ -1,0 +1,128 @@
+\documentclass[14pt]{extreport}
+\usepackage{indentfirst}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{parskip}
+\usepackage[top = 20mm, left = 20mm, right = 20mm, bottom = 20mm]{geometry}
+\setlength\parindent{12.5mm} 
+\renewcommand{\baselinestretch}{1.5} 
+\def\hrf#1{\hbox to#1{\hrulefill}} 
+\usepackage{ragged2e} 
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{decorations.pathmorphing,arrows.meta}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{tipa}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{moreverb}
+\usepackage{minted}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,               % Нумерация строк слева
+    numberstyle=\tiny\color{gray}, % Стиль номеров строк
+    stepnumber=1,               % Номер на каждой строке
+    numbersep=5pt,              % Расстояние от номеров до кода
+    breaklines=true,            % Перенос длинных строк
+    tabsize=2,                  % Размер табуляции
+    extendedchars=false,
+    keepspaces=true,
+    showstringspaces=false,
+    frame=single,               % Рамка вокруг листинга
+    captionpos=t,               % Подпись сверху
+    xleftmargin=10pt,
+    xrightmargin=5pt
+}
+\usepackage[colorlinks=true, citecolor=blue, urlcolor=blue, linkcolor=blue]{hyperref}
+\renewcommand\thesection{\arabic{section}}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+    \centering{
+    \hspace{0.2cm}МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ\\
+    Федеральное государственное автономное образовательное учреждение высшего образования\\
+    {\bf «Санкт-Петербургский политехнический университет Петра Великого»}\\[10pt]
+    Институт компьютерных наук и кибербезопасности\\
+    Высшая школа технологий искусственного интелекта\\
+    02.03.01 Математика и компьютерные науки\\
+    \vspace{1.5cm}
+    {\large
+    \bf Отчет по курсовой работе\\
+    \bf Структуры данных}\\
+    {\large\bf Разработка игрового бота для расширенной версии игры “Крестики-нолики”}\\
+    \vspace{\fill}
+    }
+    \vspace{1.5cm}
+    \flushleft{
+        {\bf Выполнил:}\\
+        студент группы 5130201/50301 \hspace{2.25cm} 
+        \line(1,0){120} \quad Ташлыкова Е.В.\\
+        {\bf Принял:}\\
+        Ассистент \hspace{66mm}
+        \line(1,0){120} \quad Кирпиченко С.Р.\\
+        \vspace{1cm}
+        \hspace{11.6cm}<<\hrf{2em}>> \hrf{6em} 2026г.
+        }
+        
+    \vspace{1.5cm}
+    \centering{
+    Санкт-Петербург, 2026
+    }
+
+\newpage
+\justifying
+\newpage
+\renewcommand\contentsname{\vspace{-3.2cm}\centering\LargeСодержание}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+{\centering\section*{Введение}}\addcontentsline{toc}{section}{Введение}
+В раках Летней Научно-исследовательской работы были использованы такие интсрумены и технологии, как VirtualBox -- это кроссплатформенное программное обеспечение для виртуализации, которое позволяет запускать несколько операционных систем (ОС) одновременно на одном физическом компьютере.
+\newpage
+{\centering\section{Постановка задачи}}
+Установка и настройка виртуальной среды Debian 12.14, обучиться основам работы в командном интерпретаторе, создать статические и динамические библиотеки, разработка сборочных файлов CmakeLists.txt, работа с двоичными файлами и визуализация структур в псевдографике 
+\newpage
+{\centering\section*{Заключение}}\addcontentsline{toc}{section}{Заключение}
+
+\newpage
+\renewcommand{\bibname}{\vspace{-3.2cm}\centering\LargeСписок используемых источников}\addcontentsline{toc}{section}{Список используемых источников}
+\begin{thebibliography}{8}
+
+\bibitem{gametheory}
+Петросян Л. А., Зенкевич Н. А., Семина Е. А. Теория игр : учеб. пособие для ун-тов. -- Москва : Высш. шк. : Книжный дом «Университет», 1998. - 304 с. - ISBN 5-06-001005-8.
+
+\bibitem{virtualbox}
+[Электронный ресурс] : 
+\href{https://www.oracle.com/virtualization/virtualbox/}{https://www.oracle.com/virtualization/virtualbox/} 
+(дата обращения: 22.05.2026).
+
+\bibitem{habr_chess}
+Habr. <<Как компьютер играет в шахматы?>> [Электронный ресурс]: 
+\href{https://habr.com/ru/articles/390821/}{https://habr.com/ru/articles/390821/} 
+(дата обращения: 20.05.2026).
+
+\bibitem{habr_optimization}
+Habr. <<Оптимизация перебора>> [Электронный ресурс] : 
+\href{https://habr.com/ru/articles/190850/}{https://habr.com/ru/articles/190850/} 
+(дата обращения: 22.05.2026).
+
+\bibitem{devto_projects}
+Adiati, A. <<Planning and Tracking Projects with GitHub's Projects Tool>> [Электронный ресурс] : 
+\href{https://dev.to/adiatiayu/planning-and-tracking-projects-with-githubs-projects-tool-572l}{https://dev.to/adiatiayu/planning-and-tracking-projects-with-githubs-projects-tool-572l} 
+(дата обращения: 23.05.2026).
+
+\end{thebibliography}
+
+\end{document}

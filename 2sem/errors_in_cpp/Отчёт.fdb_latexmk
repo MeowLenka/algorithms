@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1778766805.97409 "/Users/elenat/Documents/вуз/algorithms/2sem/errors_in_cpp/Отчёт.tex" "Отчёт.pdf" "Отчёт" 1778766806.04796 2
+["pdflatex"] 1780046324.7186 "/Users/elenat/Documents/вуз/algorithms/2sem/errors_in_cpp/Отчёт.tex" "Отчёт.pdf" "Отчёт" 1780046324.79964 2
   "/Users/elenat/Documents/вуз/algorithms/2sem/errors_in_cpp/Отчёт.tex" 1778766805.62465 61947 95cfa720f560407223684b4d26d0729f ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/map/fontname/texfonts.map" 1741388039 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1741388039 1288 655e228510b4c2a1abe905c368440826 ""
@@ -12,7 +12,7 @@
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty" 1741388039 9783 ab4bee47700c04aadedb8da27591b0ab ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/web2c/texmf.cnf" 1741388039 42151 79f67285bdd95beca4d137b380b4b9e5 ""
   "/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1741388039 3346132 6a939494d30ef2febcac9d47a1191e44 ""
-  "Отчёт.aux" 1778766805.97372 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "Отчёт.aux" 0 -1 0 "pdflatex"
   "Отчёт.tex" 1778766805.62465 61947 95cfa720f560407223684b4d26d0729f ""
   (generated)
   "Отчёт.aux"
