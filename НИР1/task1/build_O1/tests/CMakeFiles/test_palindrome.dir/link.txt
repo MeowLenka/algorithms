@@ -1,0 +1,1 @@
+/usr/bin/cc -O1 -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/test_palindrome.dir/test_palindrome.c.o -o ../bin/test_palindrome  ../lib/libpalindrome.a

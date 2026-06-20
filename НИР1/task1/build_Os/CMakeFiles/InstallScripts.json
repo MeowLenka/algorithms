@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/elenat/Documents/\u0432\u0443\u0437/algorithms/\u041d\u0418\u04201/task1/build_Os/cmake_install.cmake",
+		"/Users/elenat/Documents/\u0432\u0443\u0437/algorithms/\u041d\u0418\u04201/task1/build_Os/src/cmake_install.cmake",
+		"/Users/elenat/Documents/\u0432\u0443\u0437/algorithms/\u041d\u0418\u04201/task1/build_Os/tests/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

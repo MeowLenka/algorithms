@@ -1,0 +1,11 @@
+Размеры файлов:
+-rwxr-xr-x@ 1 elenat  staff    34K Jun 18 12:18 bin/test_dlopen
+-rwxr-xr-x@ 1 elenat  staff    33K Jun 18 12:18 bin/test_palindrome
+-rwxr-xr-x@ 1 elenat  staff    33K Jun 18 12:18 bin/test_palindrome_dynamic
+-rw-r--r--@ 1 elenat  staff   1.1K Jun 18 12:18 lib/libpalindrome.a
+Размеры файлов:
+-rwxr-xr-x@ 1 elenat  staff    34K Jun 18 12:28 bin/test_dlopen
+-rwxr-xr-x@ 1 elenat  staff    33K Jun 18 12:28 bin/test_palindrome
+-rwxr-xr-x@ 1 elenat  staff    33K Jun 18 12:28 bin/test_palindrome_dynamic
+-rw-r--r--@ 1 elenat  staff   1.1K Jun 18 12:28 lib/libpalindrome.a
+lrwxr-xr-x@ 1 elenat  staff    21B Jun 18 12:28 lib/libpalindrome.dylib -> libpalindrome.1.dylib
