@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.10.11)  16 JUN 2026 18:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.10.11)  20 JUN 2026 23:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1116,55 +1116,119 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [3]
 
 [4]
+<vm.png, id=94, 462.72874pt x 494.84875pt>
+File: vm.png Graphic file (type png)
+<use vm.png>
+Package pdftex.def Info: vm.png  used on input line 122.
+(pdftex.def)             Requested size: 266.0599pt x 284.52756pt.
+<tty1.jpg, id=96, 881.2925pt x 329.23pt>
+File: tty1.jpg Graphic file (type jpg)
+<use tty1.jpg>
+Package pdftex.def Info: tty1.jpg  used on input line 129.
+(pdftex.def)             Requested size: 380.81758pt x 142.26378pt.
 
-[5]
-Underfull \hbox (badness 2512) in paragraph at lines 111--114
+
+[5 <./vm.png>]
+<host.jpg, id=107, 1281.78876pt x 219.82124pt>
+File: host.jpg Graphic file (type jpg)
+<use host.jpg>
+Package pdftex.def Info: host.jpg  used on input line 144.
+(pdftex.def)             Requested size: 331.80989pt x 56.9055pt.
+LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 150.
+ (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
+File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+)
+
+[6{/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./tty1.jpg> <./host.jpg>]
+<commands1.jpg, id=116, 1128.215pt x 1099.10625pt>
+File: commands1.jpg Graphic file (type jpg)
+<use commands1.jpg>
+Package pdftex.def Info: commands1.jpg  used on input line 205.
+(pdftex.def)             Requested size: 438.0912pt x 426.79134pt.
+
+
+[7]
+
+[8 <./commands1.jpg>]
+\pydata@fh@_3E50A0A497B003E697B131968D3D674D.data.minted=\write7
+\openout7 = `_3E50A0A497B003E697B131968D3D674D.data.minted'.
+
+runsystem(latexminted config  --timestamp 20260620231920 3E50A0A497B003E697B131968D3D674D)...executed safely (allowed).
+
+ (./_3E50A0A497B003E697B131968D3D674D.config.minted)
+runsystem(latexminted cleanconfig  --timestamp 20260620231920 3E50A0A497B003E697B131968D3D674D)...executed safely (allowed).
+
+ (./_minted/default.style.minted) (./_minted/AB210C561F4532CF8F7F28B9861306E8.highlight.minted
+LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T2A/cmtt/m/n' tried instead on input line 7.
+)
+<tree_ldd.png, id=130, 373.395pt x 254.9525pt>
+File: tree_ldd.png Graphic file (type png)
+<use tree_ldd.png>
+Package pdftex.def Info: tree_ldd.png  used on input line 242.
+(pdftex.def)             Requested size: 333.38594pt x 227.62204pt.
+
+
+[9] (./_minted/CA5C5CBF2E611514A8770EA391014B0A.highlight.minted
+
+[10 <./tree_ldd.png>])
+
+[11]
+Overfull \hbox (42.9586pt too wide) in paragraph at lines 293--294
+[]\T2A/cmr/m/n/14.4 Сборка биб-лио-тек про-ис-хо-дит бля-го-да-ря сбо-роч-но-му фай-лу $\OML/cmm/m/it/14.4 src=CMakeLists:txt$\T2A/cmr/m/n/14.4 . 
+ []
+
+
+Overfull \hbox (13.67596pt too wide) in paragraph at lines 296--298
+[]\T2A/cmr/m/n/14.4 Как про-ис-хо-дит те-сти-ро-ва-ние функ-ций $\OML/cmm/m/it/14.4 palindrome$ \T2A/cmr/m/n/14.4 и $\OML/cmm/m/it/14.4 palindrome[]recursive$\T2A/cmr/m/n/14.4 : 
+ []
+
+
+
+[12]
+Overfull \hbox (2.81924pt too wide) in paragraph at lines 318--320
+[]\T2A/cmr/m/n/14.4 В рам-ках за-да-ния бы-ло неохо-ди-мо ре-а-ли-зо-вать струк-ту-ру с име-нем PRICE,
+ []
+
+
+
+[13] (./_minted/DA7B29BA5E4AF8D76B90E3D29EF660B4.highlight.minted)
+
+[14]
+Underfull \hbox (badness 2512) in paragraph at lines 369--372
 []\T2A/cmr/m/n/14.4 [Электронный ре-сурс] : [][]https://www.oracle.com/virtualization/virtualbox/[][]
  []
 
 
-Underfull \hbox (badness 3919) in paragraph at lines 116--119
-[]\T2A/cmr/m/n/14.4 Habr. <<Как ком-пью-тер иг-ра-ет в шах-ма-ты?>> [Элек-трон-ный ре-сурс]:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 121--124
-[]\T2A/cmr/m/n/14.4 Habr. <<Оп-ти-ми-за-ция пе-ре-бо-ра>> [Элек-трон-ный ре-сурс] :
- []
-
-
-Underfull \hbox (badness 2351) in paragraph at lines 126--129
+Underfull \hbox (badness 2351) in paragraph at lines 375--378
 \T2A/cmr/m/n/14.4 трон-ный ре-сурс] : [][]https://dev.to/adiatiayu/planning-and-tracking-projects-
  []
 
 
 
-[6
+[15
 
-]
-runsystem(latexminted cleantemp  --timestamp 20260616180706 3E50A0A497B003E697B131968D3D674D)...executed safely (allowed).
-
- (./РћС‚С‡РµС‚РќРР .aux)
+] (./РћС‚С‡РµС‚РќРР .aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `РћС‚С‡РµС‚РќРР .out' has not changed.
-(rerunfilecheck)             Checksum: 57B7099F705531C788EE2676362178AE;918.
+(rerunfilecheck)             Checksum: 26085E4AC58320C0A803FFDE8035114E;3126.
  ) 
 Here is how much of TeX's memory you used:
- 49426 strings out of 473190
- 1167008 string characters out of 5704334
- 1952613 words of memory out of 5000000
- 72099 multiletter control sequences out of 15000+600000
- 570499 words of font info for 58 fonts, out of 8000000 for 9000
+ 49827 strings out of 473190
+ 1175400 string characters out of 5704334
+ 1959613 words of memory out of 5000000
+ 72433 multiletter control sequences out of 15000+600000
+ 575117 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,5n,107p,651b,500s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb>
-Output written on РћС‚С‡РµС‚РќРР .pdf (6 pages, 80576 bytes).
+ 102i,11n,107p,781b,982s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfit1000.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.pfb>
+Output written on РћС‚С‡РµС‚РќРР .pdf (15 pages, 910737 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
- 18 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 249 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 126 words of extra memory for PDF output out of 10000 (max. 10000000)
 

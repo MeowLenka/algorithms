@@ -1,0 +1,20 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{tree.sh}
+\PYG{n}{function}\PYG{+w}{ }\PYG{n+nf}{print\PYGZus{}deps}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{local}\PYG{+w}{ }\PYG{n}{file}\PYG{o}{=}\PYG{n}{\PYGZdl{}1}
+\PYG{+w}{    }\PYG{n}{local}\PYG{+w}{ }\PYG{n}{indent}\PYG{o}{=}\PYG{n}{\PYGZdl{}2}
+
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{[}\PYG{+w}{ }\PYG{o}{!}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{f}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}file}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{then}
+\PYG{+w}{        }\PYG{n}{echo}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}\PYGZob{}indent\PYGZcb{}[НЕ НАЙДЕНО: \PYGZdl{}file]}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{        }\PYG{k}{return}
+\PYG{+w}{    }\PYG{n}{fi}
+
+\PYG{+w}{    }\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{ Получаем зависимости через ldd}
+\PYG{+w}{    }\PYG{n}{ldd}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}file}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{o}{\PYGZgt{}}\PYG{o}{/}\PYG{n}{dev}\PYG{o}{/}\PYG{n}{null}\PYG{+w}{ }\PYG{o}{|}\PYG{+w}{ }\PYG{n}{grep}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{=\PYGZgt{} /}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{|}\PYG{+w}{ }\PYG{n}{awk}\PYG{+w}{ }\PYG{err}{\PYGZsq{}}\PYG{p}{\PYGZob{}}\PYG{n}{print}\PYG{+w}{ }\PYG{n}{\PYGZdl{}3}\PYG{p}{\PYGZcb{}}\PYG{err}{\PYGZsq{}}\PYG{+w}{ }\PYG{o}{|}\PYG{+w}{ }\PYG{k}{while}\PYG{+w}{ }\PYG{n}{read}\PYG{+w}{ }\PYG{n}{lib}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{do}
+\PYG{+w}{        }\PYG{n}{echo}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}\PYGZob{}indent\PYGZcb{}|\PYGZus{}\PYGZus{} \PYGZdl{}(basename \PYGZdl{}lib)}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{        }\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{ Рекурсивно вызываем функцию с увеличенным отступом}
+\PYG{+w}{        }\PYG{n}{print\PYGZus{}deps}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}lib}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}\PYGZob{}indent\PYGZcb{}    }\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{    }\PYG{n}{done}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{print\PYGZus{}deps}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}1}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdq{}}
+\end{MintedVerbatim}

@@ -3,8 +3,8 @@ echo ""
 
 # флаги оптимизации
 OPTIMIZATIONS=("O0" "O1" "O2" "Os")
-TEST_ITERATIONS=1000000
-WORD_LENGTH=10
+TEST_ITERATIONS=100000000
+WORD_LENGTH=100000000
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS

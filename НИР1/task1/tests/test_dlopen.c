@@ -161,8 +161,8 @@ int main(int argc, char *argv[]) {
     printf("Среднее время на слово: %.9f секунд\n", time_rec / iterations);
     
     printf("\nДемонстрация работы (через dlopen):\n");
-    char *test_words[] = {"level", "hello", "bebebeb", "aAAAa", "AaaaaAA", "friends", "applelppa"};
-    int num_tests = 7;
+    char *test_words[] = {"levellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevel", "hellohellohellohellohellohellohellohellohellohellohello", "bebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebeb", "aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa", "friendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriends", "", "A", "aA"};
+    int num_tests = 8;
     
     for (int i = 0; i < num_tests; i++) {
         int len = string_len_func(test_words[i]);
