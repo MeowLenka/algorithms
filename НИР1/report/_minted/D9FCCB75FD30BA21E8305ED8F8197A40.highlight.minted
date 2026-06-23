@@ -1,0 +1,4 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{handle}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{dlopen}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{libpalindrome.so}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{RTLD\PYGZus{}LAZY}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{palindrome\PYGZus{}func\PYGZus{}t}\PYG{+w}{ }\PYG{n}{func}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{palindrome\PYGZus{}func\PYGZus{}t}\PYG{p}{)}\PYG{n}{dlsym}\PYG{p}{(}\PYG{n}{handle}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{palindrome}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\end{MintedVerbatim}

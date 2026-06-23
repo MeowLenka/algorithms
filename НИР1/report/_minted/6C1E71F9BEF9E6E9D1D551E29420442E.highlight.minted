@@ -1,0 +1,5 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{WINDOW}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{main\PYGZus{}win}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{newwin}\PYG{p}{(}\PYG{l+m+mi}{17}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{55}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{rows}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{17}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{cols}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{55}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{box}\PYG{p}{(}\PYG{n}{main\PYGZus{}win}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{mvwprintw}\PYG{p}{(}\PYG{n}{main\PYGZus{}win}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ PRODUCT DATABASE MANAGEMENT }\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\end{MintedVerbatim}
