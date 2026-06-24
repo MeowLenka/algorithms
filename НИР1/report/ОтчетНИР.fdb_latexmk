@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1782242829.16995 "/Users/elenat/Documents/вуз/algorithms/НИР1/report/ОтчетНИР.tex" "ОтчетНИР.pdf" "ОтчетНИР" 1782242831.45284 0
+["pdflatex"] 1782292167.39705 "/Users/elenat/Documents/вуз/algorithms/НИР1/report/ОтчетНИР.tex" "ОтчетНИР.pdf" "ОтчетНИР" 1782292169.64593 0
   "/Users/elenat/.texlive2025/texmf-var/fonts/tfm/lh/lh-t2a/labx0700.tfm" 1760984015.1385 3328 d6a760976be2c5546586233212eda387 ""
   "/Users/elenat/.texlive2025/texmf-var/fonts/tfm/lh/lh-t2a/labx1000.tfm" 1760440382.65457 3300 6abb8e321227ead2a8e929e5abc72bd3 ""
   "/Users/elenat/.texlive2025/texmf-var/fonts/tfm/lh/lh-t2a/labx1440.tfm" 1761582693.07752 3304 6a543c07045572737981351171e0505e ""
@@ -267,7 +267,7 @@
   "code/task1/test_optimization.sh" 1781961300.62131 2742 fe499f5cea2de1b767ab5473d4596ded ""
   "code/task1/test_palindrome.c" 1781952495.87108 2987 ba3e647ab105195ad788105ca9fd3a41 ""
   "code/task2/CmakeLists.txt" 1781852854.91028 337 afcfb1ceee8a6448b89ded5297ef4eef ""
-  "code/task2/main.c" 1782038866.4933 20210 d7bf8615faf64001ae19e5076f06d90a ""
+  "code/task2/main.c" 1782292164.51724 20319 b99cdb2c5927d9b17747b735684d7d97 ""
   "code/task2/price.c" 1782033508.32401 3644 b7239cf88173c0dfb8b16aa1fc5e6338 ""
   "code/task2/price.h" 1782027538.62892 751 8f7e3230e8e382ca67dd996da80a3ccf ""
   "commands1.jpg" 1781966112 321657 a0d824b55cd56df60fd396634f2ed8ba ""
@@ -287,10 +287,10 @@
   "tree_price_db.png" 1782144390.18594 130104 1fb55ee8859baecfbf30b94b6a366a47 ""
   "tty1.jpg" 1781100662 71212 7acb3cfec0d4fb5362091e5c05fc1d5a ""
   "vm.png" 1781963582.93691 176597 3b65e500ac15904971dc6b217070c98d ""
-  "ОтчетНИР.aux" 1782242831.34196 18588 5216df63c0f30f5cd3773751e1058234 "pdflatex"
-  "ОтчетНИР.out" 1782242831.34315 3726 2cdbf7b36231579fc2a77cddb38fe148 "pdflatex"
+  "ОтчетНИР.aux" 1782292169.53691 18588 e43e34ed050148e704e786299868685b "pdflatex"
+  "ОтчетНИР.out" 1782292169.53805 3726 2cdbf7b36231579fc2a77cddb38fe148 "pdflatex"
   "ОтчетНИР.tex" 1782242826.6103 57387 2747f330fd00758b821022ede26c7b7a ""
-  "ОтчетНИР.toc" 1782242831.34331 1493 f25f5bb09385ee512709992028c60f18 "pdflatex"
+  "ОтчетНИР.toc" 1782292169.53821 1493 f25f5bb09385ee512709992028c60f18 "pdflatex"
   (generated)
   "ОтчетНИР.aux"
   "ОтчетНИР.log"

@@ -1,4 +1,3 @@
-// main.c
 #include <ncurses.h>
 #include <ctype.h>
 #include "price.h"
@@ -8,17 +7,15 @@ unsigned int item_count = 0;
 DB_HEADER header;
 char filename[256] = "databasetest.bin";
 
-// Прототипы функций
 int input_data_ncurses();
-int search_category_ncurses();  // Теперь возвращает int
+int search_category_ncurses();
 void search_by_category(const char *category);
 void show_all_products();
 void show_database_info();
-void save_with_message();
+void save_with_message(char *signature);
 void draw_main_menu(WINDOW *win, const char *status_msg);
 int get_menu_choice(WINDOW *win);
 
-// Функция отрисовки главного меню
 void draw_main_menu(WINDOW *win, const char *status_msg)
 {
     werase(win);
@@ -43,7 +40,6 @@ void draw_main_menu(WINDOW *win, const char *status_msg)
     wrefresh(win);
 }
 
-// Функция получения выбора с валидацией
 int get_menu_choice(WINDOW *win)
 {
     char input[256];
@@ -63,9 +59,7 @@ int get_menu_choice(WINDOW *win)
 
         int valid_input = 1;
         if (input[0] == '\0')
-        {
             valid_input = 0;
-        }
         else
         {
             for (int i = 0; input[i] != '\0'; i++)
@@ -82,9 +76,7 @@ int get_menu_choice(WINDOW *win)
         {
             choice = atoi(input);
             if (choice >= 1 && choice <= 6)
-            {
                 return choice;
-            }
         }
 
         mvwprintw(win, 15, 4, "Invalid input! Please enter number 1-6.");
@@ -133,20 +125,30 @@ int input_data_ncurses()
         mvwprintw(win, 13, 2, "Press ESC to cancel");
         wrefresh(win);
 
-        // Ввод категории
         mvwprintw(win, 2, 2, "Category: ");
         wmove(win, 2, 14);
         wclrtoeol(win);
         wrefresh(win);
-        
+
         int ch;
         int pos = 0;
-        while (1) {
+        while (1)
+        {
             ch = wgetch(win);
-            if (ch == 27) { cancelled = 1; break; }
-            if (ch == 10) { category[pos] = '\0'; break; }
-            if (ch == KEY_BACKSPACE || ch == 127) {
-                if (pos > 0) {
+            if (ch == 27) // esc
+            {
+                cancelled = 1;
+                break;
+            }
+            if (ch == 10) // enter
+            {
+                category[pos] = '\0';
+                break;
+            }
+            if (ch == KEY_BACKSPACE || ch == 127) // backspace or delete
+            {
+                if (pos > 0)
+                {
                     pos--;
                     category[pos] = '\0';
                     mvwprintw(win, 2, 14, "%-30s", category);
@@ -155,28 +157,40 @@ int input_data_ncurses()
                 }
                 continue;
             }
-            if (pos < 255 && ch >= 32 && ch <= 126) {
+            if (pos < 255 && ch >= 32 && ch <= 126) // разрешены только цифры и точка
+            {
                 category[pos++] = ch;
                 category[pos] = '\0';
                 mvwprintw(win, 2, 14, "%s", category);
                 wrefresh(win);
             }
         }
-        if (cancelled) break;
+        if (cancelled)
+            break;
 
-        // Ввод названия
         mvwprintw(win, 4, 2, "Product name: ");
         wmove(win, 4, 16);
         wclrtoeol(win);
         wrefresh(win);
-        
+
         pos = 0;
-        while (1) {
+        while (1)
+        {
             ch = wgetch(win);
-            if (ch == 27) { cancelled = 1; break; }
-            if (ch == 10) { good[pos] = '\0'; break; }
-            if (ch == KEY_BACKSPACE || ch == 127) {
-                if (pos > 0) {
+            if (ch == 27)
+            {
+                cancelled = 1;
+                break;
+            }
+            if (ch == 10)
+            {
+                good[pos] = '\0';
+                break;
+            }
+            if (ch == KEY_BACKSPACE || ch == 127)
+            {
+                if (pos > 0)
+                {
                     pos--;
                     good[pos] = '\0';
                     mvwprintw(win, 4, 16, "%-30s", good);
@@ -185,28 +199,40 @@ int input_data_ncurses()
                 }
                 continue;
             }
-            if (pos < 255 && ch >= 32 && ch <= 126) {
+            if (pos < 255 && ch >= 32 && ch <= 126)
+            {
                 good[pos++] = ch;
                 good[pos] = '\0';
                 mvwprintw(win, 4, 16, "%s", good);
                 wrefresh(win);
             }
         }
-        if (cancelled) break;
+        if (cancelled)
+            break;
 
-        // Ввод цены
         mvwprintw(win, 6, 2, "Cost (rub): ");
         wmove(win, 6, 14);
         wclrtoeol(win);
         wrefresh(win);
-        
+
         pos = 0;
-        while (1) {
+        while (1)
+        {
             ch = wgetch(win);
-            if (ch == 27) { cancelled = 1; break; }
-            if (ch == 10) { price_str[pos] = '\0'; break; }
-            if (ch == KEY_BACKSPACE || ch == 127) {
-                if (pos > 0) {
+            if (ch == 27)
+            {
+                cancelled = 1;
+                break;
+            }
+            if (ch == 10)
+            {
+                price_str[pos] = '\0';
+                break;
+            }
+            if (ch == KEY_BACKSPACE || ch == 127)
+            {
+                if (pos > 0)
+                {
                     pos--;
                     price_str[pos] = '\0';
                     mvwprintw(win, 6, 14, "%-30s", price_str);
@@ -215,28 +241,40 @@ int input_data_ncurses()
                 }
                 continue;
             }
-            if (pos < 255 && ((ch >= '0' && ch <= '9') || ch == '.')) {
+            if (pos < 255 && ((ch >= '0' && ch <= '9') || ch == '.'))
+            {
                 price_str[pos++] = ch;
                 price_str[pos] = '\0';
                 mvwprintw(win, 6, 14, "%s", price_str);
                 wrefresh(win);
             }
         }
-        if (cancelled) break;
+        if (cancelled)
+            break;
 
-        // Ввод количества
         mvwprintw(win, 8, 2, "Amount: ");
         wmove(win, 8, 10);
         wclrtoeol(win);
         wrefresh(win);
-        
+
         pos = 0;
-        while (1) {
+        while (1)
+        {
             ch = wgetch(win);
-            if (ch == 27) { cancelled = 1; break; }
-            if (ch == 10) { num_str[pos] = '\0'; break; }
-            if (ch == KEY_BACKSPACE || ch == 127) {
-                if (pos > 0) {
+            if (ch == 27)
+            {
+                cancelled = 1;
+                break;
+            }
+            if (ch == 10)
+            {
+                num_str[pos] = '\0';
+                break;
+            }
+            if (ch == KEY_BACKSPACE || ch == 127)
+            {
+                if (pos > 0)
+                {
                     pos--;
                     num_str[pos] = '\0';
                     mvwprintw(win, 8, 10, "%-30s", num_str);
@@ -245,16 +283,18 @@ int input_data_ncurses()
                 }
                 continue;
             }
-            if (pos < 255 && ch >= '0' && ch <= '9') {
+            if (pos < 255 && ch >= '0' && ch <= '9')
+            {
                 num_str[pos++] = ch;
                 num_str[pos] = '\0';
                 mvwprintw(win, 8, 10, "%s", num_str);
                 wrefresh(win);
             }
         }
-        if (cancelled) break;
+        if (cancelled)
+            break;
 
-        // Валидация
+        // валидация
         int valid_price = 1;
         int valid_num = 1;
         int has_dot = 0;
@@ -264,7 +304,7 @@ int input_data_ncurses()
             valid = 0;
             mvwprintw(win, 11, 2, "ERROR: Category and Product name cannot be empty!");
             wrefresh(win);
-            getch();
+            getch(); // ожидание нажатия клавиши
             continue;
         }
 
@@ -294,9 +334,7 @@ int input_data_ncurses()
         }
 
         if (strlen(num_str) == 0)
-        {
             valid_num = 0;
-        }
         else
         {
             for (int i = 0; num_str[i] != '\0'; i++)
@@ -318,13 +356,10 @@ int input_data_ncurses()
             {
                 valid = 0;
                 if (price <= 0)
-                {
                     mvwprintw(win, 11, 2, "ERROR: Price must be greater than 0!");
-                }
+
                 else
-                {
                     mvwprintw(win, 11, 2, "ERROR: Amount must be greater than 0!");
-                }
                 wrefresh(win);
                 getch();
                 continue;
@@ -335,13 +370,9 @@ int input_data_ncurses()
         {
             valid = 0;
             if (!valid_price)
-            {
                 mvwprintw(win, 11, 2, "ERROR: Price must be a positive number (e.g. 99.50)");
-            }
             else if (!valid_num)
-            {
                 mvwprintw(win, 11, 2, "ERROR: Amount must be a positive integer (e.g. 10)");
-            }
             wrefresh(win);
             getch();
         }
@@ -385,7 +416,6 @@ int input_data_ncurses()
     return 0;
 }
 
-// Функция для ввода категории через ncurses
 int search_category_ncurses()
 {
     char category[256] = "";
@@ -394,39 +424,44 @@ int search_category_ncurses()
     int ch;
     int pos = 0;
     int cancelled = 0;
-    
+
     initscr();
     cbreak();
     echo();
     keypad(stdscr, TRUE);
     clear();
     refresh();
-    
+
     getmaxyx(stdscr, rows, cols);
-    
+
     win = newwin(7, 50, (rows - 7) / 2, (cols - 50) / 2);
     box(win, 0, 0);
     mvwprintw(win, 0, 2, " SEARCH BY CATEGORY ");
     mvwprintw(win, 2, 2, "Enter category: ");
     mvwprintw(win, 5, 2, "Press ESC to cancel");
     wrefresh(win);
-    
+
     mvwprintw(win, 2, 18, "                                    ");
     wmove(win, 2, 18);
     wrefresh(win);
-    
-    while (1) {
+
+    while (1)
+    {
         ch = wgetch(win);
-        if (ch == 27) { // ESC
+        if (ch == 27)
+        { // esc
             cancelled = 1;
             break;
         }
-        if (ch == 10) { // Enter
+        if (ch == 10)
+        { // enter
             category[pos] = '\0';
             break;
         }
-        if (ch == KEY_BACKSPACE || ch == 127) {
-            if (pos > 0) {
+        if (ch == KEY_BACKSPACE || ch == 127)
+        {
+            if (pos > 0)
+            {
                 pos--;
                 category[pos] = '\0';
                 mvwprintw(win, 2, 18, "%-30s", category);
@@ -435,24 +470,25 @@ int search_category_ncurses()
             }
             continue;
         }
-        if (pos < 255 && ch >= 32 && ch <= 126) {
+        if (pos < 255 && ch >= 32 && ch <= 126)
+        {
             category[pos++] = ch;
             category[pos] = '\0';
             mvwprintw(win, 2, 18, "%s", category);
             wrefresh(win);
         }
     }
-    
+
     delwin(win);
     endwin();
-    
+
     if (cancelled || strlen(category) == 0)
     {
-        return 0; // Отмена
+        return 0; // отмена
     }
-    
+
     search_by_category(category);
-    return 1; // Успешно
+    return 1; // успешно
 }
 
 void search_by_category(const char *category)
@@ -477,9 +513,8 @@ void search_by_category(const char *category)
             }
             else if (items[i].num == max_num)
             {
-                indices[count_found] = i;
+                indices[count_found++] = i;
                 total_price += items[i].price;
-                count_found++;
             }
         }
     }
@@ -637,7 +672,6 @@ int main()
         snprintf(status_msg, sizeof(status_msg), "No database found. Creating new.");
     }
 
-    // Основной цикл
     while (1)
     {
         initscr();
@@ -686,7 +720,7 @@ int main()
                          "Database is empty.");
                 break;
             }
-            
+
             int search_result = search_category_ncurses();
             if (search_result == 1)
             {
@@ -721,7 +755,7 @@ int main()
             snprintf(status_msg, sizeof(status_msg),
                      "Database info displayed.");
             printf("Database info displayed, CRC-32: 0x%08X", header.crc32);
-            
+
             break;
 
         case 6:

@@ -16,8 +16,6 @@ find_package(ZLIB REQUIRED)
 
 target_link_libraries(price_db
     ncurses
-    form
-    panel
     ${ZLIB_LIBRARIES}
     m
 )

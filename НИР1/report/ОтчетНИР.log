@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.10.11)  23 JUN 2026 22:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.10.11)  24 JUN 2026 12:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1155,10 +1155,10 @@ Package pdftex.def Info: commands1.jpg  used on input line 215.
 \pydata@fh@_3E50A0A497B003E697B131968D3D674D.data.minted=\write7
 \openout7 = `_3E50A0A497B003E697B131968D3D674D.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260623222709 3E50A0A497B003E697B131968D3D674D)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20260624120927 3E50A0A497B003E697B131968D3D674D)...executed safely (allowed).
 
  (./_3E50A0A497B003E697B131968D3D674D.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260623222709 3E50A0A497B003E697B131968D3D674D)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20260624120927 3E50A0A497B003E697B131968D3D674D)...executed safely (allowed).
 
  (./_minted/default.style.minted) (./_minted/E65A469CCE99CF3C56DC9B45FC61041E.highlight.minted
 LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <10> not available
@@ -1560,16 +1560,18 @@ Overfull \hbox (328.1299pt too wide) in paragraph at lines 164--165
 
 [76]
 
-[77])
+[77]
 
-[78] (./code/task2/CmakeLists.txt)
+[78]) (./code/task2/CmakeLists.txt
+
+[79])
 
 Package caption Warning: Unused \captionsetup[listing] on input line 747.
 See the caption package documentation for explanation.
 
 
 
-[79] (./ОтчетНИР.aux)
+[80] (./ОтчетНИР.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1578,18 +1580,18 @@ Package rerunfilecheck Info: File `ОтчетНИР.out' has not changed.
 (rerunfilecheck)             Checksum: 2CDBF7B36231579FC2A77CDDB38FE148;3726.
  ) 
 Here is how much of TeX's memory you used:
- 52453 strings out of 473190
- 1218220 string characters out of 5704334
- 2451613 words of memory out of 5000000
+ 52488 strings out of 473190
+ 1218839 string characters out of 5704334
+ 2421613 words of memory out of 5000000
  73427 multiletter control sequences out of 15000+600000
  582505 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,12n,107p,1110b,1317s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfit1000.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on ОтчетНИР.pdf (79 pages, 2302278 bytes).
+Output written on ОтчетНИР.pdf (80 pages, 2303342 bytes).
 PDF statistics:
- 2400 PDF objects out of 2487 (max. 8388607)
- 2242 compressed objects within 23 object streams
- 1624 named destinations out of 1728 (max. 500000)
+ 2445 PDF objects out of 2487 (max. 8388607)
+ 2286 compressed objects within 23 object streams
+ 1659 named destinations out of 1728 (max. 500000)
  202 words of extra memory for PDF output out of 10000 (max. 10000000)
 
