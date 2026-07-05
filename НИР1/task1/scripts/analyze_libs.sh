@@ -2,10 +2,10 @@ echo "Анализ разделяемых библиотек (CMake) :"
 echo ""
 
 # сборка в режиме release
-mkdir -p build_analysis
+mkdir -p build_analysis # создание директории для сборки
 cd build_analysis
 cmake .. -DCMAKE_BUILD_TYPE=Release
-make -j$(nproc) > /dev/null 2>&1
+make -j$(nproc) > /dev/null 2>&1 # собираем проект
 
 echo "1. Статическая линковка:"
 ldd bin/test_palindrome

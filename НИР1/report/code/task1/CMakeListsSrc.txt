@@ -22,28 +22,14 @@ if(BUILD_SHARED_LIB)
         OUTPUT_NAME palindrome
         CLEAN_DIRECT_OUTPUT 1
         VERSION ${PROJECT_VERSION}
-        SOVERSION 1
-    )
-
-    if(APPLE)
-        set_target_properties(palindrome_shared PROPERTIES
-            INSTALL_NAME_DIR "@rpath"
-            BUILD_WITH_INSTALL_RPATH ON
-        )
-
-        target_link_options(palindrome_shared PRIVATE 
-            -Wl,-install_name,@rpath/libpalindrome.dylib
-        )
-    elseif(UNIX)
-        target_link_options(palindrome_shared PRIVATE 
-            -Wl,-soname,libpalindrome.so.1
-        )
-    endif()
+        SOVERSION 1)
+    
+    target_link_options(palindrome_shared PRIVATE 
+        -Wl,-soname,libpalindrome.so.1
     
     install(TARGETS palindrome_shared
         LIBRARY DESTINATION lib
-        RUNTIME DESTINATION bin
-    )
+        RUNTIME DESTINATION bin)
 endif()
 
 install(FILES ${LIB_HEADERS} DESTINATION include)

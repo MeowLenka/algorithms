@@ -44,7 +44,7 @@ double test_speed(int iterations, int word_len, bool use_recursive)
 int main(int argc, char *argv[])
 {
     int iterations = TEST_WORDS;
-    int word_len = 10;
+    int word_len = 10000;
     bool use_recursive = false;
 
     if (argc > 1)
@@ -71,8 +71,8 @@ int main(int argc, char *argv[])
     printf("Среднее время на слово: %.9f секунд\n", time_spent / iterations);
 
     printf("\nДемонстрация работы:\n");
-    char *test_words[] = {"levellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevel", "hellohellohellohellohellohellohellohellohellohellohello", "bebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebeb", "aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa", "friendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriends", "", "A", "aA"};
-    int num_tests = 7;
+    char *test_words[] = {"levellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevellevel", "hellohellohellohellohellohellohellohellohellohellohello", "bebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebeb", "aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa", "friendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriendsfriends", "A", "aA", ""};
+    int num_tests = 8;
 
     for (int i = 0; i < num_tests; i++)
     {

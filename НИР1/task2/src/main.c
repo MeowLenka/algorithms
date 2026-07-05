@@ -738,10 +738,11 @@ int main()
 
         case 3:
             show_all_products();
+            header.tr_num++;
             snprintf(status_msg, sizeof(status_msg),
                      "Displayed all %u products.", item_count);
-            break;
             printf("Displayed all %u products, CRC-32: 0x%08X", item_count, header.crc32);
+            break;
 
         case 4:
             save_with_message(signature);

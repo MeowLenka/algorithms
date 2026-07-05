@@ -7,6 +7,8 @@ unsigned int item_count = 0;
 DB_HEADER header;
 char filename[256] = "databasetest.bin";
 
+int do_main = 1;
+
 int input_data_ncurses();
 int search_category_ncurses();
 void search_by_category(const char *category);
@@ -89,12 +91,8 @@ int get_menu_choice(WINDOW *win)
 
 int input_data_ncurses()
 {
-    initscr();
-    cbreak();
     echo();
-    keypad(stdscr, TRUE);
-    clear();
-    refresh();
+    curs_set(1); 
 
     int height = 14;
     int width = 55;
@@ -381,7 +379,8 @@ int input_data_ncurses()
     if (cancelled)
     {
         delwin(win);
-        endwin();
+        noecho();
+        curs_set(0);
         return 0;
     }
 
@@ -407,12 +406,14 @@ int input_data_ncurses()
         getch();
 
         delwin(win);
-        endwin();
+        noecho();
+        curs_set(0);
         return 1;
     }
 
     delwin(win);
-    endwin();
+    noecho();
+    curs_set(0);
     return 0;
 }
 
@@ -425,12 +426,8 @@ int search_category_ncurses()
     int pos = 0;
     int cancelled = 0;
 
-    initscr();
-    cbreak();
+    curs_set(1);
     echo();
-    keypad(stdscr, TRUE);
-    clear();
-    refresh();
 
     getmaxyx(stdscr, rows, cols);
 
@@ -480,7 +477,8 @@ int search_category_ncurses()
     }
 
     delwin(win);
-    endwin();
+    noecho();
+    curs_set(0);
 
     if (cancelled || strlen(category) == 0)
     {
@@ -519,7 +517,6 @@ void search_by_category(const char *category)
         }
     }
 
-    initscr();
     clear();
     refresh();
     box(stdscr, 0, 0);
@@ -547,12 +544,11 @@ void search_by_category(const char *category)
     mvprintw(20, 10, "Press any key to continue...");
     refresh();
     getch();
-    endwin();
+
 }
 
 void show_all_products()
 {
-    initscr();
     clear();
     refresh();
 
@@ -583,12 +579,10 @@ void show_all_products()
     mvprintw(rows - 2, 2, "Total: %u products. Press any key...", item_count);
     refresh();
     getch();
-    endwin();
 }
 
 void show_database_info()
 {
-    initscr();
     clear();
     refresh();
 
@@ -608,7 +602,6 @@ void show_database_info()
     mvprintw(rows - 2, 4, "Press any key to continue...");
     refresh();
     getch();
-    endwin();
 }
 
 void save_with_message(char *signature)
@@ -631,7 +624,6 @@ void save_with_message(char *signature)
     header = create_header(signature, header.tr_num, item_count, items);
     save_database(filename, &header, items, item_count);
 
-    initscr();
     clear();
     refresh();
     box(stdscr, 0, 0);
@@ -641,7 +633,6 @@ void save_with_message(char *signature)
     mvprintw(7, 10, "Press any key...");
     refresh();
     getch();
-    endwin();
 }
 
 int main()
@@ -652,7 +643,13 @@ int main()
     WINDOW *main_win;
     int rows, cols;
 
-    // Загрузка базы данных
+    initscr();
+    cbreak();
+    noecho();
+    keypad(stdscr, TRUE);
+    curs_set(0);
+
+    // загрузка базы данных
     PRICE *loaded_data = NULL;
     header = load_database(filename, &loaded_data);
 
@@ -672,7 +669,7 @@ int main()
         snprintf(status_msg, sizeof(status_msg), "No database found. Creating new.");
     }
 
-    while (1)
+    while (do_main)
     {
         initscr();
         cbreak();
@@ -781,5 +778,6 @@ int main()
         }
     }
 
+    endwin();
     return 0;
 }

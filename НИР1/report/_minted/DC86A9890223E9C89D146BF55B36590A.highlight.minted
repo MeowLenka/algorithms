@@ -18,11 +18,9 @@
 \PYG{+w}{            }\PYG{n}{echo}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}\PYGZob{}indent\PYGZcb{}|\PYGZhy{}\PYGZhy{} \PYGZdl{}name}\PYG{l+s}{\PYGZdq{}}
 \PYG{+w}{            }\PYG{n}{print\PYGZus{}deps}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}lib}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}\PYGZob{}indent\PYGZcb{}|   }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{no}\PYG{l+s}{\PYGZdq{}}
 \PYG{+w}{        }\PYG{n}{elif}\PYG{+w}{ }\PYG{n}{echo}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}line}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{|}\PYG{+w}{ }\PYG{n}{grep}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{q}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZca{}/lib/ld\PYGZhy{}linux}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{then}
-\PYG{+w}{            }\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{ Загрузчик (ld\PYGZhy{}linux)}
 \PYG{+w}{            }\PYG{n}{lib}\PYG{o}{=}\PYG{n}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{echo}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}line}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{|}\PYG{+w}{ }\PYG{n}{awk}\PYG{+w}{ }\PYG{err}{\PYGZsq{}}\PYG{p}{\PYGZob{}}\PYG{n}{print}\PYG{+w}{ }\PYG{n}{\PYGZdl{}1}\PYG{p}{\PYGZcb{}}\PYG{err}{\PYGZsq{}}\PYG{p}{)}
 \PYG{+w}{            }\PYG{n}{name}\PYG{o}{=}\PYG{n}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{basename}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}lib}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
 \PYG{+w}{            }\PYG{n}{echo}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}\PYGZob{}indent\PYGZcb{}|\PYGZus{}\PYGZus{} \PYGZdl{}name}\PYG{l+s}{\PYGZdq{}}
-\PYG{+w}{            }\PYG{c+cp}{\PYGZsh{}}\PYG{c+cp}{ У загрузчика нет зависимостей, но можем проверить}
 \PYG{+w}{            }\PYG{n}{print\PYGZus{}deps}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}lib}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdl{}\PYGZob{}indent\PYGZcb{}    }\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{no}\PYG{l+s}{\PYGZdq{}}
 \PYG{+w}{        }\PYG{n}{fi}
 \PYG{+w}{    }\PYG{n}{done}
