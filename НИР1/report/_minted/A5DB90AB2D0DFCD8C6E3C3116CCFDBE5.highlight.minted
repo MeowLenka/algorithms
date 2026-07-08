@@ -1,14 +1,12 @@
 \begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{k}{typedef}\PYG{+w}{ }\PYG{k}{struct}
-\PYG{p}{\PYGZob{}}
+\PYG{k}{typedef}\PYG{+w}{ }\PYG{k}{struct}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
 \PYG{+w}{    }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{category}\PYG{p}{;}
 \PYG{+w}{    }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{good}\PYG{p}{;}
 \PYG{+w}{    }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{price}\PYG{p}{;}
 \PYG{+w}{    }\PYG{k+kt}{unsigned}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{num}\PYG{p}{;}
 \PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{n}{PRICE}\PYG{p}{;}
 
-\PYG{k}{typedef}\PYG{+w}{ }\PYG{k}{struct}
-\PYG{p}{\PYGZob{}}
+\PYG{k}{typedef}\PYG{+w}{ }\PYG{k}{struct}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
 \PYG{+w}{    }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{n}{signature}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]}\PYG{p}{;}
 \PYG{+w}{    }\PYG{k+kt}{unsigned}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{tr\PYGZus{}num}\PYG{p}{;}
 \PYG{+w}{    }\PYG{k+kt}{unsigned}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{st\PYGZus{}count}\PYG{p}{;}

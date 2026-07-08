@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.10.11)  1 JUL 2026 22:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.10.11)  7 JUL 2026 00:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1116,407 +1116,471 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [3{/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
 [4]
-
-[5]
-<vm1.png, id=106, 3938.715pt x 1341.01pt>
+<vm1.png, id=112, 3938.715pt x 1341.01pt>
 File: vm1.png Graphic file (type png)
 <use vm1.png>
-Package pdftex.def Info: vm1.png  used on input line 129.
+Package pdftex.def Info: vm1.png  used on input line 130.
 (pdftex.def)             Requested size: 501.41325pt x 170.71652pt.
 
-Overfull \hbox (0.92926pt too wide) in paragraph at lines 129--130
+Overfull \hbox (0.92926pt too wide) in paragraph at lines 130--131
  [][] 
  []
 
-<vm2.png, id=107, 3938.715pt x 1341.01pt>
+<vm2.png, id=113, 3938.715pt x 1341.01pt>
 File: vm2.png Graphic file (type png)
 <use vm2.png>
-Package pdftex.def Info: vm2.png  used on input line 135.
+Package pdftex.def Info: vm2.png  used on input line 138.
 (pdftex.def)             Requested size: 501.41325pt x 170.71652pt.
 
-Overfull \hbox (0.92926pt too wide) in paragraph at lines 135--136
+Overfull \hbox (0.92926pt too wide) in paragraph at lines 138--139
  [][] 
  []
 
-<vm.png, id=108, 462.72874pt x 494.84875pt>
-File: vm.png Graphic file (type png)
-<use vm.png>
-Package pdftex.def Info: vm.png  used on input line 142.
-(pdftex.def)             Requested size: 266.0599pt x 284.52756pt.
 
 
-[6 <./vm1.png (PNG copy)> <./vm2.png (PNG copy)>]
-<tty1.jpg, id=118, 881.2925pt x 329.23pt>
-File: tty1.jpg Graphic file (type jpg)
-<use tty1.jpg>
-Package pdftex.def Info: tty1.jpg  used on input line 149.
-(pdftex.def)             Requested size: 380.81758pt x 142.26378pt.
+[5 <./vm1.png (PNG copy)>]
+<vm3.png, id=123, 810.02625pt x 668.4975pt>
+File: vm3.png Graphic file (type png)
+<use vm3.png>
+Package pdftex.def Info: vm3.png  used on input line 145.
+(pdftex.def)             Requested size: 224.09895pt x 184.9429pt.
+<vm4.png, id=124, 1780.6525pt x 722.7pt>
+File: vm4.png Graphic file (type png)
+<use vm4.png>
+Package pdftex.def Info: vm4.png  used on input line 153.
+(pdftex.def)             Requested size: 455.67703pt x 184.9429pt.
 
 
-[7 <./vm.png> <./tty1.jpg>]
-<host.jpg, id=129, 1281.78876pt x 219.82124pt>
-File: host.jpg Graphic file (type jpg)
-<use host.jpg>
-Package pdftex.def Info: host.jpg  used on input line 170.
-(pdftex.def)             Requested size: 331.80989pt x 56.9055pt.
-
-
-[8 <./host.jpg>]
-LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 176.
+[6 <./vm2.png (PNG copy)> <./vm3.png>]
+<vm5_1.png, id=131, 815.045pt x 656.4525pt>
+File: vm5_1.png Graphic file (type png)
+<use vm5_1.png>
+Package pdftex.def Info: vm5_1.png  used on input line 160.
+(pdftex.def)             Requested size: 229.61636pt x 184.9429pt.
+LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 164.
  (/opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
-<man_mkdir.png, id=136, 1517.67pt x 723.70375pt>
+<vm5.png, id=132, 815.045pt x 656.4525pt>
+File: vm5.png Graphic file (type png)
+<use vm5.png>
+Package pdftex.def Info: vm5.png  used on input line 167.
+(pdftex.def)             Requested size: 229.61636pt x 184.9429pt.
+
+
+[7 <./vm4.png> <./vm5_1.png>]
+<tty1.jpg, id=141, 881.2925pt x 329.23pt>
+File: tty1.jpg Graphic file (type jpg)
+<use tty1.jpg>
+Package pdftex.def Info: tty1.jpg  used on input line 174.
+(pdftex.def)             Requested size: 380.81758pt x 142.26378pt.
+<vm.png, id=142, 462.72874pt x 494.84875pt>
+File: vm.png Graphic file (type png)
+<use vm.png>
+Package pdftex.def Info: vm.png  used on input line 180.
+(pdftex.def)             Requested size: 266.0599pt x 284.52756pt.
+
+
+[8 <./vm5.png> <./tty1.jpg>]
+<host.jpg, id=150, 1281.78876pt x 219.82124pt>
+File: host.jpg Graphic file (type jpg)
+<use host.jpg>
+Package pdftex.def Info: host.jpg  used on input line 196.
+(pdftex.def)             Requested size: 331.80989pt x 56.9055pt.
+
+
+[9 <./vm.png>]
+
+[10 <./host.jpg>]
+<man_mkdir.png, id=167, 1517.67pt x 723.70375pt>
 File: man_mkdir.png Graphic file (type png)
 <use man_mkdir.png>
-Package pdftex.def Info: man_mkdir.png  used on input line 190.
+Package pdftex.def Info: man_mkdir.png  used on input line 225.
 (pdftex.def)             Requested size: 537.00505pt x 256.0748pt.
 
-Overfull \hbox (36.52106pt too wide) in paragraph at lines 190--191
+Overfull \hbox (36.52106pt too wide) in paragraph at lines 225--226
  [][] 
  []
 
 
 
-[9]
-<commands1.jpg, id=143, 1128.215pt x 1099.10625pt>
-File: commands1.jpg Graphic file (type jpg)
-<use commands1.jpg>
-Package pdftex.def Info: commands1.jpg  used on input line 207.
-(pdftex.def)             Requested size: 438.0912pt x 426.79134pt.
-
-
-[10 <./man_mkdir.png>]
-
-[11 <./commands1.jpg>]
-Overfull \hbox (102.64441pt too wide) in paragraph at lines 221--223
-[]\T2A/cmr/m/n/14.4 Так же уста-но-вим мета-систему сбор-ки cmake, с по-мо-щью ко-ман-ды: $\OML/cmm/m/it/14.4 sudo apt install cmake$\T2A/cmr/m/n/14.4 .
- []
-
-\pydata@fh@_3E50A0A497B003E697B131968D3D674D.data.minted=\write7
-\openout7 = `_3E50A0A497B003E697B131968D3D674D.data.minted'.
-
-runsystem(latexminted config  --timestamp 20260701223849 3E50A0A497B003E697B131968D3D674D)...executed safely (allowed).
-
-(./_3E50A0A497B003E697B131968D3D674D.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260701223849 3E50A0A497B003E697B131968D3D674D)...executed safely (allowed).
-
- (./_minted/default.style.minted) (./_minted/DC86A9890223E9C89D146BF55B36590A.highlight.minted
-LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T2A/cmtt/m/n' tried instead on input line 7.
-
-
-[12])
-<tree_ldd.png, id=162, 373.395pt x 254.9525pt>
-File: tree_ldd.png Graphic file (type png)
-<use tree_ldd.png>
-Package pdftex.def Info: tree_ldd.png  used on input line 260.
-(pdftex.def)             Requested size: 333.38594pt x 227.62204pt.
-
-Underfull \hbox (badness 3354) in paragraph at lines 273--274
+[11 <./man_mkdir.png>]
+Underfull \hbox (badness 3354) in paragraph at lines 248--249
 []\T2A/cmr/m/n/10 Количество за-ви-
  []
 
 
 
-[13 <./tree_ldd.png>] (./_minted/CA5C5CBF2E611514A8770EA391014B0A.highlight.minted
+[12]
+<commands1.jpg, id=180, 1128.215pt x 1099.10625pt>
+File: commands1.jpg Graphic file (type jpg)
+<use commands1.jpg>
+Package pdftex.def Info: commands1.jpg  used on input line 293.
+(pdftex.def)             Requested size: 438.0912pt x 426.79134pt.
 
-[14])
 
-[15] (./_minted/E77D05A40DBB56F31F47BA960D5B5FF7.highlight.minted
+[13]
 
-[16]) (./_minted/D9FCCB75FD30BA21E8305ED8F8197A40.highlight.minted)
-Overfull \hbox (13.67596pt too wide) in paragraph at lines 383--385
+[14 <./commands1.jpg>]
+\pydata@fh@_3E50A0A497B003E697B131968D3D674D.data.minted=\write7
+\openout7 = `_3E50A0A497B003E697B131968D3D674D.data.minted'.
+
+runsystem(latexminted config  --timestamp 20260707003342 3E50A0A497B003E697B131968D3D674D)...executed safely (allowed).
+
+ (./_3E50A0A497B003E697B131968D3D674D.config.minted)
+runsystem(latexminted cleanconfig  --timestamp 20260707003342 3E50A0A497B003E697B131968D3D674D)...executed safely (allowed).
+
+ (./_minted/default.style.minted) (./_minted/AD33CDD2B9CA6B742E01B8D15F90150E.highlight.minted
+LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T2A/cmtt/m/n' tried instead on input line 3.
+)
+<tree_ldd.png, id=193, 373.395pt x 254.9525pt>
+File: tree_ldd.png Graphic file (type png)
+<use tree_ldd.png>
+Package pdftex.def Info: tree_ldd.png  used on input line 340.
+(pdftex.def)             Requested size: 333.38594pt x 227.62204pt.
+
+
+[15]
+Overfull \hbox (12.79512pt too wide) in paragraph at lines 348--349
+\T2A/cmr/m/n/14.4 му сбор-ки \T2A/cmtt/m/n/14.4 make \T2A/cmr/m/n/14.4 и за-го-ло-воч-ные фай-лы стан-дарт-ной биб-лио-те-ки (\T2A/cmtt/m/n/14.4 libc6-dev\T2A/cmr/m/n/14.4 ); 
+ []
+
+
+
+[16 <./tree_ldd.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
+[]\T2A/cmtt/m/n/10 add_library(name STATIC/SHARED
+ []
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 380--381
+[]\T2A/cmr/m/n/10 Создание ста-ти-че-ской биб-лио-те-ки (\T2A/cmtt/m/n/10 .a\T2A/cmr/m/n/10 ) или ди-на-ми-че-ской
+ []
+
+
+Underfull \hbox (badness 2302) in paragraph at lines 390--391
+[]\T2A/cmr/m/n/10 Установка свойств це-ли (имя вы-ход-но-го фай-ла, вер-сия,
+ []
+
+
+
+[17] (./_minted/CA5C5CBF2E611514A8770EA391014B0A.highlight.minted)
+LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `T2A/cmtt/m/n' tried instead on input line 428.
+ (./_minted/4141D8BBF3C4DF5484F951706FF8BABF.highlight.minted
+
+[18]) (./_minted/CC9CB3A1155AC7940CFF57CC19C787BF.highlight.minted
+Overfull \hbox (6.66849pt too wide) in paragraph at lines 454--1
+\T2A/cmr/m/n/14.4 ко-пию биб-лио-те-ки в па-мя-ти. На-строй-ка сбор-ки биб-лио-тек в \T2A/cmtt/m/n/14.4 src/CMakeLists.txt\T2A/cmr/m/n/14.4 : 
+ []
+
+)
+
+[19] (./_minted/D9FCCB75FD30BA21E8305ED8F8197A40.highlight.minted)
+Overfull \hbox (13.67596pt too wide) in paragraph at lines 496--498
 []\T2A/cmr/m/n/14.4 Как про-ис-хо-дит те-сти-ро-ва-ние функ-ций $\OML/cmm/m/it/14.4 palindrome$ \T2A/cmr/m/n/14.4 и $\OML/cmm/m/it/14.4 palindrome[]recursive$\T2A/cmr/m/n/14.4 : 
  []
 
 
 
-[17]
-<tree_palindrome.png, id=194, 608.2725pt x 303.1325pt>
+[20]
+<tree_palindrome.png, id=230, 608.2725pt x 303.1325pt>
 File: tree_palindrome.png Graphic file (type png)
 <use tree_palindrome.png>
-Package pdftex.def Info: tree_palindrome.png  used on input line 407.
+Package pdftex.def Info: tree_palindrome.png  used on input line 520.
 (pdftex.def)             Requested size: 456.76015pt x 227.62204pt.
 
-Overfull \hbox (23.27711pt too wide) in paragraph at lines 413--414
+
+[21]
+Overfull \hbox (23.27711pt too wide) in paragraph at lines 526--527
 \T2A/cmr/m/n/14.4 те-ка Си) и ld-linux-aarch64.so.1 (ди-на-ми-че-ский за-груз-чик). Биб-лио-те-ка libpalindrome
  []
 
 
 
-[18 <./tree_palindrome.png>]
+[22 <./tree_palindrome.png>]
 
-[19] (./_minted/6C1E71F9BEF9E6E9D1D551E29420442E.highlight.minted)
-
-[20]
-Overfull \hbox (2.81924pt too wide) in paragraph at lines 462--464
-[]\T2A/cmr/m/n/14.4 В рам-ках за-да-ния бы-ло неохо-ди-мо ре-а-ли-зо-вать струк-ту-ру с име-нем PRICE,
+[23] (./_minted/6C1E71F9BEF9E6E9D1D551E29420442E.highlight.minted)
+Overfull \hbox (9.67276pt too wide) in paragraph at lines 579--581
+[]\T2A/cmr/m/n/14.4 В рам-ках за-да-ния бы-ло необ-хо-ди-мо ре-а-ли-зо-вать струк-ту-ру с име-нем PRICE,
  []
 
 
 
-[21] (./_minted/DA7B29BA5E4AF8D76B90E3D29EF660B4.highlight.minted)
-<start_menu.png, id=214, 534.49687pt x 340.77313pt>
-File: start_menu.png Graphic file (type png)
-<use start_menu.png>
-Package pdftex.def Info: start_menu.png  used on input line 500.
-(pdftex.def)             Requested size: 267.76974pt x 170.71652pt.
+[24] (./_minted/A5DB90AB2D0DFCD8C6E3C3116CCFDBE5.highlight.minted
 
-Overfull \hbox (8.61247pt too wide) in paragraph at lines 497--502
-[]\T2A/cmr/m/n/14.4 В на-ча-ле про-грам-мы нас при-вет-ству-ет ме-ню <<product database management>>
+[25])
+
+[26]
+Overfull \hbox (12.00734pt too wide) in paragraph at lines 623--626
+\OML/cmm/m/it/14.4 st[]count$ \T2A/cmr/m/n/14.4 (ко-ли-че-ство за-пи-сей) при-сва-и-ва-ет-ся те-ку-щее зна-че-ние $\OML/cmm/m/it/14.4 item[]count$\T2A/cmr/m/n/14.4 ,
  []
 
-
-
-[22]
-<input_product1.png, id=219, 1154.3125pt x 1300.86pt>
-File: input_product1.png Graphic file (type png)
-<use input_product1.png>
-Package pdftex.def Info: input_product1.png  used on input line 509.
-(pdftex.def)             Requested size: 302.96754pt x 341.43306pt.
-
-
-[23 <./start_menu.png>]
-<input_product2.png, id=226, 1154.3125pt x 1300.86pt>
-File: input_product2.png Graphic file (type png)
-<use input_product2.png>
-Package pdftex.def Info: input_product2.png  used on input line 516.
-(pdftex.def)             Requested size: 302.96754pt x 341.43306pt.
-
-
-[24 <./input_product1.png (PNG copy)>]
-<show_database.png, id=232, 1456.44125pt x 707.64375pt>
-File: show_database.png Graphic file (type png)
-<use show_database.png>
-Package pdftex.def Info: show_database.png  used on input line 525.
-(pdftex.def)             Requested size: 527.05194pt x 256.0748pt.
-
-Overfull \hbox (26.56795pt too wide) in paragraph at lines 525--526
- [][] 
- []
-
-
-
-[25 <./input_product2.png (PNG copy)>]
-
-[26 <./show_database.png>]
-<database_save.png, id=246, 1456.44125pt x 707.64375pt>
-File: database_save.png Graphic file (type png)
-<use database_save.png>
-Package pdftex.def Info: database_save.png  used on input line 551.
-(pdftex.def)             Requested size: 527.05194pt x 256.0748pt.
-
-Overfull \hbox (26.56795pt too wide) in paragraph at lines 551--552
- [][] 
- []
-
-<databas_info.png, id=247, 1456.44125pt x 707.64375pt>
-File: databas_info.png Graphic file (type png)
-<use databas_info.png>
-Package pdftex.def Info: databas_info.png  used on input line 557.
-(pdftex.def)             Requested size: 527.05194pt x 256.0748pt.
-
-Overfull \hbox (26.56795pt too wide) in paragraph at lines 557--558
- [][] 
- []
-
-
-
-[27 <./database_save.png>]
-Overfull \hbox (34.69673pt too wide) in paragraph at lines 560--565
-\T2A/cmr/bx/n/14.4 2 \T2A/cmr/m/n/14.4 в ос-нов-ном ме-ню про-грам-мы. Вы-зы-ва-ет-ся функ-ция $\OML/cmm/m/it/14.4 int search[]category[]ncurses\OT1/cmr/m/n/14.4 ()$\T2A/cmr/m/n/14.4 ,
- []
-
-
-
-[28 <./databas_info.png>]
-<search_results1.png, id=261, 1154.3125pt x 1440.38126pt>
-File: search_results1.png Graphic file (type png)
-<use search_results1.png>
-Package pdftex.def Info: search_results1.png  used on input line 568.
-(pdftex.def)             Requested size: 273.60605pt x 341.43306pt.
-<search_results2.png, id=262, 1153.30875pt x 1451.4225pt>
-File: search_results2.png Graphic file (type png)
-<use search_results2.png>
-Package pdftex.def Info: search_results2.png  used on input line 574.
-(pdftex.def)             Requested size: 271.29156pt x 341.43306pt.
-
-
-[29 <./search_results1.png>]
-<tree_price_db.png, id=268, 571.13374pt x 303.1325pt>
+<tree_price_db.png, id=266, 571.13374pt x 303.1325pt>
 File: tree_price_db.png Graphic file (type png)
 <use tree_price_db.png>
-Package pdftex.def Info: tree_price_db.png  used on input line 582.
+Package pdftex.def Info: tree_price_db.png  used on input line 634.
 (pdftex.def)             Requested size: 536.09018pt x 284.52756pt.
 
-Overfull \hbox (35.60619pt too wide) in paragraph at lines 582--583
+Overfull \hbox (35.60619pt too wide) in paragraph at lines 634--635
  [][] 
  []
 
 
 
-[30 <./search_results2.png>]
+[27]
 
-[31 <./tree_price_db.png>]
-Overfull \hbox (3.39296pt too wide) in paragraph at lines 603--603
+[28 <./tree_price_db.png>]
+Overfull \hbox (3.39296pt too wide) in paragraph at lines 658--658
 []    \T2A/cmtt/m/n/10 tashlykova@tashlykova-1:~/task1/build$ ./bin/test_palindrome_dynamic 1000000 10000 recursive[] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 616--616
+Underfull \hbox (badness 10000) in paragraph at lines 671--671
 []\T2A/cmr/m/n/14.4 Ожидаемый ре-
  []
 
 
-Underfull \hbox (badness 4205) in paragraph at lines 616--617
+Underfull \hbox (badness 4205) in paragraph at lines 671--672
 []\T2A/cmr/m/n/14.4 Фактический ре-
  []
 
 
 
-[32]
-Underfull \hbox (badness 10000) in paragraph at lines 645--645
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 700--700
 []\T2A/cmr/m/n/14.4 Время вы-пол-не-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 651--651
+Underfull \hbox (badness 10000) in paragraph at lines 706--706
 []\T2A/cmr/m/n/14.4 Динамическая
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 653--653
+Underfull \hbox (badness 10000) in paragraph at lines 708--708
 []\T2A/cmr/m/n/14.4 Динамическая
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 655--655
+Underfull \hbox (badness 10000) in paragraph at lines 710--710
 []\T2A/cmr/m/n/14.4 Динамическая
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 655--655
+Underfull \hbox (badness 10000) in paragraph at lines 710--710
 \T2A/cmr/m/n/14.4 за-груз-ка че-рез
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 657--657
+Underfull \hbox (badness 10000) in paragraph at lines 712--712
 []\T2A/cmr/m/n/14.4 Динамическая
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 657--657
+Underfull \hbox (badness 10000) in paragraph at lines 712--712
 \T2A/cmr/m/n/14.4 за-груз-ка че-рез
  []
 
 
 
-[33]
+[30]
 
-[34]
-Overfull \hbox (1.3046pt too wide) in paragraph at lines 678--678
+[31]
+Overfull \hbox (1.3046pt too wide) in paragraph at lines 733--733
 []\T2A/cmr/m/n/12 Итеративный
  []
 
 
-Overfull \hbox (1.3046pt too wide) in paragraph at lines 678--678
+Overfull \hbox (1.3046pt too wide) in paragraph at lines 733--733
 []\T2A/cmr/m/n/12 Итеративный
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 678--678
+Underfull \hbox (badness 10000) in paragraph at lines 733--733
 []\T2A/cmr/m/n/12 dlopen
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 678--678
+Underfull \hbox (badness 10000) in paragraph at lines 733--733
 \T2A/cmr/m/n/12 (итер.),
  []
 
 
-Overfull \hbox (38.76004pt too wide) in paragraph at lines 676--690
+Overfull \hbox (38.76004pt too wide) in paragraph at lines 731--745
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 708--709
+Underfull \hbox (badness 10000) in paragraph at lines 764--765
 []\T2A/cmr/m/n/14.4 Размер
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 708--709
+Underfull \hbox (badness 10000) in paragraph at lines 764--765
 \OML/cmm/m/it/14.4 libpalindrome:a$\T2A/cmr/m/n/14.4 ,
  []
 
 
 
-[35]
-<input_errors.png, id=302, 1154.3125pt x 1951.29pt>
-File: input_errors.png Graphic file (type png)
-<use input_errors.png>
-Package pdftex.def Info: input_errors.png  used on input line 735.
-(pdftex.def)             Requested size: 302.96754pt x 512.1496pt.
+[32]
+<start_menu.png, id=301, 534.49687pt x 340.77313pt>
+File: start_menu.png Graphic file (type png)
+<use start_menu.png>
+Package pdftex.def Info: start_menu.png  used on input line 794.
+(pdftex.def)             Requested size: 267.76974pt x 170.71652pt.
 
-
-[36]
-
-[37 <./input_errors.png (PNG copy)>]
-<main_menu_errors.png, id=319, 1154.3125pt x 1300.86pt>
-File: main_menu_errors.png Graphic file (type png)
-<use main_menu_errors.png>
-Package pdftex.def Info: main_menu_errors.png  used on input line 744.
-(pdftex.def)             Requested size: 302.96754pt x 341.43306pt.
-<hexdump.png, id=320, 487.8225pt x 169.63374pt>
-File: hexdump.png Graphic file (type png)
-<use hexdump.png>
-Package pdftex.def Info: hexdump.png  used on input line 752.
-(pdftex.def)             Requested size: 327.28598pt x 113.81102pt.
-
-
-[38 <./main_menu_errors.png (PNG copy)>]
-
-[39 <./hexdump.png>]
-Overfull \hbox (39.8679pt too wide) in paragraph at lines 760--762
-\T2A/cmr/bx/n/14.4 пор-тов, бес-па-роль-ная SSH-аутентификация\T2A/cmr/m/n/14.4 : Уста-нов-лен Oracle VirtualBox,
+Overfull \hbox (11.2735pt too wide) in paragraph at lines 791--796
+[]\T2A/cmr/m/n/14.4 В на-ча-ле про-грам-мы нас при-вет-ству-ет ме-ню <<product database management>>,
  []
 
 
 
-[40]
-Overfull \hbox (38.7485pt too wide) in paragraph at lines 772--774
+[33]
+<input_product2.png, id=311, 1154.3125pt x 1300.86pt>
+File: input_product2.png Graphic file (type png)
+<use input_product2.png>
+Package pdftex.def Info: input_product2.png  used on input line 802.
+(pdftex.def)             Requested size: 252.47002pt x 284.52756pt.
+
+
+[34 <./start_menu.png> <./input_product2.png (PNG copy)>]
+<input_errors.png, id=319, 1154.3125pt x 1951.29pt>
+File: input_errors.png Graphic file (type png)
+<use input_errors.png>
+Package pdftex.def Info: input_errors.png  used on input line 811.
+(pdftex.def)             Requested size: 252.47002pt x 426.79134pt.
+
+
+[35 <./input_errors.png (PNG copy)>]
+<show_database.png, id=325, 1456.44125pt x 707.64375pt>
+File: show_database.png Graphic file (type png)
+<use show_database.png>
+Package pdftex.def Info: show_database.png  used on input line 821.
+(pdftex.def)             Requested size: 527.05194pt x 256.0748pt.
+
+Overfull \hbox (26.56795pt too wide) in paragraph at lines 821--822
+ [][] 
+ []
+
+<database_save.png, id=326, 1456.44125pt x 707.64375pt>
+File: database_save.png Graphic file (type png)
+<use database_save.png>
+Package pdftex.def Info: database_save.png  used on input line 829.
+(pdftex.def)             Requested size: 527.05194pt x 256.0748pt.
+
+Overfull \hbox (26.56795pt too wide) in paragraph at lines 829--830
+ [][] 
+ []
+
+
+
+[36 <./show_database.png>]
+<databas_info.png, id=333, 1456.44125pt x 707.64375pt>
+File: databas_info.png Graphic file (type png)
+<use databas_info.png>
+Package pdftex.def Info: databas_info.png  used on input line 836.
+(pdftex.def)             Requested size: 527.05194pt x 256.0748pt.
+
+Overfull \hbox (26.56795pt too wide) in paragraph at lines 836--837
+ [][] 
+ []
+
+<search_results1.png, id=334, 1154.3125pt x 1440.38126pt>
+File: search_results1.png Graphic file (type png)
+<use search_results1.png>
+Package pdftex.def Info: search_results1.png  used on input line 844.
+(pdftex.def)             Requested size: 228.00504pt x 284.52756pt.
+
+
+[37 <./database_save.png> <./databas_info.png>]
+<search_results2.png, id=344, 1153.30875pt x 1451.4225pt>
+File: search_results2.png Graphic file (type png)
+<use search_results2.png>
+Package pdftex.def Info: search_results2.png  used on input line 850.
+(pdftex.def)             Requested size: 226.08217pt x 284.52756pt.
+
+
+[38 <./search_results1.png>]
+<main_menu_errors.png, id=350, 1154.3125pt x 1300.86pt>
+File: main_menu_errors.png Graphic file (type png)
+<use main_menu_errors.png>
+Package pdftex.def Info: main_menu_errors.png  used on input line 857.
+(pdftex.def)             Requested size: 252.47002pt x 284.52756pt.
+
+
+[39 <./search_results2.png>]
+<hexdump.png, id=356, 975.645pt x 803.0pt>
+File: hexdump.png Graphic file (type png)
+<use hexdump.png>
+Package pdftex.def Info: hexdump.png  used on input line 866.
+(pdftex.def)             Requested size: 276.55812pt x 227.62204pt.
+
+
+[40 <./main_menu_errors.png (PNG copy)>]
+
+[41 <./hexdump.png (PNG copy)>]
+Overfull \hbox (36.06348pt too wide) in paragraph at lines 879--881
+\T2A/cmr/bx/n/14.4 пор-тов, бес-па-роль-ная SSH-аутентификация\T2A/cmr/m/n/14.4 : Уста-нов-лен Oracle VirtualBox
+ []
+
+
+Overfull \hbox (9.90358pt too wide) in paragraph at lines 879--881
+\T2A/cmr/m/n/14.4 7.2.12, раз-вер-ну-та вир-ту-аль-ная ма-ши-на с Debian 12.14 (debian-12.14.0-arm64-
+ []
+
+
+
+[42]
+Overfull \hbox (38.7485pt too wide) in paragraph at lines 891--893
 \OML/cmm/m/it/14.4 aarch\OT1/cmr/m/n/14.4 64\OML/cmm/m/it/14.4 :so:\OT1/cmr/m/n/14.4 1$\T2A/cmr/m/n/14.4 . Про-грам-ма с $\OML/cmm/m/it/14.4 dlopen$ \T2A/cmr/m/n/14.4 не по-ка-зы-ва-ет за-ви-си-мость от $\OML/cmm/m/it/14.4 libpalindrome:so$
  []
 
 
-Overfull \hbox (22.63538pt too wide) in paragraph at lines 778--781
+Overfull \hbox (22.63538pt too wide) in paragraph at lines 897--899
 []\T2A/cmr/bx/n/14.4 Разработка при-ло-же-ния с псев-до-гра-фи-че-ским ин-тер-фей-сом ncurses\T2A/cmr/m/n/14.4 :
  []
 
 
+Overfull \hbox (44.37206pt too wide) in paragraph at lines 897--899
+\T2A/cmr/m/n/14.4 про-грам-мы об-ра-ба-ты-ва-ет-ся функ-ци-я-ми \T2A/cmtt/m/n/14.4 draw_main_menu() \T2A/cmr/m/n/14.4 и \T2A/cmtt/m/n/14.4 get_menu_choice()\T2A/cmr/m/n/14.4 .
+ []
 
-[41]
 
-[42]
-Underfull \hbox (badness 2846) in paragraph at lines 806--809
+Overfull \hbox (2.283pt too wide) in paragraph at lines 897--899
+\T2A/cmr/m/n/14.4 До-бав-ле-ние но-вых то-ва-ров вы-пол-ня-ет-ся функ-ци-ей \T2A/cmtt/m/n/14.4 input_data_ncurses()\T2A/cmr/m/n/14.4 ,
+ []
+
+
+Overfull \hbox (17.77338pt too wide) in paragraph at lines 897--899
+\T2A/cmr/m/n/14.4 не-ние в би-нар-ный файл ^^V \T2A/cmtt/m/n/14.4 save_with_message() \T2A/cmr/m/n/14.4 с вы-зо-вом \T2A/cmtt/m/n/14.4 save_database()\T2A/cmr/m/n/14.4 .
+ []
+
+
+
+[43]
+
+[44]
+Underfull \hbox (badness 2846) in paragraph at lines 918--921
 \T2A/cmr/m/n/14.4 ствен-ная биб-лио-те-ка [Элек-трон-ный ре-сурс] : учеб-ные ма-те-ри-а-лы. ^^V
  []
 
 
 
-[43
+[45
 
 ]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 826.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 938.
  (./code/task1/palindrome.h) (./code/task1/palindrome.c
 
-[44]) (./code/task1/CmakeListsSrc.txt
+[46]) (./code/task1/CmakeListsSrc.txt
 
-[45]) (./code/task1/test_palindrome.c
+[47]) (./code/task1/test_palindrome.c
 
-[46]
+[48]
 
-[47]
+[49]
 Overfull \hbox (384.8166pt too wide) in paragraph at lines 74--75
 [][] 
  []
@@ -1538,15 +1602,15 @@ Overfull \hbox (328.1299pt too wide) in paragraph at lines 74--75
 
 ) (./code/task1/test_dlopen.c
 
-[48]
-
-[49]
-
 [50]
 
 [51]
 
 [52]
+
+[53]
+
+[54]
 Overfull \hbox (384.8166pt too wide) in paragraph at lines 159--160
 [][] 
  []
@@ -1568,29 +1632,25 @@ Overfull \hbox (328.1299pt too wide) in paragraph at lines 159--160
 
 ) (./code/task1/CmakeListsTests.txt
 
-[53]) (./code/task1/test_optimization.sh
+[55]) (./code/task1/test_optimization.sh
 
-[54]
+[56]
 
-[55]) (./code/task1/analyze_libs.sh
+[57]) (./code/task1/analyze_libs.sh
 
-[56]) (./code/task1/CmakeLists.txt)
+[58]) (./code/task1/CmakeLists.txt)
 
-[57]
+[59]
 
-[58] (./code/task2/price.h
+[60] (./code/task2/price.h
 
-[59]) (./code/task2/price.c
+[61]) (./code/task2/price.c
 
-[60]
-
-[61]
-
-[62]) (./code/task2/main.c
+[62]
 
 [63]
 
-[64]
+[64]) (./code/task2/main.c
 
 [65]
 
@@ -1628,40 +1688,44 @@ Overfull \hbox (328.1299pt too wide) in paragraph at lines 159--160
 
 [82]
 
-[83]) (./code/task2/CmakeLists.txt
+[83]
 
-[84])
+[84]
 
-Package caption Warning: Unused \captionsetup[listing] on input line 821.
+[85]) (./code/task2/CmakeLists.txt
+
+[86])
+
+Package caption Warning: Unused \captionsetup[listing] on input line 933.
 See the caption package documentation for explanation.
 
 
 
-[85] (./РћС‚С‡РµС‚РќРР .aux)
+[87] (./РћС‚С‡РµС‚РќРР .aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `РћС‚С‡РµС‚РќРР .out' has not changed.
-(rerunfilecheck)             Checksum: 397E5CBDA2447A7D4173F2C3A245A404;3726.
+(rerunfilecheck)             Checksum: BDB1E69852643028722DBA936C56654E;4372.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 53 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 52427 strings out of 473190
- 1217984 string characters out of 5704334
- 2420612 words of memory out of 5000000
- 73411 multiletter control sequences out of 15000+600000
+ 52480 strings out of 473190
+ 1218856 string characters out of 5704334
+ 2420610 words of memory out of 5000000
+ 73443 multiletter control sequences out of 15000+600000
  582505 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,12n,107p,1330b,1476s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,12n,107p,2029b,1490s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfit1000.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></opt/homebrew/Cellar/texlive/20250308_1/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on РћС‚С‡РµС‚РќРР .pdf (85 pages, 4197566 bytes).
+Output written on РћС‚С‡РµС‚РќРР .pdf (87 pages, 5087295 bytes).
 PDF statistics:
- 2418 PDF objects out of 2487 (max. 8388607)
- 2246 compressed objects within 23 object streams
- 1614 named destinations out of 1728 (max. 500000)
- 222 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2457 PDF objects out of 2487 (max. 8388607)
+ 2281 compressed objects within 23 object streams
+ 1632 named destinations out of 1728 (max. 500000)
+ 253 words of extra memory for PDF output out of 10000 (max. 10000000)
 

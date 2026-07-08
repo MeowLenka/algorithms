@@ -1,14 +1,16 @@
 \babel@toc {russian}{}\relax 
 \contentsline {section}{Введение}{3}{section*.2}%
-\contentsline {section}{\numberline {1}Постановка задачи}{5}{section.0.1}%
-\contentsline {section}{\numberline {2}Особенности реализации}{6}{section.0.2}%
-\contentsline {subsection}{\numberline {2.1}Установка и настройка среды виртуализации}{6}{subsection.0.2.1}%
-\contentsline {subsection}{\numberline {2.2}Работа в командном интерпретаторе}{9}{subsection.0.2.2}%
-\contentsline {subsection}{\numberline {2.3}Разработка статических и динамических библиотек}{14}{subsection.0.2.3}%
-\contentsline {subsection}{\numberline {2.4}Исследование разделяемых библиотек}{17}{subsection.0.2.4}%
-\contentsline {subsection}{\numberline {2.5}Двоичные файлы и визуализация в псевдографике}{19}{subsection.0.2.5}%
-\contentsline {section}{\numberline {3}Результаты работы и эксперименты}{32}{section.0.3}%
-\contentsline {section}{Заключение}{40}{section*.29}%
-\contentsline {section}{Список используемых источников}{43}{Item.25}%
-\contentsline {section}{A. Исходный код файлов задания №1}{44}{section*.31}%
-\contentsline {section}{B. Исходный код файлов задания №2}{59}{section*.32}%
+\contentsline {section}{\numberline {1}Постановка задачи}{4}{section.0.1}%
+\contentsline {section}{\numberline {2}Особенности реализации}{5}{section.0.2}%
+\contentsline {subsection}{\numberline {2.1}Установка и настройка среды виртуализации}{5}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {2.2}Работа в командном интерпретаторе}{11}{subsection.0.2.2}%
+\contentsline {subsection}{\numberline {2.3}Разработка статических и динамических библиотек}{18}{subsection.0.2.3}%
+\contentsline {subsection}{\numberline {2.4}Исследование разделяемых библиотек}{21}{subsection.0.2.4}%
+\contentsline {subsection}{\numberline {2.5}Двоичные файлы и визуализация в псевдографике}{23}{subsection.0.2.5}%
+\contentsline {section}{\numberline {3}Результаты работы и эксперименты}{29}{section.0.3}%
+\contentsline {subsection}{\numberline {3.1}Тестирование программы задания №1}{29}{subsection.0.3.1}%
+\contentsline {subsection}{\numberline {3.2}Тестирование программы задания №2}{33}{subsection.0.3.2}%
+\contentsline {section}{Заключение}{42}{section*.42}%
+\contentsline {section}{Список используемых источников}{45}{Item.26}%
+\contentsline {section}{A. Исходный код файлов задания №1}{46}{section*.44}%
+\contentsline {section}{B. Исходный код файлов задания №2}{61}{section*.45}%
